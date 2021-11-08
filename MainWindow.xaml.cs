@@ -32,10 +32,24 @@ namespace AGG_Productions
         {
             NoGame.Visibility = Visibility.Collapsed;
             SelectGame.Visibility = Visibility.Collapsed;
-            var dialog = new CommonOpenFileDialog();
+            Chaotic_Notes.Visibility = Visibility.Visible;
+            Chaotic_Install.Visibility = Visibility.Visible;
+        }
+
+        private void Chaotic_Install_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Chaotic_Notes_Initialized(object sender, EventArgs e)
+        {
+
+        }
+
+        /*
+          var dialog = new CommonOpenFileDialog();
             dialog.Title = "Select Install Directory";
             dialog.IsFolderPicker = true;
-            CommonFileDialogResult result = dialog.ShowDialog();
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 string folder = dialog.FileName;
@@ -43,6 +57,6 @@ namespace AGG_Productions
                 Console.Write("{0}", dialog.FileName);
                 // Do something with selected folder string
             }
-        }
+         */
     }
 }
