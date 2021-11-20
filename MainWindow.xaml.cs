@@ -17,7 +17,7 @@ namespace AGG_Productions
     public partial class MainWindow : Window
     {
         #region Variables
-        
+        public static Button button;
         #endregion
 
         public MainWindow()
@@ -36,6 +36,8 @@ namespace AGG_Productions
 
         private void Chaotic_Install_Click(object sender, RoutedEventArgs e)
         {
+            Chaotic_Install.IsEnabled = false;
+            button = Chaotic_Install;
             AdminDirCheck.InstallDir("Chaotic");
         }
 

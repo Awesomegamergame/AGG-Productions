@@ -23,6 +23,7 @@ namespace AGG_Productions
                 Title = "Select Install Directory",
                 IsFolderPicker = true
             };
+            Start:
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 string folder = dialog.FileName;
@@ -36,8 +37,12 @@ namespace AGG_Productions
                 {
                     File.Delete(InstallName + "Dir.txt");
                     MessageBox.Show("Application Isnt Ran With Admin Choose A Folder That Doesnt Need Admin");
+                    goto Start;
                 }
-
+            }
+            else
+            {
+                MainWindow.button.IsEnabled = true;
             }
         }
     }
