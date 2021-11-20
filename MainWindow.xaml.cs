@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,6 +19,7 @@ namespace AGG_Productions
     {
         #region Variables
         public static Button button;
+        public WebBrowser UpdateBoard;
         #endregion
 
         public MainWindow()
@@ -43,7 +45,17 @@ namespace AGG_Productions
 
         private void Chaotic_Notes_Initialized(object sender, EventArgs e)
         {
+            UpdateBoard = (WebBrowser)sender;
 
+            WebClient c = new WebClient();
+
+            c.DownloadFileCompleted += C_DownloadFileCompleted;
+            c.DownloadFileAsync(new Uri("https://www.dropbox.com/s/b4oyagb518s8pcv/ChaoticUpdates.html?dl=1"), $@"{Environment.CurrentDirectory}\ChaoticUpdates.html");
+        }
+
+        private void C_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\ChaoticUpdates.html");
         }
     }
 }
