@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -20,6 +21,7 @@ namespace AGG_Productions
         #region Variables
         public static Button button;
         public WebBrowser UpdateBoard;
+        public string UpdateBoardDir = $@"{Environment.CurrentDirectory}\UpdateBoards";
         #endregion
 
         public MainWindow()
@@ -48,14 +50,23 @@ namespace AGG_Productions
             UpdateBoard = (WebBrowser)sender;
 
             WebClient c = new WebClient();
-
-            c.DownloadFileCompleted += C_DownloadFileCompleted;
-            c.DownloadFileAsync(new Uri("https://www.dropbox.com/s/b4oyagb518s8pcv/ChaoticUpdates.html?dl=1"), $@"{Environment.CurrentDirectory}\ChaoticUpdates.html");
+            A:
+            if (Directory.Exists(UpdateBoardDir))
+            {
+                c.DownloadFileCompleted += C_DownloadFileCompleted;
+                c.DownloadFileAsync(new Uri("https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/main/UpdateBoards/ChaoticUpdates.html"), $@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
+                UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
+            }
+            else
+            {
+                Directory.CreateDirectory(UpdateBoardDir);
+                goto A;
+            }
         }
 
         private void C_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\ChaoticUpdates.html");
+            UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
         }
     }
 }

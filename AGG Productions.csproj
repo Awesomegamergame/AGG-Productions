@@ -145,5 +145,8 @@
   <ItemGroup>
     <Resource Include="Images\Icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="UpdateBoards\ChaoticUpdates.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
