@@ -22,10 +22,12 @@ namespace AGG_Productions
         public static Button button;
         public WebBrowser UpdateBoard;
         public string UpdateBoardDir = $@"{Environment.CurrentDirectory}\UpdateBoards";
+        public int Out;
         #endregion
 
         public MainWindow()
         {
+            CheckInternet.CheckInternetState();
             InitializeComponent();
         }
 
@@ -54,8 +56,15 @@ namespace AGG_Productions
             if (Directory.Exists(UpdateBoardDir))
             {
                 c.DownloadFileCompleted += C_DownloadFileCompleted;
-                c.DownloadFileAsync(new Uri("https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/UpdateBoards/ChaoticUpdates.html"), $@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
-                UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
+                MessageBox.Show(Convert.ToString(CheckInternet.IsOnline));
+                if (CheckInternet.IsOnline == true)
+                {
+                    c.DownloadFileAsync(new Uri("https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/UpdateBoards/ChaoticUpdates.html"), $@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
+                }
+                else
+                {
+                    UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
+                }
             }
             else
             {
