@@ -54,7 +54,7 @@ namespace AGG_Productions
             if (Directory.Exists(UpdateBoardDir))
             {
                 c.DownloadFileCompleted += C_DownloadFileCompleted;
-                c.DownloadFileAsync(new Uri("https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/main/UpdateBoards/ChaoticUpdates.html"), $@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
+                c.DownloadFileAsync(new Uri("https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/UpdateBoards/ChaoticUpdates.html"), $@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
                 UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
             }
             else
