@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using System.IO;
 
 namespace AGG_Productions
 {
-    class AdminDirCheck
+    public class AdminDirCheck
     {
         #region Variables
-        const string AdminCheck = "AdminCheck";
-        const string AdminCheckName = "AdminCheck.txt";
+        private const string AdminCheck = "AdminCheck";
+        private const string AdminCheckName = "AdminCheck.txt";
         #endregion
 
         public static void InstallDir(string InstallName)
@@ -23,7 +19,7 @@ namespace AGG_Productions
                 Title = "Select Install Directory",
                 IsFolderPicker = true
             };
-            Start:
+        Start:
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 string folder = dialog.FileName;

@@ -20,9 +20,7 @@ namespace AGG_Productions
     {
         #region Variables
         public static Button button;
-        public WebBrowser UpdateBoard;
-        public string UpdateBoardDir = $@"{Environment.CurrentDirectory}\UpdateBoards";
-        public int Out;
+        public static WebBrowser UpdateBoard;
         #endregion
 
         public MainWindow()
@@ -50,32 +48,7 @@ namespace AGG_Productions
         private void Chaotic_Notes_Initialized(object sender, EventArgs e)
         {
             UpdateBoard = (WebBrowser)sender;
-
-            WebClient c = new WebClient();
-            A:
-            if (Directory.Exists(UpdateBoardDir))
-            {
-                c.DownloadFileCompleted += C_DownloadFileCompleted;
-                MessageBox.Show(Convert.ToString(CheckInternet.IsOnline));
-                if (CheckInternet.IsOnline == true)
-                {
-                    c.DownloadFileAsync(new Uri("https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/UpdateBoards/ChaoticUpdates.html"), $@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
-                }
-                else
-                {
-                    UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
-                }
-            }
-            else
-            {
-                Directory.CreateDirectory(UpdateBoardDir);
-                goto A;
-            }
-        }
-
-        private void C_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
-        {
-            UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\ChaoticUpdates.html");
+            UpdateBoards.DownloadBoards("Chaotic", UpdateBoardLinks.ChaoticBoardLink);
         }
     }
 }
