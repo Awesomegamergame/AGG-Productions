@@ -98,6 +98,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LauncherData\CheckInternet.cs" />
+    <Compile Include="LauncherUpdater\Updater.cs" />
+    <Compile Include="LauncherUpdater\VersionChecker.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -157,5 +159,6 @@
   <ItemGroup>
     <Content Include="UpdateBoards\ChaoticUpdates.html" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

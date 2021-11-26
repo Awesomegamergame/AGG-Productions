@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using AGG_Productions.LauncherData;
+using AGG_Productions.LauncherUpdater;
 
 namespace AGG_Productions
 {
@@ -34,6 +35,10 @@ namespace AGG_Productions
         public MainWindow()
         {
             CheckInternet.CheckInternetState();
+            if (CheckInternet.IsOnline == true)
+            {
+                Updater.LauncherUpdate();
+            }
             InitializeComponent();
         }
 
