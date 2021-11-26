@@ -20,5 +20,7 @@
         <TextBox x:Name="SelectGame" HorizontalAlignment="Center" Height="127" TextWrapping="Wrap" Text="Choose a game on the left side of the screen" VerticalAlignment="Center" Width="298" TextAlignment="Center" Margin="373,224,177,130" FontSize="24" Background="Transparent" BorderBrush="#00ABADB3" Cursor="Hand" IsTabStop="False" Focusable="False" IsReadOnly="True" IsHitTestVisible="False"/>
         <WebBrowser x:Name="Chaotic_Notes" Visibility="Collapsed" Margin="199.4,0,0,44" Initialized="Chaotic_Notes_Initialized"/>
         <Button x:Name="Chaotic_Install" Content="Install Chaotic" Visibility="Collapsed" HorizontalAlignment="Left" Click="Chaotic_Install_Click" VerticalAlignment="Top" Height="29" Width="150" Margin="450,442,0,0"/>
+        <ComboBox x:Name="VersionBox2" Visibility="Collapsed" HorizontalAlignment="Left" Margin="232,442,0,0" VerticalAlignment="Top" Width="150" Height="29" Initialized="Chaotic_Version_Initialized" SelectionChanged="VersionBox_SelectionChanged" IsEnabled="False"/>
+        <Button x:Name="PlayButton" Content="Play" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="29" Margin="668,442,0,0" Initialized="PlayButton_Initialized" Click="PlayButton_Click" IsEnabled="False"/>
     </Grid>
 </Window>

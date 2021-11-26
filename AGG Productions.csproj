@@ -62,6 +62,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -80,18 +82,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UpdateBoardLinks.cs" />
-    <Compile Include="UpdateBoards.cs" />
+    <Compile Include="LauncherData\FileDownloader.cs" />
+    <Compile Include="LauncherData\GamePaths.cs" />
+    <Compile Include="LauncherData\PlayButton.cs" />
+    <Compile Include="LauncherData\VersionManager.cs" />
+    <Compile Include="LauncherData\UpdateBoardLinks.cs" />
+    <Compile Include="LauncherData\UpdateBoards.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AdminDirCheck.cs" />
+    <Compile Include="LauncherData\AdminDirCheck.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CheckInternet.cs" />
+    <Compile Include="LauncherData\CheckInternet.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
