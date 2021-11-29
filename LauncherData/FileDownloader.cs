@@ -57,11 +57,10 @@ public class FileDownloader : IDisposable
 			{
 				get
 				{
-					string cookie;
-					if( cookies.TryGetValue( address.Host, out cookie ) )
-						return cookie;
+                    if (cookies.TryGetValue(address.Host, out string cookie))
+                        return cookie;
 
-					return null;
+                    return null;
 				}
 				set
 				{
@@ -75,15 +74,15 @@ public class FileDownloader : IDisposable
 
 		protected override WebRequest GetWebRequest( Uri address )
 		{
-			WebRequest request = base.GetWebRequest( address );
-			if( request is HttpWebRequest )
+            WebRequest request = base.GetWebRequest(address);
+			if (request is HttpWebRequest request1)
 			{
 				string cookie = cookies[address];
 				if( cookie != null )
-					( (HttpWebRequest) request ).Headers.Set( "cookie", cookie );
+					request1.Headers.Set( "cookie", cookie );
 
 				if( ContentRangeTarget != null )
-					( (HttpWebRequest) request ).AddRange( 0 );
+					request1.AddRange( 0 );
 			}
 
 			return request;
@@ -123,10 +122,9 @@ public class FileDownloader : IDisposable
 					int splitIndex = rangeLengthHeader[0].LastIndexOf( '/' );
 					if( splitIndex >= 0 && splitIndex < rangeLengthHeader[0].Length - 1 )
 					{
-						long length;
-						if( long.TryParse( rangeLengthHeader[0].Substring( splitIndex + 1 ), out length ) )
-							ContentRangeTarget.TotalBytesToReceive = length;
-					}
+                        if (long.TryParse(rangeLengthHeader[0].Substring(splitIndex + 1), out long length))
+                            ContentRangeTarget.TotalBytesToReceive = length;
+                    }
 				}
 			}
 
@@ -224,9 +222,8 @@ public class FileDownloader : IDisposable
 	{
 		if( !downloadingDriveFile )
 		{
-			if( DownloadFileCompleted != null )
-				DownloadFileCompleted( this, e );
-		}
+            DownloadFileCompleted?.Invoke(this, e);
+        }
 		else
 		{
 			if( driveDownloadAttempt < GOOGLE_DRIVE_MAX_DOWNLOAD_ATTEMPT && !ProcessDriveDownload() )
@@ -235,9 +232,8 @@ public class FileDownloader : IDisposable
 				driveDownloadAttempt++;
 				DownloadFileInternal();
 			}
-			else if( DownloadFileCompleted != null )
-				DownloadFileCompleted( this, e );
-		}
+			else DownloadFileCompleted?.Invoke(this, e);
+        }
 	}
 
 	// Downloading large files from Google Drive prompts a warning screen and requires manual confirmation

@@ -17,7 +17,7 @@ namespace AGG_Productions
             if (Directory.Exists(UpdateBoardDir))
             {
                 c.DownloadFileCompleted += C_DownloadFileCompleted;
-                if (CheckInternet.IsOnline == true)
+                if (CheckInternet.IsOnline)
                 {
                     c.DownloadFileAsync(new Uri(BoardHTMLLink), $@"{Environment.CurrentDirectory}\UpdateBoards\{BoardName}Updates.html");
                 }

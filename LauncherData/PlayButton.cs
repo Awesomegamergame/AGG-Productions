@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace AGG_Productions.LauncherData
@@ -23,7 +19,7 @@ namespace AGG_Productions.LauncherData
             if (File.Exists(paths.ExeFile))
             {
                 Process.Start(paths.ExeFile);
-                App.Current.Shutdown();
+                Application.Current.Shutdown();
             }
             else
             {
@@ -54,7 +50,7 @@ namespace AGG_Productions.LauncherData
                 ZipFile.ExtractToDirectory($@"{paths.GameVersionFile}\Build({MainWindow.VersionToDownload}).zip", paths.GameVersionFile);
                 File.Delete($@"{paths.GameVersionFile}\Build({MainWindow.VersionToDownload}).zip");
                 Process.Start(paths.ExeFile);
-                App.Current.Shutdown();
+                Application.Current.Shutdown();
             }
             catch (Exception ex)
             {

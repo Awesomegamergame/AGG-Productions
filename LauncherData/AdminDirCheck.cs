@@ -7,11 +7,8 @@ namespace AGG_Productions
 {
     public class AdminDirCheck
     {
-        #region Variables
         private const string AdminCheck = "AdminCheck";
         private const string AdminCheckName = "AdminCheck.txt";
-        #endregion
-
         public static void InstallDir(string InstallName)
         {
             CommonOpenFileDialog dialog = new CommonOpenFileDialog

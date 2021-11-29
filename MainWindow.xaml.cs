@@ -1,20 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using AGG_Productions.LauncherData;
 using AGG_Productions.LauncherUpdater;
 
@@ -22,7 +9,6 @@ namespace AGG_Productions
 {
     public partial class MainWindow : Window
     {
-        #region Variables
         public static string VersionToDownload;
         public static string GameDir;
         public static Button button;
@@ -30,18 +16,15 @@ namespace AGG_Productions
         public static Button Play;
         public static ComboBox VersionSelector;
         public static ComboBox VersionBox;
-        #endregion
-
         public MainWindow()
         {
             CheckInternet.CheckInternetState();
-            if (CheckInternet.IsOnline == true)
+            if (CheckInternet.IsOnline)
             {
                 Updater.LauncherUpdate();
             }
             InitializeComponent();
         }
-
         private void Chaotic_Click(object sender, RoutedEventArgs e)
         {
             NoGame.Visibility = Visibility.Collapsed;
@@ -60,7 +43,6 @@ namespace AGG_Productions
                 Chaotic_Install.Visibility = Visibility.Collapsed;
             }
         }
-
         private void Chaotic_Install_Click(object sender, RoutedEventArgs e)
         {
             Chaotic_Install.IsEnabled = false;
@@ -73,28 +55,23 @@ namespace AGG_Productions
             VersionManager.VersionLink = UpdateBoardLinks.ChaoticVersionLink;
             PlayButton2._VersionManager = new VersionManager(this);
         }
-
         private void Chaotic_Notes_Initialized(object sender, EventArgs e)
         {
             UpdateBoard = (WebBrowser)sender;
             UpdateBoards.DownloadBoards("Chaotic", UpdateBoardLinks.ChaoticBoardLink);
         }
-
         private void Chaotic_Version_Initialized(object sender, EventArgs e)
         {
             VersionSelector = (ComboBox)sender;
         }
-
         private void PlayButton_Initialized(object sender, EventArgs e)
         {
             Play = (Button)sender;
         }
-
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             PlayButton2.Start("Chaotic");
         }
-
         private void VersionBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             VersionToDownload = VersionSelector.SelectedItem.ToString();

@@ -4,9 +4,7 @@ namespace AGG_Productions
 {
     class CheckInternet
     {
-        #region Variables
         public static bool IsOnline;
-        #endregion
         public static void CheckInternetState()
         {
             try
