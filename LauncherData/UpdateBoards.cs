@@ -10,6 +10,7 @@ namespace AGG_Productions
         public static void DownloadBoards(string BoardName, string BoardHTMLLink)
         {
             BoardNameM += BoardName;
+            string BoardCheck = $@"{Environment.CurrentDirectory}\UpdateBoards\{BoardName}Updates.html";
             string UpdateBoardDir = $@"{Environment.CurrentDirectory}\UpdateBoards";
 
             WebClient c = new WebClient();
@@ -23,7 +24,10 @@ namespace AGG_Productions
                 }
                 else
                 {
-                    MainWindow.UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\{BoardName}Updates.html");
+                    if (File.Exists(BoardCheck))
+                    {
+                        MainWindow.UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\{BoardName}Updates.html");
+                    }
                 }
             }
             else
