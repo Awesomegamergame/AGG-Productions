@@ -156,6 +156,7 @@
     <Resource Include="Images\Icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\UpdateBackground.jpg" />
     <Content Include="UpdateBoards\ChaoticUpdates.html" />
   </ItemGroup>
   <ItemGroup />

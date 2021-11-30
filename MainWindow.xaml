@@ -22,5 +22,10 @@
         <Button x:Name="Chaotic_Install" Content="Install Chaotic" Visibility="Collapsed" HorizontalAlignment="Left" Click="Chaotic_Install_Click" VerticalAlignment="Top" Height="29" Width="150" Margin="450,442,0,0"/>
         <ComboBox x:Name="VersionBox2" Visibility="Collapsed" HorizontalAlignment="Left" Margin="232,442,0,0" VerticalAlignment="Top" Width="150" Height="29" Initialized="Chaotic_Version_Initialized" SelectionChanged="VersionBox_SelectionChanged" IsEnabled="False"/>
         <Button x:Name="PlayButton" Content="Play" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="29" Margin="668,442,0,0" Initialized="PlayButton_Initialized" Click="PlayButton_Click" IsEnabled="False"/>
+        <Image x:Name="UpdateScreen" Source="Images/UpdateBackground.jpg" Visibility="Collapsed" HorizontalAlignment="Left" Height="482" VerticalAlignment="Top" Width="849" Margin="0,0,-0.333,0" Initialized="UpdateScreen_Initialized"/>
+        <Label x:Name="UpdateText1" Visibility="Collapsed" Content="Launcher Update Available" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="268,140,267.667,0" FontSize="25" Initialized="UpdateText1_Initialized" Height="44" Width="313"/>
+        <Label x:Name="UpdateText2" Visibility="Collapsed" Content="Do You Want To Update" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Initialized="UpdateText2_Initialized"/>
+        <Button x:Name="Yes" Content="Yes" Visibility="Collapsed" Click="Yes_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Width="85" Height="40" Background="#99249C1E" Margin="0,296,450,146" Initialized="Yes_Initialized"/>
+        <Button x:Name="No" Content="No" Visibility="Collapsed" Click="No_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="85" Height="40" Background="#99B53B20" Margin="450,296,313.667,146" Initialized="No_Initialized"/>
     </Grid>
 </Window>

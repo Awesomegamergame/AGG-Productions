@@ -17,6 +17,8 @@ namespace AGG_Productions.LauncherUpdater
         public static string launcherZip = Path.Combine(rootPath, "AGG Productions Temp.zip");
         public static string startPath = @".\AGG Productions Temp";
         public static string LauncherExe = Path.Combine(rootPath, "AGG Productions.exe");
+        public static int VersionDetector = 0;
+        public static Version onlineVersion;
         public static void LauncherUpdate()
         {
             if (File.Exists(exeOld))
@@ -27,6 +29,10 @@ namespace AGG_Productions.LauncherUpdater
             {
                 File.Delete(pdbOld);
             }
+            if (Directory.Exists(startPath))
+            {
+                Directory.Delete(startPath);
+            }
 
             if (File.Exists(versionFile))
             {
@@ -35,11 +41,16 @@ namespace AGG_Productions.LauncherUpdater
                 try
                 {
                     WebClient webClient = new WebClient();
-                    Version onlineVersion = new Version(webClient.DownloadString(UpdateBoardLinks.LauncherVerLink));
+                    onlineVersion = new Version(webClient.DownloadString(UpdateBoardLinks.LauncherVerLink));
 
                     if (onlineVersion.IsDifferentThan(localVersion))
                     {
-                        InstallGameFiles(true, onlineVersion);
+                        VersionDetector += 1;
+                        MainWindow.UpdateScreen_Image.Visibility = Visibility.Visible;
+                        MainWindow.Yes_Button.Visibility = Visibility.Visible;
+                        MainWindow.No_Button.Visibility = Visibility.Visible;
+                        MainWindow.UpdateText1_Label.Visibility = Visibility.Visible;
+                        MainWindow.UpdateText2_Label.Visibility = Visibility.Visible;
                     }
                 }
                 catch (Exception ex)
@@ -49,11 +60,16 @@ namespace AGG_Productions.LauncherUpdater
             }
             else
             {
-                InstallGameFiles(false, Version.zero);
+                VersionDetector += 2;
+                MainWindow.UpdateScreen_Image.Visibility = Visibility.Visible;
+                MainWindow.Yes_Button.Visibility = Visibility.Visible;
+                MainWindow.No_Button.Visibility = Visibility.Visible;
+                MainWindow.UpdateText1_Label.Visibility = Visibility.Visible;
+                MainWindow.UpdateText2_Label.Visibility = Visibility.Visible;
             }
         }
 
-        private static void InstallGameFiles(bool _isUpdate, Version _onlineVersion)
+        public static void InstallGameFiles(bool _isUpdate, Version _onlineVersion)
         {
             try
             {
@@ -125,7 +141,19 @@ namespace AGG_Productions.LauncherUpdater
                 MessageBox.Show($"Error finishing download: {ex}");
             }
         }
+        public static void UpdaterVersion()
+        {
+            if(VersionDetector == 1)
+            {
+                InstallGameFiles(true, onlineVersion);
+            }
+            else if(VersionDetector == 2)
+            {
+                InstallGameFiles(false, Version.zero);
+            }
+        }
     }
+
     public struct Version
     {
         internal static Version zero = new Version(0, 0, 0);

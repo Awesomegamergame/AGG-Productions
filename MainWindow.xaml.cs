@@ -16,14 +16,21 @@ namespace AGG_Productions
         public static Button Play;
         public static ComboBox VersionSelector;
         public static ComboBox VersionBox;
+        #region Update Screen Variables Dont Edit
+        public static Button Yes_Button;
+        public static Button No_Button;
+        public static Image UpdateScreen_Image;
+        public static Label UpdateText1_Label;
+        public static Label UpdateText2_Label;
+        #endregion
         public MainWindow()
         {
             CheckInternet.CheckInternetState();
+            InitializeComponent();
             if (CheckInternet.IsOnline)
             {
                 Updater.LauncherUpdate();
             }
-            InitializeComponent();
         }
         private void Chaotic_Click(object sender, RoutedEventArgs e)
         {
@@ -76,5 +83,55 @@ namespace AGG_Productions
         {
             VersionToDownload = VersionSelector.SelectedItem.ToString();
         }
+
+        #region Update Screen Buttons Dont Edit
+        private void No_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateScreen_Image.Visibility = Visibility.Collapsed;
+            Yes_Button.Visibility = Visibility.Collapsed;
+            No_Button.Visibility = Visibility.Collapsed;
+            UpdateText1_Label.Visibility = Visibility.Collapsed;
+            UpdateText2_Label.Visibility = Visibility.Collapsed;
+        }
+
+        private void Yes_Click(object sender, RoutedEventArgs e)
+        {
+            if (Updater.VersionDetector == 1)
+            {
+                Updater.UpdaterVersion();
+                Updater.VersionDetector = 0;
+            }
+            else if(Updater.VersionDetector == 2)
+            {
+                Updater.UpdaterVersion();
+                Updater.VersionDetector = 0;
+            }
+        }
+
+        private void Yes_Initialized(object sender, EventArgs e)
+        {
+            Yes_Button = (Button)sender;
+        }
+
+        private void No_Initialized(object sender, EventArgs e)
+        {
+            No_Button = (Button)sender;
+        }
+
+        private void UpdateText1_Initialized(object sender, EventArgs e)
+        {
+            UpdateText1_Label = (Label)sender;
+        }
+
+        private void UpdateText2_Initialized(object sender, EventArgs e)
+        {
+            UpdateText2_Label = (Label)sender;
+        }
+
+        private void UpdateScreen_Initialized(object sender, EventArgs e)
+        {
+            UpdateScreen_Image = (Image)sender;
+        }
+        #endregion
     }
 }
