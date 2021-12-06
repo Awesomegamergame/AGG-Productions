@@ -73,19 +73,25 @@ namespace AGG_Productions.LauncherUpdater
         {
             try
             {
+                FileDownloader LauncherDownload = new FileDownloader();
                 WebClient webClient = new WebClient();
                 if (!_isUpdate)
                 {
                     _onlineVersion = new Version(webClient.DownloadString(UpdateBoardLinks.LauncherVerLink));
                 }
-
-                webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(DownloadGameCompletedCallback);
-                webClient.DownloadFileAsync(new Uri(UpdateBoardLinks.LauncherLink), launcherZip, _onlineVersion);
+                LauncherDownload.DownloadFileAsync(UpdateBoardLinks.LauncherLink, launcherZip, _onlineVersion);
+                LauncherDownload.DownloadProgressChanged += LauncherDownload_DownloadProgressChanged;
+                LauncherDownload.DownloadFileCompleted += new AsyncCompletedEventHandler(DownloadGameCompletedCallback);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error installing game files: {ex}");
             }
+        }
+
+        private static void LauncherDownload_DownloadProgressChanged(object sender, FileDownloader.DownloadProgress progress)
+        {
+            MainWindow.UpdateDownloadBar.Value = progress.ProgressPercentage;
         }
 
         private static void DownloadGameCompletedCallback(object sender, AsyncCompletedEventArgs e)

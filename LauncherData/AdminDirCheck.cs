@@ -9,6 +9,7 @@ namespace AGG_Productions
     {
         private const string AdminCheck = "AdminCheck";
         private const string AdminCheckName = "AdminCheck.txt";
+        public static bool FileDialogClosed = false;
         public static void InstallDir(string InstallName)
         {
             CommonOpenFileDialog dialog = new CommonOpenFileDialog
@@ -35,6 +36,7 @@ namespace AGG_Productions
             }
             else
             {
+                FileDialogClosed = true;
                 MainWindow.button.IsEnabled = true;
             }
         }

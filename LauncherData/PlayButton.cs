@@ -31,6 +31,7 @@ namespace AGG_Productions.LauncherData
                     if (_VersionManager.VersionLinkPairs.TryGetValue(MainWindow.VersionToDownload, out string temp))
                     {
                         downloader.DownloadFileCompleted += Downloader_DownloadFileCompleted;
+                        downloader.DownloadProgressChanged += Downloader_DownloadProgressChanged;
                         downloader.DownloadFileAsync(temp, $@"{paths.GameVersionFile}\Build({MainWindow.VersionToDownload}).zip");
                     }
                 }
@@ -41,6 +42,11 @@ namespace AGG_Productions.LauncherData
                     MainWindow.VersionSelector.IsEnabled = true;
                 }
             }
+        }
+
+        private static void Downloader_DownloadProgressChanged(object sender, FileDownloader.DownloadProgress progress)
+        {
+            MainWindow.GameDownloadBar.Value = progress.ProgressPercentage;
         }
 
         public static void Downloader_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)

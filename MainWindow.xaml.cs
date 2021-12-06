@@ -22,6 +22,8 @@ namespace AGG_Productions
         public static Image UpdateScreen_Image;
         public static Label UpdateText1_Label;
         public static Label UpdateText2_Label;
+        public static ProgressBar GameDownloadBar;
+        public static ProgressBar UpdateDownloadBar;
         #endregion
         public MainWindow()
         {
@@ -45,6 +47,7 @@ namespace AGG_Productions
                 GameDir = File.ReadAllText("ChaoticDir.txt");
                 VersionBox2.Visibility = Visibility.Visible;
                 PlayButton.Visibility = Visibility.Visible;
+                GameDownloadBar.Visibility = Visibility.Visible;
                 VersionManager.VersionLink = UpdateBoardLinks.ChaoticVersionLink;
                 PlayButton2._VersionManager = new VersionManager(this);
                 Chaotic_Install.Visibility = Visibility.Collapsed;
@@ -55,10 +58,16 @@ namespace AGG_Productions
             Chaotic_Install.IsEnabled = false;
             button = Chaotic_Install;
             AdminDirCheck.InstallDir("Chaotic");
+            if (AdminDirCheck.FileDialogClosed)
+            {
+                AdminDirCheck.FileDialogClosed = false;
+                return;
+            }
             GameDir = File.ReadAllText("ChaoticDir.txt");
             Chaotic_Install.Visibility = Visibility.Collapsed;
             VersionBox2.Visibility = Visibility.Visible;
             PlayButton.Visibility = Visibility.Visible;
+            GameDownloadBar.Visibility = Visibility.Visible;
             VersionManager.VersionLink = UpdateBoardLinks.ChaoticVersionLink;
             PlayButton2._VersionManager = new VersionManager(this);
         }
@@ -96,6 +105,9 @@ namespace AGG_Productions
 
         private void Yes_Click(object sender, RoutedEventArgs e)
         {
+            Yes_Button.Visibility = Visibility.Collapsed;
+            No_Button.Visibility = Visibility.Collapsed;
+            UpdateDownloadBar.Visibility = Visibility.Visible;
             if (Updater.VersionDetector == 1)
             {
                 Updater.UpdaterVersion();
@@ -131,6 +143,14 @@ namespace AGG_Productions
         private void UpdateScreen_Initialized(object sender, EventArgs e)
         {
             UpdateScreen_Image = (Image)sender;
+        }
+        private void ProgressBar_Initialized(object sender, EventArgs e)
+        {
+            GameDownloadBar = (ProgressBar)sender;
+        }
+        private void UpdateBar_Initialized(object sender, EventArgs e)
+        {
+            UpdateDownloadBar = (ProgressBar)sender;
         }
         #endregion
     }
