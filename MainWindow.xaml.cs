@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using AGG_Productions.LauncherData;
 using AGG_Productions.LauncherUpdater;
+using AGG_Productions.GameLinks;
 
 namespace AGG_Productions
 {
@@ -48,7 +49,7 @@ namespace AGG_Productions
                 VersionBox2.Visibility = Visibility.Visible;
                 PlayButton.Visibility = Visibility.Visible;
                 GameDownloadBar.Visibility = Visibility.Visible;
-                VersionManager.VersionLink = UpdateBoardLinks.ChaoticVersionLink;
+                VersionManager.VersionLink = ChaoticLinks.ChaoticVersionLink;
                 PlayButton2._VersionManager = new VersionManager(this);
                 Chaotic_Install.Visibility = Visibility.Collapsed;
             }
@@ -68,7 +69,7 @@ namespace AGG_Productions
             VersionBox2.Visibility = Visibility.Visible;
             PlayButton.Visibility = Visibility.Visible;
             GameDownloadBar.Visibility = Visibility.Visible;
-            VersionManager.VersionLink = UpdateBoardLinks.ChaoticVersionLink;
+            VersionManager.VersionLink = ChaoticLinks.ChaoticVersionLink;
             PlayButton2._VersionManager = new VersionManager(this);
         }
         private void Chaotic_Notes_Initialized(object sender, EventArgs e)

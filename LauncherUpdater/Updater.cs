@@ -10,6 +10,8 @@ namespace AGG_Productions.LauncherUpdater
 {
     class Updater
     {
+        public static string LauncherLink = "https://www.dropbox.com/s/27bwz9ct96qltlx/AGG%20Productions%20Temp.zip?dl=1";
+        public static string LauncherVerLink = "https://www.dropbox.com/s/l0s6jjask4paool/AGG%20Productions%20Version.txt?dl=1";
         public static string rootPath = Directory.GetCurrentDirectory();
         public static string versionFile = Path.Combine(rootPath, "AGG Productions Version.txt");
         public static string exeOld = Path.Combine(rootPath, "AGG Productions.exe.old");
@@ -41,7 +43,7 @@ namespace AGG_Productions.LauncherUpdater
                 try
                 {
                     WebClient webClient = new WebClient();
-                    onlineVersion = new Version(webClient.DownloadString(UpdateBoardLinks.LauncherVerLink));
+                    onlineVersion = new Version(webClient.DownloadString(LauncherVerLink));
 
                     if (onlineVersion.IsDifferentThan(localVersion))
                     {
@@ -77,9 +79,9 @@ namespace AGG_Productions.LauncherUpdater
                 WebClient webClient = new WebClient();
                 if (!_isUpdate)
                 {
-                    _onlineVersion = new Version(webClient.DownloadString(UpdateBoardLinks.LauncherVerLink));
+                    _onlineVersion = new Version(webClient.DownloadString(LauncherVerLink));
                 }
-                LauncherDownload.DownloadFileAsync(UpdateBoardLinks.LauncherLink, launcherZip, _onlineVersion);
+                LauncherDownload.DownloadFileAsync(LauncherLink, launcherZip, _onlineVersion);
                 LauncherDownload.DownloadProgressChanged += LauncherDownload_DownloadProgressChanged;
                 LauncherDownload.DownloadFileCompleted += new AsyncCompletedEventHandler(DownloadGameCompletedCallback);
             }

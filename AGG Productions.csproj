@@ -82,6 +82,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GameLinks\GameLinks.cs" />
     <Compile Include="LauncherData\FileDownloader.cs" />
     <Compile Include="LauncherData\GamePaths.cs" />
     <Compile Include="LauncherData\PlayButton.cs" />
