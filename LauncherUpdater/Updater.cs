@@ -5,6 +5,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Windows;
+using AGG_Productions.Repair;
 
 namespace AGG_Productions.LauncherUpdater
 {
@@ -12,13 +13,11 @@ namespace AGG_Productions.LauncherUpdater
     {
         public static string LauncherLink = "https://www.dropbox.com/s/27bwz9ct96qltlx/AGG%20Productions%20Temp.zip?dl=1";
         public static string LauncherVerLink = "https://www.dropbox.com/s/l0s6jjask4paool/AGG%20Productions%20Version.txt?dl=1";
-        public static string rootPath = Directory.GetCurrentDirectory();
-        public static string versionFile = Path.Combine(rootPath, "AGG Productions Version.txt");
-        public static string exeOld = Path.Combine(rootPath, "AGG Productions.exe.old");
-        public static string pdbOld = Path.Combine(rootPath, "AGG Productions.pdb.old");
-        public static string launcherZip = Path.Combine(rootPath, "AGG Productions Temp.zip");
         public static string startPath = @".\AGG Productions Temp";
-        public static string LauncherExe = Path.Combine(rootPath, "AGG Productions.exe");
+        public static string exeOld = Path.Combine(CheckFiles.rootPath, "AGG Productions.exe.old");
+        public static string pdbOld = Path.Combine(CheckFiles.rootPath, "AGG Productions.pdb.old");
+        public static string versionFile = Path.Combine(CheckFiles.rootPath, "AGG Productions Version.txt");
+        public static string launcherZip = Path.Combine(CheckFiles.rootPath, "AGG Productions Temp.zip");
         public static int VersionDetector = 0;
         public static Version onlineVersion;
         public static void LauncherUpdate()
@@ -139,7 +138,7 @@ namespace AGG_Productions.LauncherUpdater
                     File.Delete(launcherZip);
                     File.WriteAllText(versionFile, onlineVersion);
 
-                    Process.Start(LauncherExe);
+                    Process.Start(CheckFiles.LauncherExe);
                     Application.Current.Shutdown();
 
                 }

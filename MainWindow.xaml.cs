@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using AGG_Productions.LauncherData;
 using AGG_Productions.LauncherUpdater;
 using AGG_Productions.GameLinks;
+using AGG_Productions.Repair;
 
 namespace AGG_Productions
 {
@@ -32,7 +33,15 @@ namespace AGG_Productions
             InitializeComponent();
             if (CheckInternet.IsOnline)
             {
-                Updater.LauncherUpdate();
+                CheckFiles.CheckForFiles();
+                if (CheckFiles.FilesCheckPassed)
+                {
+                    Updater.LauncherUpdate();
+                }
+                else
+                {
+                    CheckFiles.FixFiles();
+                }
             }
         }
         private void Chaotic_Click(object sender, RoutedEventArgs e)
