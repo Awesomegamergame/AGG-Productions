@@ -96,6 +96,7 @@ namespace AGG_Productions.LauncherUpdater
         private static void LauncherDownload_DownloadProgressChanged(object sender, FileDownloader.DownloadProgress progress)
         {
             MainWindow.UpdateDownloadBar.Value = progress.ProgressPercentage;
+            MainWindow.RepairBarObject.Value = progress.ProgressPercentage;
         }
 
         private static void DownloadGameCompletedCallback(object sender, AsyncCompletedEventArgs e)

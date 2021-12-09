@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
-using AGG_Productions.LauncherUpdater;
 
 namespace AGG_Productions.Repair
 {
@@ -32,7 +26,6 @@ namespace AGG_Productions.Repair
             else
             {
                 FilesCheckPassed = false;
-                MessageBox.Show("Files Are Broken/Missing");
             }
         }
         public static void CheckForFilesNoInternet()

@@ -29,5 +29,9 @@
         <ProgressBar x:Name="UpdateProgress" Visibility="Collapsed" HorizontalAlignment="Center" Height="28" VerticalAlignment="Bottom" Width="256" Margin="296,0,296,151" Initialized="UpdateBar_Initialized"/>
         <Button x:Name="No" Content="No" Visibility="Collapsed" Click="No_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="85" Height="40" Background="#99B53B20" Margin="450,296,313.667,146" Initialized="No_Initialized"/>
         <ProgressBar x:Name="GameDownload" HorizontalAlignment="Left" Visibility="Collapsed" Height="25" VerticalAlignment="Top" Width="649" Margin="199,412,0,0" Initialized="ProgressBar_Initialized"/>
+        <Image x:Name="RepairScreen" Source="Images/UpdateBackground.jpg" Visibility="Collapsed" HorizontalAlignment="Left" Height="482" VerticalAlignment="Top" Width="849" Margin="0,0,-0.333,0" Initialized="RepairScreen_Initialized"/>
+        <ProgressBar x:Name="RepairBar" HorizontalAlignment="Left" Visibility="Collapsed" Height="28" VerticalAlignment="Bottom" Width="256" Margin="296,0,0,151" Initialized="RepairBar_Initialized"/>
+        <Label x:Name="RepairText" Visibility="Collapsed" Content="Launcher Repair" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="332,140,330.667,0" FontSize="25" Initialized="RepairText_Initialized" Height="44" Width="186"/>
+        <Label x:Name="RepairBodyText" Visibility="Collapsed" Content="Missing/Broken Files, Trying to Repair The Launcher Files" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Initialized="RepairBodyText_Initialized"/>
     </Grid>
 </Window>

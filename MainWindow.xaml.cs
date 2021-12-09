@@ -27,6 +27,12 @@ namespace AGG_Productions
         public static ProgressBar GameDownloadBar;
         public static ProgressBar UpdateDownloadBar;
         #endregion
+        #region Repair Screen Dont Edit
+        public static ProgressBar RepairBarObject;
+        public static Image RepairScreenObject;
+        public static Label RepairTextObject;
+        public static Label RepairBodyObject;
+        #endregion
         public MainWindow()
         {
             CheckInternet.CheckInternetState();
@@ -40,6 +46,10 @@ namespace AGG_Productions
                 }
                 else
                 {
+                    RepairScreenObject.Visibility = Visibility.Visible;
+                    RepairBarObject.Visibility = Visibility.Visible;
+                    RepairTextObject.Visibility = Visibility.Visible;
+                    RepairBodyObject.Visibility = Visibility.Visible;
                     Updater.LauncherUpdate();
                 }
             }
@@ -169,6 +179,28 @@ namespace AGG_Productions
         private void UpdateBar_Initialized(object sender, EventArgs e)
         {
             UpdateDownloadBar = (ProgressBar)sender;
+        }
+        #endregion
+
+        #region Repair Screen Dont Edit
+        private void RepairScreen_Initialized(object sender, EventArgs e)
+        {
+            RepairScreenObject = (Image)sender;
+        }
+
+        private void RepairBar_Initialized(object sender, EventArgs e)
+        {
+            RepairBarObject = (ProgressBar)sender;
+        }
+
+        private void RepairText_Initialized(object sender, EventArgs e)
+        {
+            RepairTextObject = (Label)sender;
+        }
+
+        private void RepairBodyText_Initialized(object sender, EventArgs e)
+        {
+            RepairBodyObject = (Label)sender;
         }
         #endregion
     }
