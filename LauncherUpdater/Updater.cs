@@ -43,8 +43,11 @@ namespace AGG_Productions.LauncherUpdater
                 {
                     WebClient webClient = new WebClient();
                     onlineVersion = new Version(webClient.DownloadString(LauncherVerLink));
-
-                    if (onlineVersion.IsDifferentThan(localVersion))
+                    if (CheckFiles.FilesCheckPassed == false)
+                    {
+                        InstallGameFiles(false, Version.zero);
+                    }
+                    else if (onlineVersion.IsDifferentThan(localVersion))
                     {
                         VersionDetector += 1;
                         MainWindow.UpdateScreen_Image.Visibility = Visibility.Visible;

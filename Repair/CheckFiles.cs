@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using AGG_Productions.LauncherUpdater;
 
 namespace AGG_Productions.Repair
 {
@@ -20,6 +21,7 @@ namespace AGG_Productions.Repair
         public static string ShellXML = Path.Combine(rootPath, "Microsoft.WindowsAPICodePack.Shell.xml");
         public static string CodePackXML = Path.Combine(rootPath, "Microsoft.WindowsAPICodePack.xml");
         public static bool FilesCheckPassed;
+        public static bool FilesCheckPassedNo;
         #endregion
         public static void CheckForFiles()
         {
@@ -35,11 +37,15 @@ namespace AGG_Productions.Repair
         }
         public static void CheckForFilesNoInternet()
         {
-
-        }
-        public static void FixFiles()
-        {
-
+            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL) && File.Exists(ShellXML) && File.Exists(CodePackXML))
+            {
+                FilesCheckPassedNo = true;
+            }
+            else
+            {
+                FilesCheckPassedNo = false;
+                MessageBox.Show("Files Are Broken/Missing But Cant Fix Files Because You Have No Internet");
+            }
         }
     }
 }

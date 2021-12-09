@@ -40,7 +40,15 @@ namespace AGG_Productions
                 }
                 else
                 {
-                    CheckFiles.FixFiles();
+                    Updater.LauncherUpdate();
+                }
+            }
+            else
+            {
+                CheckFiles.CheckForFilesNoInternet();
+                if (CheckFiles.FilesCheckPassedNo == false)
+                {
+                    Application.Current.Shutdown();
                 }
             }
         }
