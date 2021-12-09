@@ -58,7 +58,10 @@ namespace AGG_Productions
                 CheckFiles.CheckForFilesNoInternet();
                 if (CheckFiles.FilesCheckPassedNo == false)
                 {
-                    Application.Current.Shutdown();
+                    RepairScreenObject.Visibility = Visibility.Visible;
+                    RepairTextObject.Visibility = Visibility.Visible;
+                    RepairBodyObject.Content = "Please Connect To The Internet And Restart The Launcher To Repair It";
+                    RepairBodyObject.Visibility = Visibility.Visible;
                 }
             }
         }
