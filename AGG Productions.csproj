@@ -64,6 +64,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -86,6 +87,7 @@
     <Compile Include="LauncherData\FileDownloader.cs" />
     <Compile Include="LauncherData\GamePaths.cs" />
     <Compile Include="LauncherData\PlayButton.cs" />
+    <Compile Include="LauncherData\UpgradeLauncher.cs" />
     <Compile Include="LauncherData\VersionManager.cs" />
     <Compile Include="LauncherData\UpdateBoardLinks.cs" />
     <Compile Include="LauncherData\UpdateBoards.cs" />

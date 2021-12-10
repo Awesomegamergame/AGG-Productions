@@ -35,6 +35,10 @@ namespace AGG_Productions
         #endregion
         public MainWindow()
         {
+            if (Directory.Exists(UpgradeLauncher.ChaoticLauncherFolder) || Directory.Exists(UpgradeLauncher.ChaoticDevLauncherFolder))
+            {
+                UpgradeLauncher.DeleteOld();
+            }
             CheckInternet.CheckInternetState();
             InitializeComponent();
             if (CheckInternet.IsOnline)
