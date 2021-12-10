@@ -6,7 +6,7 @@ namespace AGG_Productions.LauncherData
 {
     class UpgradeLauncher
     {
-        #region All Possible Chaotic Launcher Locationss
+        #region All Possible Chaotic Launcher Locations
         public static string ChaoticLauncherUninstaller = @"C:\Users\Public\Chaotic Launcher\unins000.exe";
         public static string ChaoticLauncherUninstallerDat = @"C:\Users\Public\Chaotic Launcher\unins000.dat";
         public static string ChaoticLauncherUninstaller2 = @"C:\Users\Public\Chaotic Launcher\unins001.exe";
