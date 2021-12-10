@@ -6,7 +6,7 @@ namespace AGG_Productions.LauncherData
 {
     class UpgradeLauncher
     {
-        #region All Possible Chaotic Locationss
+        #region All Possible Chaotic Launcher Locationss
         public static string ChaoticLauncherUninstaller = @"C:\Users\Public\Chaotic Launcher\unins000.exe";
         public static string ChaoticLauncherUninstallerDat = @"C:\Users\Public\Chaotic Launcher\unins000.dat";
         public static string ChaoticLauncherUninstaller2 = @"C:\Users\Public\Chaotic Launcher\unins001.exe";
@@ -24,6 +24,9 @@ namespace AGG_Productions.LauncherData
         public static string ChaoticDesktopIcon = Path.Combine(Desktop, @"Desktop\Chaotic Launcher.lnk");
         public static string ChaoticDevDesktopIcon = Path.Combine(Desktop, @"Desktop\Chaotic Development Launcher.lnk");
         #endregion
+
+        //Auto Delete uses the unistaller's from both launchers to remove all folders and icons
+        //If fails it goes to manual unistall mode which removes manualy every folder, icon, and chaotic releated file
         public static void DeleteOld()
         {
             if (File.Exists(ChaoticLauncherUninstaller) && File.Exists(ChaoticLauncherUninstallerDat))

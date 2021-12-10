@@ -33,6 +33,12 @@ namespace AGG_Productions
         public static Label RepairTextObject;
         public static Label RepairBodyObject;
         #endregion
+        #region Launcher Version
+        public static Label LocalVersionObject;
+        public static Label LocalVersionNumberObject;
+        public static Label OnlineVersionObject;
+        public static Label OnlineVersionNumberObject;
+        #endregion
         public MainWindow()
         {
             if (Directory.Exists(UpgradeLauncher.ChaoticLauncherFolder) || Directory.Exists(UpgradeLauncher.ChaoticDevLauncherFolder))
@@ -208,6 +214,28 @@ namespace AGG_Productions
         private void RepairBodyText_Initialized(object sender, EventArgs e)
         {
             RepairBodyObject = (Label)sender;
+        }
+        #endregion
+
+        #region Launcher Version
+        private void LocalVersionNumber_Initialized(object sender, EventArgs e)
+        {
+            LocalVersionNumberObject = (Label)sender;
+        }
+
+        private void LocalVersion_Initialized(object sender, EventArgs e)
+        {
+            LocalVersionObject = (Label)sender;
+        }
+
+        private void OnlineVersionNumber_Initialized(object sender, EventArgs e)
+        {
+            OnlineVersionNumberObject = (Label)sender;
+        }
+
+        private void OnlineVersion_Initialized(object sender, EventArgs e)
+        {
+            OnlineVersionObject = (Label)sender;
         }
         #endregion
     }

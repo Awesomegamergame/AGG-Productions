@@ -20,6 +20,7 @@ namespace AGG_Productions.LauncherUpdater
         public static string launcherZip = Path.Combine(CheckFiles.rootPath, "AGG Productions Temp.zip");
         public static int VersionDetector = 0;
         public static Version onlineVersion;
+        public static Version localVersion;
         public static void LauncherUpdate()
         {
             if (File.Exists(exeOld))
@@ -37,7 +38,7 @@ namespace AGG_Productions.LauncherUpdater
 
             if (File.Exists(versionFile))
             {
-                Version localVersion = new Version(File.ReadAllText(versionFile));
+                localVersion = new Version(File.ReadAllText(versionFile));
 
                 try
                 {
@@ -55,6 +56,12 @@ namespace AGG_Productions.LauncherUpdater
                         MainWindow.No_Button.Visibility = Visibility.Visible;
                         MainWindow.UpdateText1_Label.Visibility = Visibility.Visible;
                         MainWindow.UpdateText2_Label.Visibility = Visibility.Visible;
+                        MainWindow.LocalVersionObject.Visibility = Visibility.Visible;
+                        MainWindow.OnlineVersionObject.Visibility = Visibility.Visible;
+                        MainWindow.LocalVersionNumberObject.Content = localVersion;
+                        MainWindow.OnlineVersionNumberObject.Content = onlineVersion;
+                        MainWindow.LocalVersionNumberObject.Visibility = Visibility.Visible;
+                        MainWindow.OnlineVersionNumberObject.Visibility = Visibility.Visible;
                     }
                 }
                 catch (Exception ex)
@@ -62,14 +69,26 @@ namespace AGG_Productions.LauncherUpdater
                     MessageBox.Show($"Error checking for game updates: {ex}");
                 }
             }
+            else if (CheckFiles.FilesCheckPassed == false)
+            {
+                InstallGameFiles(false, Version.zero);
+            }
             else
             {
+                WebClient webClient = new WebClient();
+                onlineVersion = new Version(webClient.DownloadString(LauncherVerLink));
                 VersionDetector += 2;
                 MainWindow.UpdateScreen_Image.Visibility = Visibility.Visible;
                 MainWindow.Yes_Button.Visibility = Visibility.Visible;
                 MainWindow.No_Button.Visibility = Visibility.Visible;
                 MainWindow.UpdateText1_Label.Visibility = Visibility.Visible;
                 MainWindow.UpdateText2_Label.Visibility = Visibility.Visible;
+                MainWindow.LocalVersionObject.Visibility = Visibility.Visible;
+                MainWindow.OnlineVersionObject.Visibility = Visibility.Visible;
+                MainWindow.LocalVersionNumberObject.Content = "Unknown";
+                MainWindow.OnlineVersionNumberObject.Content = onlineVersion;
+                MainWindow.LocalVersionNumberObject.Visibility = Visibility.Visible;
+                MainWindow.OnlineVersionNumberObject.Visibility = Visibility.Visible;
             }
         }
 
