@@ -17,7 +17,6 @@ namespace AGG_Productions
         public static WebBrowser UpdateBoard;
         public static Button Play;
         public static ComboBox VersionSelector;
-        public static ComboBox VersionBox;
         #region Update Screen Variables Dont Edit
         public static Button Yes_Button;
         public static Button No_Button;
@@ -86,7 +85,7 @@ namespace AGG_Productions
             if (File.Exists("ChaoticDir.txt"))
             {
                 GameDir = File.ReadAllText("ChaoticDir.txt");
-                VersionBox2.Visibility = Visibility.Visible;
+                VersionSelector.Visibility = Visibility.Visible;
                 PlayButton.Visibility = Visibility.Visible;
                 GameDownloadBar.Visibility = Visibility.Visible;
                 VersionManager.VersionLink = ChaoticLinks.ChaoticVersionLink;
@@ -106,7 +105,7 @@ namespace AGG_Productions
             }
             GameDir = File.ReadAllText("ChaoticDir.txt");
             Chaotic_Install.Visibility = Visibility.Collapsed;
-            VersionBox2.Visibility = Visibility.Visible;
+            VersionSelector.Visibility = Visibility.Visible;
             PlayButton.Visibility = Visibility.Visible;
             GameDownloadBar.Visibility = Visibility.Visible;
             VersionManager.VersionLink = ChaoticLinks.ChaoticVersionLink;
@@ -120,6 +119,7 @@ namespace AGG_Productions
         private void Chaotic_Version_Initialized(object sender, EventArgs e)
         {
             VersionSelector = (ComboBox)sender;
+            VersionSelector.MaxDropDownHeight = VersionSelector.MaxHeight = 110;
         }
         private void PlayButton_Initialized(object sender, EventArgs e)
         {
