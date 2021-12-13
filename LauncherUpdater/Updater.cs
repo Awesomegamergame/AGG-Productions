@@ -125,8 +125,14 @@ namespace AGG_Productions.LauncherUpdater
                 string onlineVersion = ((Version)e.UserState).ToString();
                 if (!Directory.Exists(startPath))
                 {
-                    File.Move(@".\AGG Productions.exe", @".\AGG Productions.exe.old");
-                    File.Move(@".\AGG Productions.pdb", @".\AGG Productions.pdb.old");
+                    if (File.Exists(CheckFiles.LauncherExe))
+                    {
+                        File.Move(@".\AGG Productions.exe", @".\AGG Productions.exe.old");
+                    }
+                    if (File.Exists(CheckFiles.Launcherpdb))
+                    {
+                        File.Move(@".\AGG Productions.pdb", @".\AGG Productions.pdb.old");
+                    }
                     try
                     {
                         //Declare a temporary path to unzip your files
