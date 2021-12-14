@@ -37,7 +37,6 @@ namespace AGG_Productions.Repair
             else
             {
                 FilesCheckPassedNo = false;
-                MessageBox.Show("Files Are Broken/Missing But Cant Fix Files Because You Have No Internet");
             }
         }
     }
