@@ -142,6 +142,10 @@ namespace AGG_Productions
             No_Button.Visibility = Visibility.Collapsed;
             UpdateText1_Label.Visibility = Visibility.Collapsed;
             UpdateText2_Label.Visibility = Visibility.Collapsed;
+            LocalVersionObject.Visibility = Visibility.Collapsed;
+            LocalVersionNumberObject.Visibility = Visibility.Collapsed;
+            OnlineVersionNumberObject.Visibility = Visibility.Collapsed;
+            OnlineVersionObject.Visibility = Visibility.Collapsed;
         }
 
         private void Yes_Click(object sender, RoutedEventArgs e)
