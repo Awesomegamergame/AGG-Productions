@@ -39,9 +39,9 @@
         <Label x:Name="OnlineVersionNumber" Visibility="Collapsed" Content="" HorizontalAlignment="Center" FontSize="15" Initialized="OnlineVersionNumber_Initialized" Margin="624,260,152,0" RenderTransformOrigin="0.443,1.844" Width="70" Grid.Row="1" Height="35" VerticalAlignment="Top"/>
         <Label x:Name="OnlineVersion" Visibility="Collapsed" Content="New:" HorizontalAlignment="Center" FontSize="15" Initialized="OnlineVersion_Initialized" Margin="585,260,198,0" RenderTransformOrigin="0.443,1.844" Width="63" Grid.Row="1" Height="35" VerticalAlignment="Top"/>
         <ProgressBar x:Name="GameDownload" Visibility="Collapsed" Margin="198,0,0.333,39.667" Initialized="ProgressBar_Initialized" Grid.Row="1" Height="25" VerticalAlignment="Bottom"/>
-        <Image x:Name="RepairScreen" Source="Images/UpdateBackground.jpg" Visibility="Collapsed" HorizontalAlignment="Left" Height="482" VerticalAlignment="Top" Width="849" Margin="0,0,-1.667,-1.334" Initialized="RepairScreen_Initialized" Grid.RowSpan="2"/>
-        <ProgressBar x:Name="RepairBar" HorizontalAlignment="Left" Visibility="Collapsed" Height="28" VerticalAlignment="Bottom" Width="256" Margin="296,0,0,150.666" Initialized="RepairBar_Initialized" Grid.Row="1"/>
+        <Image x:Name="RepairScreen" Source="Images/UpdateBackground.jpg" Visibility="Collapsed" Margin="0,0,0.333,-13.333" Grid.RowSpan="2" Stretch="Fill" Initialized="RepairScreen_Initialized"/>
+        <ProgressBar x:Name="RepairBar" Visibility="Collapsed" HorizontalAlignment="Center" Width="256" Margin="300,185,290,0" Grid.Row="1" Height="28" VerticalAlignment="Top" Initialized="RepairBar_Initialized"/>
         <Label x:Name="RepairText" Visibility="Collapsed" Content="Launcher Repair" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="331,24.667,330.333,0" FontSize="25" Initialized="RepairText_Initialized" Height="44" Width="186" Grid.Row="1"/>
-        <Label x:Name="RepairBodyText" Visibility="Collapsed" Content="Missing/Broken Files, Trying to Repair The Launcher Files" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Initialized="RepairBodyText_Initialized" Margin="424,124.667,423.333,240.666" Grid.Row="1"/>
+        <Label x:Name="RepairBodyText" Visibility="Collapsed" Content="Missing/Broken Files, Trying to Repair The Launcher Files" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Initialized="RepairBodyText_Initialized" Margin="191,93,183,0" Grid.Row="1" Height="34" Width="472"/>
     </Grid>
 </Window>
