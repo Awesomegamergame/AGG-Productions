@@ -139,9 +139,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Games.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\UpdateBackground.jpg" />
+    <Resource Include="Images\Background.jpg" />
     <Content Include="UpdateBoards\ChaoticUpdates.html" />
   </ItemGroup>
   <ItemGroup />
