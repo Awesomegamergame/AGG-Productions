@@ -2,7 +2,7 @@
 using System.IO;
 using System.Diagnostics;
 
-namespace AGG_Productions.LauncherData
+namespace AGG_Productions.LauncherUpgrade
 {
     class UpgradeLauncher
     {

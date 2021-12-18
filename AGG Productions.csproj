@@ -78,10 +78,10 @@
     <Compile Include="LauncherData\FileDownloader.cs" />
     <Compile Include="LauncherData\GamePaths.cs" />
     <Compile Include="LauncherData\PlayButton.cs" />
-    <Compile Include="LauncherData\UpgradeLauncher.cs" />
     <Compile Include="LauncherData\VersionManager.cs" />
     <Compile Include="LauncherData\UpdateBoardLinks.cs" />
     <Compile Include="LauncherData\UpdateBoards.cs" />
+    <Compile Include="LauncherUpgrade\UpgradeLauncher.cs" />
     <Compile Include="Repair\CheckFiles.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
