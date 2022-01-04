@@ -6,6 +6,7 @@ using AGG_Productions.LauncherData;
 using AGG_Productions.LauncherUpdater;
 using AGG_Productions.GameLinks;
 using AGG_Productions.Repair;
+using AGG_Productions.LauncherUpgrade;
 
 namespace AGG_Productions
 {
@@ -91,6 +92,7 @@ namespace AGG_Productions
                 VersionManager.VersionLink = ChaoticLinks.ChaoticVersionLink;
                 PlayButton2._VersionManager = new VersionManager(this);
                 Chaotic_Install.Visibility = Visibility.Collapsed;
+                Chaotic_ReInstall.Visibility = Visibility.Visible;
             }
         }
         private void Chaotic_Install_Click(object sender, RoutedEventArgs e)
@@ -108,8 +110,16 @@ namespace AGG_Productions
             VersionSelector.Visibility = Visibility.Visible;
             PlayButton.Visibility = Visibility.Visible;
             GameDownloadBar.Visibility = Visibility.Visible;
+            Chaotic_ReInstall.Visibility = Visibility.Visible;
             VersionManager.VersionLink = ChaoticLinks.ChaoticVersionLink;
             PlayButton2._VersionManager = new VersionManager(this);
+        }
+        private void Chaotic_ReInstall_Click(object sender, RoutedEventArgs e)
+        {
+            Chaotic_ReInstall.IsEnabled = false;
+            button = Chaotic_ReInstall;
+            AdminDirCheck.InstallDir("Chaotic");
+            GameDir = File.ReadAllText("ChaoticDir.txt");
         }
         private void Chaotic_Notes_Initialized(object sender, EventArgs e)
         {
