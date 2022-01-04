@@ -5,6 +5,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Windows;
+using System.Reflection;
 using AGG_Productions.Repair;
 
 namespace AGG_Productions.LauncherUpdater
@@ -35,60 +36,39 @@ namespace AGG_Productions.LauncherUpdater
             {
                 Directory.Delete(startPath);
             }
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            System.Version version = assembly.GetName().Version;
+            string versionS = version.ToString();
+            versionS = versionS.Substring(0, versionS.Length - 2);
+            localVersion = new Version(versionS);
 
-            if (File.Exists(versionFile))
-            {
-                localVersion = new Version(File.ReadAllText(versionFile));
-
-                try
-                {
-                    WebClient webClient = new WebClient();
-                    onlineVersion = new Version(webClient.DownloadString(LauncherVerLink));
-                    if (CheckFiles.FilesCheckPassed == false)
-                    {
-                        InstallGameFiles(false, Version.zero);
-                    }
-                    else if (onlineVersion.IsDifferentThan(localVersion))
-                    {
-                        VersionDetector += 1;
-                        MainWindow.UpdateScreen_Image.Visibility = Visibility.Visible;
-                        MainWindow.Yes_Button.Visibility = Visibility.Visible;
-                        MainWindow.No_Button.Visibility = Visibility.Visible;
-                        MainWindow.UpdateText1_Label.Visibility = Visibility.Visible;
-                        MainWindow.UpdateText2_Label.Visibility = Visibility.Visible;
-                        MainWindow.LocalVersionObject.Visibility = Visibility.Visible;
-                        MainWindow.OnlineVersionObject.Visibility = Visibility.Visible;
-                        MainWindow.LocalVersionNumberObject.Content = localVersion;
-                        MainWindow.OnlineVersionNumberObject.Content = onlineVersion;
-                        MainWindow.LocalVersionNumberObject.Visibility = Visibility.Visible;
-                        MainWindow.OnlineVersionNumberObject.Visibility = Visibility.Visible;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error checking for game updates: {ex}");
-                }
-            }
-            else if (CheckFiles.FilesCheckPassed == false)
-            {
-                InstallGameFiles(false, Version.zero);
-            }
-            else
+            try
             {
                 WebClient webClient = new WebClient();
                 onlineVersion = new Version(webClient.DownloadString(LauncherVerLink));
-                VersionDetector += 2;
-                MainWindow.UpdateScreen_Image.Visibility = Visibility.Visible;
-                MainWindow.Yes_Button.Visibility = Visibility.Visible;
-                MainWindow.No_Button.Visibility = Visibility.Visible;
-                MainWindow.UpdateText1_Label.Visibility = Visibility.Visible;
-                MainWindow.UpdateText2_Label.Visibility = Visibility.Visible;
-                MainWindow.LocalVersionObject.Visibility = Visibility.Visible;
-                MainWindow.OnlineVersionObject.Visibility = Visibility.Visible;
-                MainWindow.LocalVersionNumberObject.Content = "Unknown";
-                MainWindow.OnlineVersionNumberObject.Content = onlineVersion;
-                MainWindow.LocalVersionNumberObject.Visibility = Visibility.Visible;
-                MainWindow.OnlineVersionNumberObject.Visibility = Visibility.Visible;
+                if (CheckFiles.FilesCheckPassed == false)
+                {
+                    InstallGameFiles(false, Version.zero);
+                }
+                else if (onlineVersion.IsDifferentThan(localVersion))
+                {
+                    VersionDetector += 1;
+                    MainWindow.UpdateScreen_Image.Visibility = Visibility.Visible;
+                    MainWindow.Yes_Button.Visibility = Visibility.Visible;
+                    MainWindow.No_Button.Visibility = Visibility.Visible;
+                    MainWindow.UpdateText1_Label.Visibility = Visibility.Visible;
+                    MainWindow.UpdateText2_Label.Visibility = Visibility.Visible;
+                    MainWindow.LocalVersionObject.Visibility = Visibility.Visible;
+                    MainWindow.OnlineVersionObject.Visibility = Visibility.Visible;
+                    MainWindow.LocalVersionNumberObject.Content = localVersion;
+                    MainWindow.OnlineVersionNumberObject.Content = onlineVersion;
+                    MainWindow.LocalVersionNumberObject.Visibility = Visibility.Visible;
+                    MainWindow.OnlineVersionNumberObject.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error checking for game updates: {ex}");
             }
         }
 
@@ -165,8 +145,7 @@ namespace AGG_Productions.LauncherUpdater
                         MessageBox.Show(ex.ToString());
                     }
                     File.Delete(launcherZip);
-                    File.WriteAllText(versionFile, onlineVersion);
-
+                    File.Delete(versionFile);
                     Process.Start(CheckFiles.LauncherExe);
                     Application.Current.Shutdown();
 
