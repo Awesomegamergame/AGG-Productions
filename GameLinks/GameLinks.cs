@@ -1,7 +1,7 @@
 namespace AGG_Productions.GameLinks
 {
-    class ChaoticLinks
+    class Links
     {
-        public static string ChaoticVersionLink = "https://www.dropbox.com/s/sfd89lnravmvj4j/Version.txt?dl=1";
+        public static string ChaoticLink = "https://www.dropbox.com/s/sfd89lnravmvj4j/Version.txt?dl=1";
     }
 }

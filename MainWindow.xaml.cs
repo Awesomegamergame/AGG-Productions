@@ -7,6 +7,7 @@ using AGG_Productions.LauncherUpdater;
 using AGG_Productions.GameLinks;
 using AGG_Productions.Repair;
 using AGG_Productions.LauncherUpgrade;
+using AGG_Productions.GameFunctions;
 
 namespace AGG_Productions
 {
@@ -18,6 +19,10 @@ namespace AGG_Productions
         public static WebBrowser UpdateBoard;
         public static Button Play;
         public static ComboBox VersionSelector;
+        public static Button GameInstallObject;
+        public static TextBox NoGameObject;
+        public static TextBox SelectGameObject;
+        public static Button GameReInstallObject;
         #region Update Screen Variables Dont Edit
         public static Button Yes_Button;
         public static Button No_Button;
@@ -77,54 +82,34 @@ namespace AGG_Productions
         }
         private void Chaotic_Click(object sender, RoutedEventArgs e)
         {
-            NoGame.Visibility = Visibility.Collapsed;
-            SelectGame.Visibility = Visibility.Collapsed;
-            Chaotic_Notes.Visibility = Visibility.Visible;
-            Chaotic_Install.Visibility = Visibility.Visible;
+            ActivateBoard activateBoard = new ActivateBoard("Chaotic");
+            SelectScreen selectScreen = new SelectScreen("Chaotic", Links.ChaoticLink);
             Chaotic.IsEnabled = false;
-
-            if (File.Exists("ChaoticDir.txt"))
-            {
-                GameDir = File.ReadAllText("ChaoticDir.txt");
-                VersionSelector.Visibility = Visibility.Visible;
-                PlayButton.Visibility = Visibility.Visible;
-                GameDownloadBar.Visibility = Visibility.Visible;
-                VersionManager.VersionLink = ChaoticLinks.ChaoticVersionLink;
-                PlayButton2._VersionManager = new VersionManager(this);
-                Chaotic_Install.Visibility = Visibility.Collapsed;
-                Chaotic_ReInstall.Visibility = Visibility.Visible;
-            }
+            EastlowsHS.IsEnabled = true;
         }
-        private void Chaotic_Install_Click(object sender, RoutedEventArgs e)
+        private void EastlowsHS_Click(object sender, RoutedEventArgs e)
         {
-            Chaotic_Install.IsEnabled = false;
-            button = Chaotic_Install;
-            AdminDirCheck.InstallDir("Chaotic");
-            if (AdminDirCheck.FileDialogClosed)
-            {
-                AdminDirCheck.FileDialogClosed = false;
-                return;
-            }
-            GameDir = File.ReadAllText("ChaoticDir.txt");
-            Chaotic_Install.Visibility = Visibility.Collapsed;
-            VersionSelector.Visibility = Visibility.Visible;
-            PlayButton.Visibility = Visibility.Visible;
-            GameDownloadBar.Visibility = Visibility.Visible;
-            Chaotic_ReInstall.Visibility = Visibility.Visible;
-            VersionManager.VersionLink = ChaoticLinks.ChaoticVersionLink;
-            PlayButton2._VersionManager = new VersionManager(this);
+            ActivateBoard activateBoard = new ActivateBoard("EastlowsHS");
+            SelectScreen selectScreen = new SelectScreen("EastlowsHS", Links.ChaoticLink);
+            EastlowsHS.IsEnabled = false;
+            Chaotic.IsEnabled = true;
         }
-        private void Chaotic_ReInstall_Click(object sender, RoutedEventArgs e)
+        private void Game_Install_Click(object sender, RoutedEventArgs e)
         {
-            Chaotic_ReInstall.IsEnabled = false;
-            button = Chaotic_ReInstall;
+            GameInstall gameInstall = new GameInstall("Chaotic", Links.ChaoticLink);
+        }
+        private void Game_ReInstall_Click(object sender, RoutedEventArgs e)
+        {
+            Game_ReInstall.IsEnabled = false;
+            button = Game_ReInstall;
             AdminDirCheck.InstallDir("Chaotic");
             GameDir = File.ReadAllText("ChaoticDir.txt");
         }
-        private void Chaotic_Notes_Initialized(object sender, EventArgs e)
+        private void Game_Notes_Initialized(object sender, EventArgs e)
         {
             UpdateBoard = (WebBrowser)sender;
             UpdateBoards.DownloadBoards("Chaotic", UpdateBoardLinks.ChaoticBoardLink);
+            UpdateBoards.DownloadBoards("EastlowsHS", UpdateBoardLinks.EastlowsHS);
         }
         private void Chaotic_Version_Initialized(object sender, EventArgs e)
         {
@@ -250,6 +235,25 @@ namespace AGG_Productions
         private void OnlineVersion_Initialized(object sender, EventArgs e)
         {
             OnlineVersionObject = (Label)sender;
+        }
+        #endregion
+
+        #region All UI Stuff
+        private void Game_Install_Initialized(object sender, EventArgs e)
+        {
+            GameInstallObject = (Button)sender;
+        }
+        private void NoGame_Initialized(object sender, EventArgs e)
+        {
+            NoGameObject = (TextBox)sender;
+        }
+        private void SelectGame_Initialized(object sender, EventArgs e)
+        {
+            SelectGameObject = (TextBox)sender;
+        }
+        private void Game_ReInstall_Initialized(object sender, EventArgs e)
+        {
+            GameReInstallObject = (Button)sender;
         }
         #endregion
     }

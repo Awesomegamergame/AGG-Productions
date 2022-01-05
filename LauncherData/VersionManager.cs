@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AGG_Productions.GameFunctions;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
@@ -9,6 +10,8 @@ namespace AGG_Productions.LauncherData
     {
         public static string VersionLink;
         public Dictionary<string, string> VersionLinkPairs;
+        private SelectScreen selectScreen;
+        private GameInstall gameInstall;
 #pragma warning disable IDE0052 // Remove unread private members
         private readonly MainWindow WindowClass;
 #pragma warning restore IDE0052 // Remove unread private members
@@ -19,6 +22,17 @@ namespace AGG_Productions.LauncherData
             VersionLinkPairs = new Dictionary<string, string>();
             Init();
         }
+
+        public VersionManager(SelectScreen selectScreen)
+        {
+            this.selectScreen = selectScreen;
+        }
+
+        public VersionManager(GameInstall gameInstall)
+        {
+            this.gameInstall = gameInstall;
+        }
+
         private void Init()
         {
             WebClient d = new WebClient();
