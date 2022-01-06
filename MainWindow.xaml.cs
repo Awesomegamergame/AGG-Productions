@@ -91,7 +91,7 @@ namespace AGG_Productions
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             // TODO: Need to make a function to only play the specfic game when play is selected
-            PlayButton2.Start("Chaotic");
+            PlayButton.Start("Chaotic");
         }
         private void VersionBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

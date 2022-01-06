@@ -23,7 +23,7 @@ namespace AGG_Productions.LauncherFunctions
                 MainWindow.Play.Visibility = Visibility.Visible;
                 MainWindow.GameDownloadBar.Visibility = Visibility.Visible;
                 VersionManager.VersionLink = GameLink;
-                PlayButton2._VersionManager = new VersionManager(this);
+                PlayButton._VersionManager = new VersionManager(this);
                 MainWindow.GameInstallObject.Visibility = Visibility.Collapsed;
                 MainWindow.GameReInstallObject.Visibility = Visibility.Visible;
             }
