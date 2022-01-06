@@ -5,24 +5,26 @@ using System.Windows.Controls;
 using AGG_Productions.LauncherData;
 using AGG_Productions.LauncherUpdater;
 using AGG_Productions.GameLinks;
-using AGG_Productions.Repair;
 using AGG_Productions.LauncherUpgrade;
-using AGG_Productions.GameFunctions;
+using AGG_Productions.LauncherFunctions;
 
 namespace AGG_Productions
 {
     public partial class MainWindow : Window
     {
-        public static string VersionToDownload;
-        public static string GameDir;
+        public static string VersionToDownload, GameDir;
         public static Button button;
         public static WebBrowser UpdateBoard;
         public static Button Play;
         public static ComboBox VersionSelector;
+        #region GameInstallVariables
         public static Button GameInstallObject;
         public static TextBox NoGameObject;
         public static TextBox SelectGameObject;
         public static Button GameReInstallObject;
+        public static string InstallGameName = "";
+        public static string InstallGameLink = "";
+        #endregion
         #region Update Screen Variables Dont Edit
         public static Button Yes_Button;
         public static Button No_Button;
@@ -35,50 +37,18 @@ namespace AGG_Productions
         #region Repair Screen Dont Edit
         public static ProgressBar RepairBarObject;
         public static Image RepairScreenObject;
-        public static Label RepairTextObject;
-        public static Label RepairBodyObject;
+        public static Label RepairTextObject, RepairBodyObject;
         #endregion
         #region Launcher Version
-        public static Label LocalVersionObject;
-        public static Label LocalVersionNumberObject;
-        public static Label OnlineVersionObject;
-        public static Label OnlineVersionNumberObject;
+        public static Label LocalVersionObject, LocalVersionNumberObject;
+        public static Label OnlineVersionObject, OnlineVersionNumberObject;
         #endregion
         public MainWindow()
         {
-            if (Directory.Exists(UpgradeLauncher.ChaoticLauncherFolder) || Directory.Exists(UpgradeLauncher.ChaoticDevLauncherFolder))
-            {
-                UpgradeLauncher.DeleteOld();
-            }
+            UpgradeLauncher.OldLauncherCheck();
             CheckInternet.CheckInternetState();
             InitializeComponent();
-            if (CheckInternet.IsOnline)
-            {
-                CheckFiles.CheckForFiles();
-                if (CheckFiles.FilesCheckPassed)
-                {
-                    Updater.LauncherUpdate();
-                }
-                else
-                {
-                    RepairScreenObject.Visibility = Visibility.Visible;
-                    RepairBarObject.Visibility = Visibility.Visible;
-                    RepairTextObject.Visibility = Visibility.Visible;
-                    RepairBodyObject.Visibility = Visibility.Visible;
-                    Updater.LauncherUpdate();
-                }
-            }
-            else
-            {
-                CheckFiles.CheckForFilesNoInternet();
-                if (CheckFiles.FilesCheckPassedNo == false)
-                {
-                    RepairScreenObject.Visibility = Visibility.Visible;
-                    RepairTextObject.Visibility = Visibility.Visible;
-                    RepairBodyObject.Content = "Please Connect To The Internet And Restart The Launcher To Repair It";
-                    RepairBodyObject.Visibility = Visibility.Visible;
-                }
-            }
+            OnlineFunctions.UpdateFunctions();
         }
         private void Chaotic_Click(object sender, RoutedEventArgs e)
         {
@@ -90,16 +60,18 @@ namespace AGG_Productions
         private void EastlowsHS_Click(object sender, RoutedEventArgs e)
         {
             ActivateBoard activateBoard = new ActivateBoard("EastlowsHS");
-            SelectScreen selectScreen = new SelectScreen("EastlowsHS", Links.ChaoticLink);
+            SelectScreen selectScreen = new SelectScreen("EastlowsHS", Links.EastlowsHS);
             EastlowsHS.IsEnabled = false;
             Chaotic.IsEnabled = true;
         }
         private void Game_Install_Click(object sender, RoutedEventArgs e)
         {
-            GameInstall gameInstall = new GameInstall("Chaotic", Links.ChaoticLink);
+            GameInstall gameInstall = new GameInstall();
         }
         private void Game_ReInstall_Click(object sender, RoutedEventArgs e)
         {
+            // TODO: Need to make a function to decide which game is selected to modify
+            //       only the one games directory text instead of ChaoticDir.txt only
             Game_ReInstall.IsEnabled = false;
             button = Game_ReInstall;
             AdminDirCheck.InstallDir("Chaotic");
@@ -116,12 +88,9 @@ namespace AGG_Productions
             VersionSelector = (ComboBox)sender;
             VersionSelector.MaxDropDownHeight = VersionSelector.MaxHeight = 110;
         }
-        private void PlayButton_Initialized(object sender, EventArgs e)
-        {
-            Play = (Button)sender;
-        }
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
+            // TODO: Need to make a function to only play the specfic game when play is selected
             PlayButton2.Start("Chaotic");
         }
         private void VersionBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -254,6 +223,10 @@ namespace AGG_Productions
         private void Game_ReInstall_Initialized(object sender, EventArgs e)
         {
             GameReInstallObject = (Button)sender;
+        }
+        private void PlayButton_Initialized(object sender, EventArgs e)
+        {
+            Play = (Button)sender;
         }
         #endregion
     }

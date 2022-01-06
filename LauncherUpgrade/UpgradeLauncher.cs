@@ -6,29 +6,37 @@ namespace AGG_Productions.LauncherUpgrade
 {
     class UpgradeLauncher
     {
-        #region All Possible Chaotic Launcher Locations
-        public static string ChaoticLauncherUninstaller = @"C:\Users\Public\Chaotic Launcher\unins000.exe";
-        public static string ChaoticLauncherUninstallerDat = @"C:\Users\Public\Chaotic Launcher\unins000.dat";
-        public static string ChaoticLauncherUninstaller2 = @"C:\Users\Public\Chaotic Launcher\unins001.exe";
-        public static string ChaoticLauncherUninstaller2Dat = @"C:\Users\Public\Chaotic Launcher\unins001.dat";
         public static string ChaoticLauncherFolder = @"C:\Users\Public\Chaotic Launcher";
-        public static string ChaoticDevLauncherUninstaller = @"C:\Users\Public\Chaotic Development Launcher\unins000.exe";
-        public static string ChaoticDevLauncherUninstallerdat = @"C:\Users\Public\Chaotic Development Launcher\unins000.dat";
-        public static string ChaoticDevLauncherUninstaller2dat = @"C:\Users\Public\Chaotic Development Launcher\unins000.dat";
-        public static string ChaoticDevLauncherUninstaller2 = @"C:\Users\Public\Chaotic Development Launcher\unins001.exe";
         public static string ChaoticDevLauncherFolder = @"C:\Users\Public\Chaotic Development Launcher";
-        public static string Appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        public static string Desktop = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-        public static string ChaoticLauncherSMIcon = Path.Combine(Appdata, @"Microsoft\Windows\Start Menu\Programs\Chaotic Launcher");
-        public static string ChaoticDevLauncherSMIcon = Path.Combine(Appdata, @"Microsoft\Windows\Start Menu\Programs\Chaotic Development Launcher");
-        public static string ChaoticDesktopIcon = Path.Combine(Desktop, @"Desktop\Chaotic Launcher.lnk");
-        public static string ChaoticDevDesktopIcon = Path.Combine(Desktop, @"Desktop\Chaotic Development Launcher.lnk");
-        #endregion
-
         //Auto Delete uses the unistaller's from both launchers to remove all folders and icons
         //If fails it goes to manual unistall mode which removes manualy every folder, icon, and chaotic releated file
+        public static void OldLauncherCheck()
+        {
+            if (Directory.Exists(ChaoticLauncherFolder) || Directory.Exists(ChaoticDevLauncherFolder))
+            {
+                DeleteOld();
+            }
+            else
+                return;
+        }
         public static void DeleteOld()
         {
+            #region All Possible Chaotic Launcher Locations
+            string ChaoticLauncherUninstaller = @"C:\Users\Public\Chaotic Launcher\unins000.exe";
+            string ChaoticLauncherUninstallerDat = @"C:\Users\Public\Chaotic Launcher\unins000.dat";
+            string ChaoticLauncherUninstaller2 = @"C:\Users\Public\Chaotic Launcher\unins001.exe";
+            string ChaoticLauncherUninstaller2Dat = @"C:\Users\Public\Chaotic Launcher\unins001.dat";
+            string ChaoticDevLauncherUninstaller = @"C:\Users\Public\Chaotic Development Launcher\unins000.exe";
+            string ChaoticDevLauncherUninstallerdat = @"C:\Users\Public\Chaotic Development Launcher\unins000.dat";
+            string ChaoticDevLauncherUninstaller2dat = @"C:\Users\Public\Chaotic Development Launcher\unins000.dat";
+            string ChaoticDevLauncherUninstaller2 = @"C:\Users\Public\Chaotic Development Launcher\unins001.exe";
+            string Appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string Desktop = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            string ChaoticLauncherSMIcon = Path.Combine(Appdata, @"Microsoft\Windows\Start Menu\Programs\Chaotic Launcher");
+            string ChaoticDevLauncherSMIcon = Path.Combine(Appdata, @"Microsoft\Windows\Start Menu\Programs\Chaotic Development Launcher");
+            string ChaoticDesktopIcon = Path.Combine(Desktop, @"Desktop\Chaotic Launcher.lnk");
+            string ChaoticDevDesktopIcon = Path.Combine(Desktop, @"Desktop\Chaotic Development Launcher.lnk");
+            #endregion
             if (File.Exists(ChaoticLauncherUninstaller) && File.Exists(ChaoticLauncherUninstallerDat))
             {
                 ProcessStartInfo startInfo = new ProcessStartInfo

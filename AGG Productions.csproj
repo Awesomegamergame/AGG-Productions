@@ -74,9 +74,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="GameFunctions\ActivateBoard.cs" />
-    <Compile Include="GameFunctions\GameInstall.cs" />
-    <Compile Include="GameFunctions\SelectScreen.cs" />
+    <Compile Include="LauncherFunctions\ActivateBoard.cs" />
+    <Compile Include="LauncherFunctions\GameInstall.cs" />
+    <Compile Include="LauncherFunctions\OnlineFunctions.cs" />
+    <Compile Include="LauncherFunctions\SelectScreen.cs" />
     <Compile Include="GameLinks\GameLinks.cs" />
     <Compile Include="LauncherData\FileDownloader.cs" />
     <Compile Include="LauncherData\GamePaths.cs" />

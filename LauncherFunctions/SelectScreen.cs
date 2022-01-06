@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
 using AGG_Productions.LauncherData;
-using AGG_Productions.GameLinks;
 
-namespace AGG_Productions.GameFunctions
+namespace AGG_Productions.LauncherFunctions
 {
     class SelectScreen
     {
         public SelectScreen(string GameName, string GameLink)
         {
+            MainWindow.InstallGameName = $"{GameName}";
+            MainWindow.InstallGameLink = $"{GameLink}";
             MainWindow.NoGameObject.Visibility = Visibility.Collapsed;
             MainWindow.SelectGameObject.Visibility = Visibility.Collapsed;
             MainWindow.UpdateBoard.Visibility = Visibility.Visible;
