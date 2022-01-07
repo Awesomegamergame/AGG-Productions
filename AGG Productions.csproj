@@ -76,6 +76,7 @@
     </ApplicationDefinition>
     <Compile Include="LauncherFunctions\ActivateBoard.cs" />
     <Compile Include="LauncherFunctions\GameInstall.cs" />
+    <Compile Include="LauncherFunctions\GameReinstall.cs" />
     <Compile Include="LauncherFunctions\OnlineFunctions.cs" />
     <Compile Include="LauncherFunctions\SelectScreen.cs" />
     <Compile Include="GameLinks\GameLinks.cs" />

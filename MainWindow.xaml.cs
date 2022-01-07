@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using AGG_Productions.LauncherData;
@@ -70,12 +69,7 @@ namespace AGG_Productions
         }
         private void Game_ReInstall_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Need to make a function to decide which game is selected to modify
-            //       only the one games directory text instead of ChaoticDir.txt only
-            Game_ReInstall.IsEnabled = false;
-            button = Game_ReInstall;
-            AdminDirCheck.InstallDir("Chaotic");
-            GameDir = File.ReadAllText("ChaoticDir.txt");
+            GameReinstall gameReinstall = new GameReinstall();
         }
         private void Game_Notes_Initialized(object sender, EventArgs e)
         {
@@ -90,8 +84,7 @@ namespace AGG_Productions
         }
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Need to make a function to only play the specfic game when play is selected
-            PlayButton.Start("Chaotic");
+            PlayButton.Start(InstallGameName);
         }
         private void VersionBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
