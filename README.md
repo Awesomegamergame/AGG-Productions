@@ -1,6 +1,6 @@
 # AGG-Productions
 
-Welcome to the first release of the AGG Productions Launcher this launcher is a replacement for the old chaotic launcher which was old slow and just very plain
+Welcome to AGG Productions Launcher this launcher is a replacement for the old chaotic launcher which was old slow and just very plain
 
 # Building / Contributing
 
