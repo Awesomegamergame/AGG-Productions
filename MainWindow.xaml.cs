@@ -1,23 +1,29 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using AGG_Productions.LauncherData;
 using AGG_Productions.LauncherUpdater;
 using AGG_Productions.GameLinks;
-using AGG_Productions.Repair;
 using AGG_Productions.LauncherUpgrade;
+using AGG_Productions.LauncherFunctions;
 
 namespace AGG_Productions
 {
     public partial class MainWindow : Window
     {
-        public static string VersionToDownload;
-        public static string GameDir;
+        public static string VersionToDownload, GameDir;
         public static Button button;
         public static WebBrowser UpdateBoard;
         public static Button Play;
         public static ComboBox VersionSelector;
+        #region GameInstallVariables
+        public static Button GameInstallObject;
+        public static TextBox NoGameObject;
+        public static TextBox SelectGameObject;
+        public static Button GameReInstallObject;
+        public static string InstallGameName = "";
+        public static string InstallGameLink = "";
+        #endregion
         #region Update Screen Variables Dont Edit
         public static Button Yes_Button;
         public static Button No_Button;
@@ -30,114 +36,55 @@ namespace AGG_Productions
         #region Repair Screen Dont Edit
         public static ProgressBar RepairBarObject;
         public static Image RepairScreenObject;
-        public static Label RepairTextObject;
-        public static Label RepairBodyObject;
+        public static Label RepairTextObject, RepairBodyObject;
         #endregion
         #region Launcher Version
-        public static Label LocalVersionObject;
-        public static Label LocalVersionNumberObject;
-        public static Label OnlineVersionObject;
-        public static Label OnlineVersionNumberObject;
+        public static Label LocalVersionObject, LocalVersionNumberObject;
+        public static Label OnlineVersionObject, OnlineVersionNumberObject;
         #endregion
         public MainWindow()
         {
-            if (Directory.Exists(UpgradeLauncher.ChaoticLauncherFolder) || Directory.Exists(UpgradeLauncher.ChaoticDevLauncherFolder))
-            {
-                UpgradeLauncher.DeleteOld();
-            }
+            UpgradeLauncher.OldLauncherCheck();
             CheckInternet.CheckInternetState();
             InitializeComponent();
-            if (CheckInternet.IsOnline)
-            {
-                CheckFiles.CheckForFiles();
-                if (CheckFiles.FilesCheckPassed)
-                {
-                    Updater.LauncherUpdate();
-                }
-                else
-                {
-                    RepairScreenObject.Visibility = Visibility.Visible;
-                    RepairBarObject.Visibility = Visibility.Visible;
-                    RepairTextObject.Visibility = Visibility.Visible;
-                    RepairBodyObject.Visibility = Visibility.Visible;
-                    Updater.LauncherUpdate();
-                }
-            }
-            else
-            {
-                CheckFiles.CheckForFilesNoInternet();
-                if (CheckFiles.FilesCheckPassedNo == false)
-                {
-                    RepairScreenObject.Visibility = Visibility.Visible;
-                    RepairTextObject.Visibility = Visibility.Visible;
-                    RepairBodyObject.Content = "Please Connect To The Internet And Restart The Launcher To Repair It";
-                    RepairBodyObject.Visibility = Visibility.Visible;
-                }
-            }
+            OnlineFunctions.UpdateFunctions();
         }
         private void Chaotic_Click(object sender, RoutedEventArgs e)
         {
-            NoGame.Visibility = Visibility.Collapsed;
-            SelectGame.Visibility = Visibility.Collapsed;
-            Chaotic_Notes.Visibility = Visibility.Visible;
-            Chaotic_Install.Visibility = Visibility.Visible;
+            ActivateBoard activateBoard = new ActivateBoard("Chaotic");
+            SelectScreen selectScreen = new SelectScreen("Chaotic", Links.ChaoticLink);
             Chaotic.IsEnabled = false;
-
-            if (File.Exists("ChaoticDir.txt"))
-            {
-                GameDir = File.ReadAllText("ChaoticDir.txt");
-                VersionSelector.Visibility = Visibility.Visible;
-                PlayButton.Visibility = Visibility.Visible;
-                GameDownloadBar.Visibility = Visibility.Visible;
-                VersionManager.VersionLink = ChaoticLinks.ChaoticVersionLink;
-                PlayButton2._VersionManager = new VersionManager(this);
-                Chaotic_Install.Visibility = Visibility.Collapsed;
-                Chaotic_ReInstall.Visibility = Visibility.Visible;
-            }
+            EastlowsHS.IsEnabled = true;
         }
-        private void Chaotic_Install_Click(object sender, RoutedEventArgs e)
+        private void EastlowsHS_Click(object sender, RoutedEventArgs e)
         {
-            Chaotic_Install.IsEnabled = false;
-            button = Chaotic_Install;
-            AdminDirCheck.InstallDir("Chaotic");
-            if (AdminDirCheck.FileDialogClosed)
-            {
-                AdminDirCheck.FileDialogClosed = false;
-                return;
-            }
-            GameDir = File.ReadAllText("ChaoticDir.txt");
-            Chaotic_Install.Visibility = Visibility.Collapsed;
-            VersionSelector.Visibility = Visibility.Visible;
-            PlayButton.Visibility = Visibility.Visible;
-            GameDownloadBar.Visibility = Visibility.Visible;
-            Chaotic_ReInstall.Visibility = Visibility.Visible;
-            VersionManager.VersionLink = ChaoticLinks.ChaoticVersionLink;
-            PlayButton2._VersionManager = new VersionManager(this);
+            ActivateBoard activateBoard = new ActivateBoard("EastlowsHS");
+            SelectScreen selectScreen = new SelectScreen("EastlowsHS", Links.EastlowsHS);
+            EastlowsHS.IsEnabled = false;
+            Chaotic.IsEnabled = true;
         }
-        private void Chaotic_ReInstall_Click(object sender, RoutedEventArgs e)
+        private void Game_Install_Click(object sender, RoutedEventArgs e)
         {
-            Chaotic_ReInstall.IsEnabled = false;
-            button = Chaotic_ReInstall;
-            AdminDirCheck.InstallDir("Chaotic");
-            GameDir = File.ReadAllText("ChaoticDir.txt");
+            GameInstall gameInstall = new GameInstall();
         }
-        private void Chaotic_Notes_Initialized(object sender, EventArgs e)
+        private void Game_ReInstall_Click(object sender, RoutedEventArgs e)
+        {
+            GameReinstall gameReinstall = new GameReinstall();
+        }
+        private void Game_Notes_Initialized(object sender, EventArgs e)
         {
             UpdateBoard = (WebBrowser)sender;
             UpdateBoards.DownloadBoards("Chaotic", UpdateBoardLinks.ChaoticBoardLink);
+            UpdateBoards.DownloadBoards("EastlowsHS", UpdateBoardLinks.EastlowsHS);
         }
         private void Chaotic_Version_Initialized(object sender, EventArgs e)
         {
             VersionSelector = (ComboBox)sender;
             VersionSelector.MaxDropDownHeight = VersionSelector.MaxHeight = 110;
         }
-        private void PlayButton_Initialized(object sender, EventArgs e)
-        {
-            Play = (Button)sender;
-        }
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            PlayButton2.Start("Chaotic");
+            PlayButton.Start(InstallGameName);
         }
         private void VersionBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -250,6 +197,29 @@ namespace AGG_Productions
         private void OnlineVersion_Initialized(object sender, EventArgs e)
         {
             OnlineVersionObject = (Label)sender;
+        }
+        #endregion
+
+        #region All UI Stuff
+        private void Game_Install_Initialized(object sender, EventArgs e)
+        {
+            GameInstallObject = (Button)sender;
+        }
+        private void NoGame_Initialized(object sender, EventArgs e)
+        {
+            NoGameObject = (TextBox)sender;
+        }
+        private void SelectGame_Initialized(object sender, EventArgs e)
+        {
+            SelectGameObject = (TextBox)sender;
+        }
+        private void Game_ReInstall_Initialized(object sender, EventArgs e)
+        {
+            GameReInstallObject = (Button)sender;
+        }
+        private void PlayButton_Initialized(object sender, EventArgs e)
+        {
+            Play = (Button)sender;
         }
         #endregion
     }

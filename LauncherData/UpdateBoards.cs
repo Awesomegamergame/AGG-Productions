@@ -17,7 +17,6 @@ namespace AGG_Productions
         A:
             if (Directory.Exists(UpdateBoardDir))
             {
-                c.DownloadFileCompleted += C_DownloadFileCompleted;
                 if (CheckInternet.IsOnline)
                 {
                     c.DownloadFileAsync(new Uri(BoardHTMLLink), $@"{Environment.CurrentDirectory}\UpdateBoards\{BoardName}Updates.html");
@@ -35,10 +34,6 @@ namespace AGG_Productions
                 Directory.CreateDirectory(UpdateBoardDir);
                 goto A;
             }
-        }
-        public static void C_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
-        {
-            MainWindow.UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\{BoardNameM}Updates.html");
         }
     }
 }
