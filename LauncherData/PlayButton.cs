@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace AGG_Productions.LauncherData
 {
-    class PlayButton2
+    class PlayButton
     {
         public static GamePaths paths;
         public static VersionManager _VersionManager;
