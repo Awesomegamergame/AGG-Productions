@@ -159,7 +159,6 @@
     <Resource Include="Images\UpdateBackground.jpg" />
     <Resource Include="Images\Background.jpg" />
     <Resource Include="Images\EastlowsHS.jpg" />
-    <Content Include="UpdateBoards\ChaoticUpdates.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
