@@ -33,6 +33,7 @@ namespace AGG_Productions.LauncherFunctions
                 MainWindow.Play.Visibility = Visibility.Collapsed;
                 MainWindow.GameDownloadBar.Visibility = Visibility.Collapsed;
                 MainWindow.GameInstallObject.Visibility = Visibility.Visible;
+                MainWindow.GameInstallObject.IsEnabled = true;
                 MainWindow.GameReInstallObject.Visibility = Visibility.Collapsed;
             }
         }
