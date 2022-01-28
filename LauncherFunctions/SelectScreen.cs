@@ -16,9 +16,9 @@ namespace AGG_Productions.LauncherFunctions
             MainWindow.GameInstallObject.Visibility = Visibility.Visible;
             MainWindow.GameInstallObject.Content = $"Install {GameName}";
 
-            if (File.Exists($"{GameName}Dir.txt"))
+            if (Json.DataCheck(MainWindow.InstallGameName))
             {
-                MainWindow.GameDir = File.ReadAllText($"{GameName}Dir.txt");
+                MainWindow.GameDir = Json.ReadJson(MainWindow.InstallGameName);
                 MainWindow.VersionSelector.Visibility = Visibility.Visible;
                 MainWindow.Play.Visibility = Visibility.Visible;
                 MainWindow.GameDownloadBar.Visibility = Visibility.Visible;

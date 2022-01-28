@@ -7,6 +7,7 @@ using System.Net;
 using System.Windows;
 using System.Reflection;
 using AGG_Productions.Repair;
+using AGG_Productions.LauncherData;
 
 namespace AGG_Productions.LauncherUpdater
 {
@@ -64,6 +65,13 @@ namespace AGG_Productions.LauncherUpdater
                     MainWindow.OnlineVersionNumberObject.Content = onlineVersion;
                     MainWindow.LocalVersionNumberObject.Visibility = Visibility.Visible;
                     MainWindow.OnlineVersionNumberObject.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    if(!File.Exists("GameDirs.json"))
+                    {
+                        Json.CreateJson();
+                    }
                 }
             }
             catch (Exception ex)

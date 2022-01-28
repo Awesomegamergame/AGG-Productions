@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
+using AGG_Productions.LauncherData;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace AGG_Productions
@@ -21,7 +22,6 @@ namespace AGG_Productions
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 string folder = dialog.FileName;
-                File.WriteAllText(InstallName + "Dir.txt", folder);
                 try
                 {
                     File.WriteAllText(Path.Combine(folder, AdminCheckName), AdminCheck);
@@ -29,10 +29,10 @@ namespace AGG_Productions
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    File.Delete(InstallName + "Dir.txt");
                     MessageBox.Show("Application Isnt Ran With Admin Choose A Folder That Doesnt Need Admin");
                     goto Start;
                 }
+                Json.UpdateJson(InstallName, folder);
             }
             else
             {

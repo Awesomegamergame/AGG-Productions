@@ -13,12 +13,14 @@ namespace AGG_Productions.Repair
         public static string ShellDLL = Path.Combine(rootPath, "Microsoft.WindowsAPICodePack.Shell.dll");
         public static string ShellXML = Path.Combine(rootPath, "Microsoft.WindowsAPICodePack.Shell.xml");
         public static string CodePackXML = Path.Combine(rootPath, "Microsoft.WindowsAPICodePack.xml");
+        public static string JsonDLL = Path.Combine(rootPath, "Newtonsoft.Json.dll");
+        public static string JsonXML = Path.Combine(rootPath, "Newtonsoft.Json.xml");
         public static bool FilesCheckPassed;
         public static bool FilesCheckPassedNo;
         #endregion
         public static void CheckForFiles()
         {
-            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL) && File.Exists(ShellXML) && File.Exists(CodePackXML))
+            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL) && File.Exists(ShellXML) && File.Exists(CodePackXML) && File.Exists(JsonDLL) && File.Exists(JsonXML))
             {
                 FilesCheckPassed = true;
             }
@@ -29,7 +31,7 @@ namespace AGG_Productions.Repair
         }
         public static void CheckForFilesNoInternet()
         {
-            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL) && File.Exists(ShellXML) && File.Exists(CodePackXML))
+            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL) && File.Exists(ShellXML) && File.Exists(CodePackXML) && File.Exists(JsonDLL) && File.Exists(JsonXML))
             {
                 FilesCheckPassedNo = true;
             }
