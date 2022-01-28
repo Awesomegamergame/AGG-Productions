@@ -18,7 +18,7 @@ namespace AGG_Productions.LauncherFunctions
 
             if (Json.DataCheck(MainWindow.InstallGameName))
             {
-                MainWindow.GameDir = Json.ReadJson(MainWindow.InstallGameName);
+                MainWindow.GameDir = Json.ReadJson(MainWindow.InstallGameName, "GameDirs", "GameDirs");
                 MainWindow.VersionSelector.Visibility = Visibility.Visible;
                 MainWindow.Play.Visibility = Visibility.Visible;
                 MainWindow.GameDownloadBar.Visibility = Visibility.Visible;

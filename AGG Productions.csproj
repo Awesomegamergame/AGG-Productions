@@ -90,7 +90,6 @@
     <Compile Include="LauncherData\GamePaths.cs" />
     <Compile Include="LauncherData\PlayButton.cs" />
     <Compile Include="LauncherData\VersionManager.cs" />
-    <Compile Include="LauncherData\UpdateBoardLinks.cs" />
     <Compile Include="LauncherData\UpdateBoards.cs" />
     <Compile Include="LauncherUpdater\UpgradeLauncher.cs" />
     <Compile Include="LauncherUpdater\CheckFiles.cs" />
@@ -129,6 +128,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Compile Include="LauncherData\Json.cs" />
+    <None Include="LauncherLinks.json" />
+    <None Include="LauncherLink.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -10,8 +10,14 @@ namespace AGG_Productions.LauncherData
     {
         public static string VersionLink;
         public Dictionary<string, string> VersionLinkPairs;
+        #region Disable Intellisense Messages
+#pragma warning disable IDE0052 // Remove unread private members
+#pragma warning disable IDE0044 // Add readonly modifier
         private GameInstall gameInstall;
         private SelectScreen selectScreen;
+#pragma warning restore IDE0052 // Remove unread private members
+#pragma warning restore IDE0044 // Add readonly modifier
+        #endregion
         public VersionManager(GameInstall gameInstall)
         {
             this.gameInstall = gameInstall;

@@ -73,8 +73,7 @@ namespace AGG_Productions
         private void Game_Notes_Initialized(object sender, EventArgs e)
         {
             UpdateBoard = (WebBrowser)sender;
-            UpdateBoards.DownloadBoards("Chaotic", UpdateBoardLinks.ChaoticBoardLink);
-            UpdateBoards.DownloadBoards("EastlowsHS", UpdateBoardLinks.EastlowsHS);
+            UpdateBoards.SetupBoards();
         }
         private void Chaotic_Version_Initialized(object sender, EventArgs e)
         {

@@ -5,6 +5,7 @@ namespace AGG_Productions.LauncherData
 {
     class Json
     {
+        public static string JsonLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/Convert-To-Json/LauncherLinks.json";
         public static void CreateJson()
         {
             JObject rss = new JObject(new JProperty("GameDirs", new JObject()));
@@ -21,10 +22,10 @@ namespace AGG_Productions.LauncherData
             GameDirs.Add(new JProperty(GameName, Path));
             File.WriteAllText("GameDirs.json", rss.ToString());
         }
-        public static string ReadJson(string GameName)
+        public static string ReadJson(string GameName, string TopLocation, string FileName)
         {
-            JObject rss = JObject.Parse(File.ReadAllText("GameDirs.json"));
-            return (string)rss["GameDirs"][GameName];
+            JObject rss = JObject.Parse(File.ReadAllText($"{FileName}.json"));
+            return (string)rss[TopLocation][GameName];
         }
         public static bool DataCheck(string GameName)
         {

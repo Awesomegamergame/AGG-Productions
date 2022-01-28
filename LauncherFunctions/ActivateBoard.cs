@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace AGG_Productions.LauncherFunctions
 {
@@ -6,7 +7,14 @@ namespace AGG_Productions.LauncherFunctions
     {
         public ActivateBoard(string BoardName)
         {
-            MainWindow.UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\{BoardName}Updates.html");
+            if (File.Exists($@"{Environment.CurrentDirectory}\UpdateBoards\{BoardName}Updates.html"))
+            {
+                MainWindow.UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\{BoardName}Updates.html");
+            }
+            else
+            {
+                MainWindow.UpdateBoard.Navigate("about:blank");
+            }
         }
     }
 }
