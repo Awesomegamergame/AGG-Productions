@@ -4,7 +4,6 @@ using System.Windows.Controls;
 using AGG_Productions.LauncherData;
 using AGG_Productions.LauncherUpdater;
 using AGG_Productions.GameLinks;
-using AGG_Productions.LauncherUpgrade;
 using AGG_Productions.LauncherFunctions;
 
 namespace AGG_Productions
@@ -51,25 +50,25 @@ namespace AGG_Productions
         }
         private void Chaotic_Click(object sender, RoutedEventArgs e)
         {
-            ActivateBoard activateBoard = new ActivateBoard("Chaotic");
-            SelectScreen selectScreen = new SelectScreen("Chaotic", Links.ChaoticLink);
+            _ = new ActivateBoard("Chaotic");
+            _ = new SelectScreen("Chaotic", Links.ChaoticLink);
             Chaotic.IsEnabled = false;
             EastlowsHS.IsEnabled = true;
         }
         private void EastlowsHS_Click(object sender, RoutedEventArgs e)
         {
-            ActivateBoard activateBoard = new ActivateBoard("EastlowsHS");
-            SelectScreen selectScreen = new SelectScreen("EastlowsHS", Links.EastlowsHS);
+            _ = new ActivateBoard("EastlowsHS");
+            _ = new SelectScreen("EastlowsHS", Links.EastlowsHS);
             EastlowsHS.IsEnabled = false;
             Chaotic.IsEnabled = true;
         }
         private void Game_Install_Click(object sender, RoutedEventArgs e)
         {
-            GameInstall gameInstall = new GameInstall();
+            _ = new GameInstall();
         }
         private void Game_ReInstall_Click(object sender, RoutedEventArgs e)
         {
-            GameReinstall gameReinstall = new GameReinstall();
+            _ = new GameReinstall();
         }
         private void Game_Notes_Initialized(object sender, EventArgs e)
         {

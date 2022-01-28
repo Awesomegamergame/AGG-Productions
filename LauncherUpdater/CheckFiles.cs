@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace AGG_Productions.Repair
+namespace AGG_Productions.LauncherUpdater
 {
     class CheckFiles
     {

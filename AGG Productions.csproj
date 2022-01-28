@@ -92,8 +92,8 @@
     <Compile Include="LauncherData\VersionManager.cs" />
     <Compile Include="LauncherData\UpdateBoardLinks.cs" />
     <Compile Include="LauncherData\UpdateBoards.cs" />
-    <Compile Include="LauncherUpgrade\UpgradeLauncher.cs" />
-    <Compile Include="Repair\CheckFiles.cs" />
+    <Compile Include="LauncherUpdater\UpgradeLauncher.cs" />
+    <Compile Include="LauncherUpdater\CheckFiles.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -164,5 +164,6 @@
     <Resource Include="Images\Background.jpg" />
     <Resource Include="Images\EastlowsHS.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,7 +6,6 @@ using System.IO.Compression;
 using System.Net;
 using System.Windows;
 using System.Reflection;
-using AGG_Productions.Repair;
 using AGG_Productions.LauncherData;
 
 namespace AGG_Productions.LauncherUpdater
