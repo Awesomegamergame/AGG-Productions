@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using AGG_Productions.LauncherData;
 using AGG_Productions.LauncherUpdater;
-using AGG_Productions.GameLinks;
 using AGG_Productions.LauncherFunctions;
 
 namespace AGG_Productions
@@ -51,14 +50,14 @@ namespace AGG_Productions
         private void Chaotic_Click(object sender, RoutedEventArgs e)
         {
             _ = new ActivateBoard("Chaotic");
-            _ = new SelectScreen("Chaotic", Links.ChaoticLink);
+            _ = new SelectScreen("Chaotic", Json.ReadJson("Chaotic", "Gamelinks", "LauncherLinks"));
             Chaotic.IsEnabled = false;
             EastlowsHS.IsEnabled = true;
         }
         private void EastlowsHS_Click(object sender, RoutedEventArgs e)
         {
             _ = new ActivateBoard("EastlowsHS");
-            _ = new SelectScreen("EastlowsHS", Links.EastlowsHS);
+            _ = new SelectScreen("EastlowsHS", Json.ReadJson("EastlowsHS", "Gamelinks", "LauncherLinks"));
             EastlowsHS.IsEnabled = false;
             Chaotic.IsEnabled = true;
         }

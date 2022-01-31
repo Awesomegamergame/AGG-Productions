@@ -92,7 +92,6 @@
     <Compile Include="LauncherFunctions\GameReinstall.cs" />
     <Compile Include="LauncherFunctions\OnlineFunctions.cs" />
     <Compile Include="LauncherFunctions\SelectScreen.cs" />
-    <Compile Include="GameLinks\GameLinks.cs" />
     <Compile Include="LauncherData\FileDownloader.cs" />
     <Compile Include="LauncherData\GamePaths.cs" />
     <Compile Include="LauncherData\PlayButton.cs" />

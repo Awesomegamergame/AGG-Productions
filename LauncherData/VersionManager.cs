@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Windows;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AGG_Productions.LauncherFunctions;
@@ -35,7 +36,15 @@ namespace AGG_Productions.LauncherData
         {
             WebClient d = new WebClient();
             d.DownloadStringCompleted += D_DownloadStringCompleted;
-            d.DownloadStringAsync(new Uri(VersionLink));
+            try
+            {
+                d.DownloadStringAsync(new Uri(VersionLink));
+            }
+            catch (UriFormatException)
+            {
+                //TODO: Make it redownload the links without restarting the program
+                MessageBox.Show("The link data is broken please restart the program");
+            }
         }
         private void D_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
@@ -45,7 +54,15 @@ namespace AGG_Productions.LauncherData
             for(int i = 0; i < VersionLinks.Length; i++)
             {
                 string[] Version_Link = VersionLinks[i].Split(' ');
-                VersionLinkPairs.Add(Version_Link[0], Version_Link[1]);
+                try
+                {
+                    VersionLinkPairs.Add(Version_Link[0], Version_Link[1]);
+                }
+                catch (ArgumentException)
+                {
+                    //TODO: Make it redownload the links without restarting the program
+                    MessageBox.Show("Something is wrong please try again or restart the program");
+                }
                 VersionstoDisplay.Add(Version_Link[0]);
             }
             MainWindow.VersionSelector.ItemsSource = VersionstoDisplay;
