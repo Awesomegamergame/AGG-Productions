@@ -20,7 +20,7 @@ namespace AGG_Productions.LauncherUpdater
         #endregion
         public static void CheckForFiles()
         {
-            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL) && File.Exists(ShellXML) && File.Exists(CodePackXML) && File.Exists(JsonDLL) && File.Exists(JsonXML))
+            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL) && File.Exists(ShellXML) && File.Exists(CodePackXML))
             {
                 FilesCheckPassed = true;
             }
@@ -31,7 +31,7 @@ namespace AGG_Productions.LauncherUpdater
         }
         public static void CheckForFilesNoInternet()
         {
-            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL) && File.Exists(ShellXML) && File.Exists(CodePackXML) && File.Exists(JsonDLL) && File.Exists(JsonXML))
+            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL) && File.Exists(ShellXML) && File.Exists(CodePackXML))
             {
                 FilesCheckPassedNo = true;
             }
