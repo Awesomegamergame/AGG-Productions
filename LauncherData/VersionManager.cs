@@ -5,6 +5,8 @@ using System.Windows;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AGG_Productions.LauncherFunctions;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace AGG_Productions.LauncherData
 {
@@ -49,24 +51,18 @@ namespace AGG_Productions.LauncherData
         }
         private void D_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            string temp = e.Result;
-            File.WriteAllText("fileout.json", temp.ToString());
-            string[] VersionLinks = temp.Split('\n');
+            File.WriteAllText($"{MainWindow.InstallGameName}.json", e.Result.ToString());
             ObservableCollection<string> VersionstoDisplay = new ObservableCollection<string>();
-            for(int i = 0; i < VersionLinks.Length; i++)
+            JObject jObj = (JObject)JsonConvert.DeserializeObject(File.ReadAllText($"{MainWindow.InstallGameName}.json"));
+            //TODO: Change from one after it works
+            for (int i = 0; i < jObj.Count; i++)
             {
-                string[] Version_Link = VersionLinks[i].Split(' ');
-                try
-                {
-                    //TODO: Convert this from the text file link grabber to a json object array
-                    //VersionLinkPairs.Add(Version_Link[0], Version_Link[1]);
-                }
-                catch (ArgumentException)
-                {
-                    //TODO: Make it redownload the links without restarting the program
-                    MessageBox.Show("Something is wrong please try again or restart the program");
-                }
-                VersionstoDisplay.Add(Json.ReadJson("link", "Chaotic", "fileout", "0.0.13.3"));
+                string VerJson = Json.ReadGameJsonVer("0.0.13.3", MainWindow.InstallGameName);
+                string LinkJson = Json.ReadGameJsonLink("0.0.13.3", MainWindow.InstallGameName);
+                VersionstoDisplay.Add(VerJson);
+                //TODO: Convert this from the text file link grabber to a json object array
+                VersionLinkPairs.Add(VerJson, LinkJson);
+
             }
             MainWindow.VersionSelector.ItemsSource = VersionstoDisplay;
             MainWindow.VersionSelector.Items.Refresh();
