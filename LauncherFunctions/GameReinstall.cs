@@ -10,7 +10,7 @@ namespace AGG_Productions.LauncherFunctions
             MainWindow.GameReInstallObject.IsEnabled = false;
             MainWindow.button = MainWindow.GameReInstallObject;
             AdminDirCheck.InstallDir(MainWindow.InstallGameName);
-            MainWindow.GameDir = Json.ReadJson(MainWindow.InstallGameName, "GameDirs", "GameDirs");
+            MainWindow.GameDir = Json.ReadJson(MainWindow.InstallGameName);
         }
     }
 }

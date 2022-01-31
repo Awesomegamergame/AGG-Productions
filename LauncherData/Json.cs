@@ -22,6 +22,11 @@ namespace AGG_Productions.LauncherData
             GameDirs.Add(new JProperty(GameName, Path));
             File.WriteAllText("GameDirs.json", rss.ToString());
         }
+        public static string ReadJson(string GameName)
+        {
+            JObject rss = JObject.Parse(File.ReadAllText("GameDirs.json"));
+            return (string)rss["GameDirs"][GameName];
+        }
         public static string ReadJson(string GameName, string TopLocation, string FileName)
         {
             JObject rss = JObject.Parse(File.ReadAllText($"{FileName}.json"));

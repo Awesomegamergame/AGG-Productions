@@ -16,7 +16,7 @@ namespace AGG_Productions.LauncherFunctions
                 AdminDirCheck.FileDialogClosed = false;
                 return;
             }
-            MainWindow.GameDir = Json.ReadJson(MainWindow.InstallGameName, "GameDirs", "GameDirs");
+            MainWindow.GameDir = Json.ReadJson(MainWindow.InstallGameName);
             MainWindow.GameInstallObject.Visibility = Visibility.Collapsed;
             MainWindow.VersionSelector.Visibility = Visibility.Visible;
             MainWindow.Play.Visibility = Visibility.Visible;
