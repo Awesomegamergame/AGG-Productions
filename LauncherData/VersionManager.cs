@@ -66,7 +66,7 @@ namespace AGG_Productions.LauncherData
                     //TODO: Make it redownload the links without restarting the program
                     MessageBox.Show("Something is wrong please try again or restart the program");
                 }
-                VersionstoDisplay.Add(Json.ReadJson("0.0.13.3", "Chaotic", "fileout"));
+                VersionstoDisplay.Add(Json.ReadJson("link", "Chaotic", "fileout", "0.0.13.3"));
             }
             MainWindow.VersionSelector.ItemsSource = VersionstoDisplay;
             MainWindow.VersionSelector.Items.Refresh();
