@@ -65,13 +65,6 @@ namespace AGG_Productions.LauncherUpdater
                     MainWindow.LocalVersionNumberObject.Visibility = Visibility.Visible;
                     MainWindow.OnlineVersionNumberObject.Visibility = Visibility.Visible;
                 }
-                else
-                {
-                    if(!File.Exists("GameDirs.json"))
-                    {
-                        Json.CreateJson();
-                    }
-                }
             }
             catch (Exception ex)
             {

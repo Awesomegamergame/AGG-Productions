@@ -29,12 +29,20 @@ namespace AGG_Productions.LauncherData
         }
         public static bool DataCheck(string GameName)
         {
-            JObject rss = JObject.Parse(File.ReadAllText("GameDirs.json"));
-            JObject GameDirs = (JObject)rss["GameDirs"];
-            JToken token = GameDirs[GameName];
-            if (token != null)
-                return true;
-            return false;
+            if (File.Exists("GameDirs.json"))
+            {
+                JObject rss = JObject.Parse(File.ReadAllText("GameDirs.json"));
+                JObject GameDirs = (JObject)rss["GameDirs"];
+                JToken token = GameDirs[GameName];
+                if (token != null)
+                    return true;
+                return false;
+            }
+            else
+            {
+                CreateJson();
+                return false;
+            }
         }
     }
 }
