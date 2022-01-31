@@ -56,6 +56,7 @@ namespace AGG_Productions.LauncherData
                 string[] Version_Link = VersionLinks[i].Split(' ');
                 try
                 {
+                    //TODO: Convert this from the text file link grabber to a json object array
                     VersionLinkPairs.Add(Version_Link[0], Version_Link[1]);
                 }
                 catch (ArgumentException)
