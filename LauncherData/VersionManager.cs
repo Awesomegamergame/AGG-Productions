@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.IO;
 using System.Windows;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -49,6 +50,7 @@ namespace AGG_Productions.LauncherData
         private void D_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             string temp = e.Result;
+            File.WriteAllText("fileout.json", temp.ToString());
             string[] VersionLinks = temp.Split('\n');
             ObservableCollection<string> VersionstoDisplay = new ObservableCollection<string>();
             for(int i = 0; i < VersionLinks.Length; i++)
@@ -57,14 +59,14 @@ namespace AGG_Productions.LauncherData
                 try
                 {
                     //TODO: Convert this from the text file link grabber to a json object array
-                    VersionLinkPairs.Add(Version_Link[0], Version_Link[1]);
+                    //VersionLinkPairs.Add(Version_Link[0], Version_Link[1]);
                 }
                 catch (ArgumentException)
                 {
                     //TODO: Make it redownload the links without restarting the program
                     MessageBox.Show("Something is wrong please try again or restart the program");
                 }
-                VersionstoDisplay.Add(Version_Link[0]);
+                VersionstoDisplay.Add(Json.ReadJson("0.0.13.3", "Chaotic", "fileout"));
             }
             MainWindow.VersionSelector.ItemsSource = VersionstoDisplay;
             MainWindow.VersionSelector.Items.Refresh();
