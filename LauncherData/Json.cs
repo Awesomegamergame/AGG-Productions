@@ -5,7 +5,8 @@ namespace AGG_Productions.LauncherData
 {
     class Json
     {
-        public static string JsonLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/Convert-To-Json/Webdata/LauncherLinks.json";
+        public static string BJsonLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/Convert-To-Json/Webdata/Updates.json";
+        public static string GJsonLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/Convert-To-Json/Webdata/Games.json";
         public static void CreateJson()
         {
             JObject rss = new JObject(new JProperty("GameDirs", new JObject()));
@@ -27,15 +28,15 @@ namespace AGG_Productions.LauncherData
             JObject rss = JObject.Parse(File.ReadAllText("GameDirs.json"));
             return (string)rss["GameDirs"][GameName];
         }
-        public static string ReadJson(string GameName, string TopLocation, string FileName)
+        public static string ReadJson(string GameName, string FileName)
         {
             JObject rss = JObject.Parse(File.ReadAllText($"{FileName}.json"));
-            return (string)rss[TopLocation][GameName];
+            return (string)rss[FileName][GameName];
         }
-        public static string ReadGameJson(string GVersion, string Property, string FileName)
+        public static string ReadGameJson(string GVersion, string Property, string FileName, string TopLevel)
         {
             JObject rss = JObject.Parse(File.ReadAllText($"{FileName}.json"));
-            return (string)rss["Game"][GVersion][Property];
+            return (string)rss[TopLevel][GVersion][Property];
         }
         public static bool DataCheck(string GameName)
         {

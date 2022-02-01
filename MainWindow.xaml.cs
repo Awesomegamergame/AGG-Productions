@@ -50,14 +50,14 @@ namespace AGG_Productions
         private void Chaotic_Click(object sender, RoutedEventArgs e)
         {
             _ = new ActivateBoard("Chaotic");
-            _ = new SelectScreen("Chaotic", Json.ReadJson("Chaotic", "Gamelinks", "LauncherLinks"));
+            _ = new SelectScreen("Chaotic", Json.ReadJson("Chaotic", "Games"));
             Chaotic.IsEnabled = false;
             EastlowsHS.IsEnabled = true;
         }
         private void EastlowsHS_Click(object sender, RoutedEventArgs e)
         {
             _ = new ActivateBoard("EastlowsHS");
-            _ = new SelectScreen("EastlowsHS", Json.ReadJson("EastlowsHS", "Gamelinks", "LauncherLinks"));
+            _ = new SelectScreen("EastlowsHS", Json.ReadJson("EastlowsHS", "Games"));
             EastlowsHS.IsEnabled = false;
             Chaotic.IsEnabled = true;
         }

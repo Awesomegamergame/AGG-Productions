@@ -49,8 +49,8 @@ namespace AGG_Productions.LauncherData
             dynamic json = obj.Game;
             foreach (JProperty Version in json)
             {
-                string VerJson = Json.ReadGameJson(Version.Name, "version", MainWindow.InstallGameName);
-                string LinkJson = Json.ReadGameJson(Version.Name, "link", MainWindow.InstallGameName);
+                string VerJson = Json.ReadGameJson(Version.Name, "version", MainWindow.InstallGameName, "Game");
+                string LinkJson = Json.ReadGameJson(Version.Name, "link", MainWindow.InstallGameName, "Game");
                 VersionstoDisplay.Add(VerJson);
                 VersionLinkPairs.Add(VerJson, LinkJson);
             }

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Net;
+using System.Windows;
 using AGG_Productions.LauncherData;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -11,7 +11,6 @@ namespace AGG_Productions
 {
     public class UpdateBoards
     {
-        public static Dictionary<string, string> VersionLinkPairsB;
         public static string BoardNameM;
         public static void DownloadBoards(string BoardName, string BoardHTMLLink)
         {
@@ -37,25 +36,16 @@ namespace AGG_Productions
         {
             if (CheckInternet.IsOnline)
             {
-                VersionLinkPairsB = new Dictionary<string, string>();
                 WebClient d = new WebClient();
-                //TODO: Change to 2 seperate json files one for update boards and one for game links
-                d.DownloadFile(new Uri(Json.JsonLink), $@"{Environment.CurrentDirectory}\LauncherLinks.json");
-                //TODO: Get all boards without knowing the names kinda like the version manager has
-                DownloadBoards("Chaotic", Json.ReadJson("Chaotic", "Updateboards", "LauncherLinks"));
-                DownloadBoards("EastlowsHS", Json.ReadJson("EastlowsHS", "Updateboards", "LauncherLinks"));
-
-                if (!File.Exists($"{MainWindow.InstallGameName}.json"))
-                    return;
-                ObservableCollection<string> VersionstoDisplay = new ObservableCollection<string>();
-                dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($"{MainWindow.InstallGameName}.json"));
-                dynamic json = obj.Game;
+                d.DownloadFile(new Uri(Json.BJsonLink), $@"{Environment.CurrentDirectory}\Updates.json");
+                d.DownloadFile(new Uri(Json.GJsonLink), $@"{Environment.CurrentDirectory}\Games.json");
+                dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText("Updates.json"));
+                dynamic json = obj.Updates;
                 foreach (JProperty Version in json)
                 {
-                    string VerJson = Json.ReadGameJson(Version.Name, "version", MainWindow.InstallGameName);
-                    string LinkJson = Json.ReadGameJson(Version.Name, "link", MainWindow.InstallGameName);
-                    VersionstoDisplay.Add(VerJson);
-                    VersionLinkPairsB.Add(VerJson, LinkJson);
+                    string LinkJson = Json.ReadGameJson(Version.Name, "link", "Updates", "Updates");
+                    MessageBox.Show(LinkJson);
+                    DownloadBoards(Version.Name, LinkJson);
                 }
             }
         }
