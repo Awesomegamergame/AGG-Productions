@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using AGG_Productions.LauncherData;
 
 namespace AGG_Productions.LauncherFunctions
