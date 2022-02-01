@@ -1,10 +1,10 @@
 {
   "Gamelinks": {
     "Chaotic": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/Convert-To-Json/Webdata/GameVersions/Chaotic.json",
-    "EastlowsHS": "https://www.dropbox.com/s/xn70qxncrydo7c8/Version.txt?dl=1"
+    "EastlowsHS": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/Convert-To-Json/Webdata/GameVersions/EastlowsHS.json"
   },
   "Updateboards": {
-    "Chaotic": "https://www.dropbox.com/s/pstrub3g31sk2b9/ChaoticUpdates.html?dl=1",
-    "EastlowsHS": "https://www.dropbox.com/s/6wc6ljf6wfnm16y/EastlowsHSUpdates.html?dl=1"
+    "Chaotic": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/Convert-To-Json/Webdata/Updateboards/ChaoticUpdates.html",
+    "EastlowsHS": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/Convert-To-Json/Webdata/Updateboards/EastlowsHSUpdates.html"
   }
 }
