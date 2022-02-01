@@ -1,6 +1,10 @@
 {
   "Updates": {
-    "Chaotic": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/Convert-To-Json/Webdata/Updateboards/ChaoticUpdates.html",
-    "EastlowsHS": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/Convert-To-Json/Webdata/Updateboards/EastlowsHSUpdates.html"
+    "Chaotic": {
+      "link": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/Convert-To-Json/Webdata/Updateboards/ChaoticUpdates.html"
+    },
+    "EastlowsHS": {
+      "link": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/Convert-To-Json/Webdata/Updateboards/EastlowsHSUpdates.html"
+    }
   }
 }
