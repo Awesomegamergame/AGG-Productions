@@ -133,11 +133,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="LauncherData\Json.cs" />
-    <None Include="Webdata\GameVersions\Chaotic.json" />
-    <None Include="Webdata\GameVersions\EastlowsHS.json" />
-    <None Include="Webdata\LauncherLinks.json" />
-    <None Include="LauncherLink.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -172,11 +167,6 @@
     <Resource Include="Images\UpdateBackground.jpg" />
     <Resource Include="Images\Background.jpg" />
     <Resource Include="Images\EastlowsHS.jpg" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="Webdata\Updateboards\ChaoticUpdates.html" />
-    <Content Include="Webdata\Updateboards\EastlowsHSUpdates.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
