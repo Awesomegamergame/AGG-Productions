@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Net;
 using System.IO;
-using System.Windows;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AGG_Productions.LauncherFunctions;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System.Linq;
 
 namespace AGG_Productions.LauncherData
 {
@@ -16,11 +14,9 @@ namespace AGG_Productions.LauncherData
         public static string VersionLink;
         public Dictionary<string, string> VersionLinkPairs;
         #region Disable Intellisense Messages
-#pragma warning disable IDE0052 // Remove unread private members
 #pragma warning disable IDE0044 // Add readonly modifier
         private GameInstall gameInstall;
         private SelectScreen selectScreen;
-#pragma warning restore IDE0052 // Remove unread private members
 #pragma warning restore IDE0044 // Add readonly modifier
         #endregion
         public VersionManager(GameInstall gameInstall)
@@ -40,26 +36,21 @@ namespace AGG_Productions.LauncherData
         {
             WebClient d = new WebClient();
             d.DownloadStringCompleted += D_DownloadStringCompleted;
-            try
-            {
-                d.DownloadStringAsync(new Uri(VersionLink));
-            }
-            catch (UriFormatException)
-            {
-                //TODO: Make it redownload the links without restarting the program
-                MessageBox.Show("The link data is broken please restart the program");
-            }
+            d.DownloadStringAsync(new Uri(VersionLink));
         }
         private void D_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            File.WriteAllText($"{MainWindow.InstallGameName}.json", e.Result.ToString());
+            if(CheckInternet.IsOnline)
+                File.WriteAllText($"{MainWindow.InstallGameName}.json", e.Result.ToString());
+            if (!File.Exists($"{MainWindow.InstallGameName}.json"))
+                return;
             ObservableCollection<string> VersionstoDisplay = new ObservableCollection<string>();
-            var obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($"{MainWindow.InstallGameName}.json"));
-            var t = obj.Chaotic;
-            foreach (JProperty fileThing in t)
+            dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($"{MainWindow.InstallGameName}.json"));
+            dynamic json = obj.Game;
+            foreach (JProperty Version in json)
             {
-                string VerJson = Json.ReadGameJsonVer(MainWindow.InstallGameName, fileThing.Name, MainWindow.InstallGameName);
-                string LinkJson = Json.ReadGameJsonLink(MainWindow.InstallGameName, fileThing.Name, MainWindow.InstallGameName);
+                string VerJson = Json.ReadGameJson(Version.Name, "version", MainWindow.InstallGameName);
+                string LinkJson = Json.ReadGameJson(Version.Name, "link", MainWindow.InstallGameName);
                 VersionstoDisplay.Add(VerJson);
                 VersionLinkPairs.Add(VerJson, LinkJson);
             }

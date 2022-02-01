@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Windows;
 using Newtonsoft.Json.Linq;
 
 namespace AGG_Productions.LauncherData
@@ -33,15 +32,10 @@ namespace AGG_Productions.LauncherData
             JObject rss = JObject.Parse(File.ReadAllText($"{FileName}.json"));
             return (string)rss[TopLocation][GameName];
         }
-        public static string ReadGameJsonVer(string TopVersion, string GVersion, string FileName)
+        public static string ReadGameJson(string GVersion, string Property, string FileName)
         {
             JObject rss = JObject.Parse(File.ReadAllText($"{FileName}.json"));
-            return (string)rss[TopVersion][GVersion]["version"];
-        }
-        public static string ReadGameJsonLink(string TopVersion, string GVersion, string FileName)
-        {
-            JObject rss = JObject.Parse(File.ReadAllText($"{FileName}.json"));
-            return (string)rss[TopVersion][GVersion]["link"];
+            return (string)rss["Game"][GVersion][Property];
         }
         public static bool DataCheck(string GameName)
         {
