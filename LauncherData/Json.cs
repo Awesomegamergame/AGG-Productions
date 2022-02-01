@@ -33,17 +33,15 @@ namespace AGG_Productions.LauncherData
             JObject rss = JObject.Parse(File.ReadAllText($"{FileName}.json"));
             return (string)rss[TopLocation][GameName];
         }
-        public static string ReadGameJsonVer(string TopVersion, string FileName)
+        public static string ReadGameJsonVer(string TopVersion, string GVersion, string FileName)
         {
             JObject rss = JObject.Parse(File.ReadAllText($"{FileName}.json"));
-            MessageBox.Show(rss[TopVersion]["version"].ToString());
-            return (string)rss[TopVersion]["version"];
+            return (string)rss[TopVersion][GVersion]["version"];
         }
-        public static string ReadGameJsonLink(string TopVersion, string FileName)
+        public static string ReadGameJsonLink(string TopVersion, string GVersion, string FileName)
         {
             JObject rss = JObject.Parse(File.ReadAllText($"{FileName}.json"));
-            MessageBox.Show(rss[TopVersion]["link"].ToString());
-            return (string)rss[TopVersion]["link"];
+            return (string)rss[TopVersion][GVersion]["link"];
         }
         public static bool DataCheck(string GameName)
         {

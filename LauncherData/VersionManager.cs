@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using AGG_Productions.LauncherFunctions;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace AGG_Productions.LauncherData
 {
@@ -53,16 +54,14 @@ namespace AGG_Productions.LauncherData
         {
             File.WriteAllText($"{MainWindow.InstallGameName}.json", e.Result.ToString());
             ObservableCollection<string> VersionstoDisplay = new ObservableCollection<string>();
-            JObject jObj = (JObject)JsonConvert.DeserializeObject(File.ReadAllText($"{MainWindow.InstallGameName}.json"));
-            //TODO: Change from one after it works
-            for (int i = 0; i < jObj.Count; i++)
+            var obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($"{MainWindow.InstallGameName}.json"));
+            var t = obj.Chaotic;
+            foreach (JProperty fileThing in t)
             {
-                string VerJson = Json.ReadGameJsonVer("0.0.13.3", MainWindow.InstallGameName);
-                string LinkJson = Json.ReadGameJsonLink("0.0.13.3", MainWindow.InstallGameName);
+                string VerJson = Json.ReadGameJsonVer(MainWindow.InstallGameName, fileThing.Name, MainWindow.InstallGameName);
+                string LinkJson = Json.ReadGameJsonLink(MainWindow.InstallGameName, fileThing.Name, MainWindow.InstallGameName);
                 VersionstoDisplay.Add(VerJson);
-                //TODO: Convert this from the text file link grabber to a json object array
                 VersionLinkPairs.Add(VerJson, LinkJson);
-
             }
             MainWindow.VersionSelector.ItemsSource = VersionstoDisplay;
             MainWindow.VersionSelector.Items.Refresh();
