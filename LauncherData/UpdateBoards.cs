@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Net;
-using System.Windows;
+using static System.Environment;
 using AGG_Productions.LauncherData;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -15,7 +14,7 @@ namespace AGG_Productions
         public static void DownloadBoards(string BoardName, string BoardHTMLLink)
         {
             BoardNameM += BoardName;
-            string UpdateBoardDir = $@"{Environment.CurrentDirectory}\UpdateBoards";
+            string UpdateBoardDir = $@"{CurrentDirectory}\Cache\UpdateBoards";
 
             WebClient c = new WebClient();
         A:
@@ -23,7 +22,7 @@ namespace AGG_Productions
             {
                 if (CheckInternet.IsOnline)
                 {
-                    c.DownloadFileAsync(new Uri(BoardHTMLLink), $@"{Environment.CurrentDirectory}\UpdateBoards\{BoardName}Updates.html");
+                    c.DownloadFileAsync(new Uri(BoardHTMLLink), $@"{CurrentDirectory}\Cache\UpdateBoards\{BoardName}Updates.html");
                 }
             }
             else
@@ -37,13 +36,13 @@ namespace AGG_Productions
             if (CheckInternet.IsOnline)
             {
                 WebClient d = new WebClient();
-                d.DownloadFile(new Uri(Json.BJsonLink), $@"{Environment.CurrentDirectory}\Updates.json");
-                d.DownloadFile(new Uri(Json.GJsonLink), $@"{Environment.CurrentDirectory}\Games.json");
-                dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText("Updates.json"));
+                d.DownloadFile(new Uri(Json.BJsonLink), $@"{CurrentDirectory}\Cache\Updates.json");
+                d.DownloadFile(new Uri(Json.GJsonLink), $@"{CurrentDirectory}\Cache\Games.json");
+                dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\Updates.json"));
                 dynamic json = obj.Updates;
                 foreach (JProperty Version in json)
                 {
-                    string LinkJson = Json.ReadGameJson(Version.Name, "link", "Updates", "Updates");
+                    string LinkJson = Json.ReadGameVerJson(Version.Name, "link", "Updates", "Updates");
                     DownloadBoards(Version.Name, LinkJson);
                 }
             }

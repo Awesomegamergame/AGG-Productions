@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using AGG_Productions.LauncherData;
@@ -71,6 +72,8 @@ namespace AGG_Productions
         }
         private void Game_Notes_Initialized(object sender, EventArgs e)
         {
+            if (!Directory.Exists("Cache"))
+                Directory.CreateDirectory("Cache");
             UpdateBoard = (WebBrowser)sender;
             UpdateBoards.SetupBoards();
         }

@@ -2,6 +2,7 @@
 using System.Net;
 using System.IO;
 using System.Windows;
+using static System.Environment;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AGG_Productions.LauncherFunctions;
@@ -53,11 +54,11 @@ namespace AGG_Productions.LauncherData
         private void D_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             if(CheckInternet.IsOnline)
-                File.WriteAllText($"{MainWindow.InstallGameName}.json", e.Result.ToString());
-            if (!File.Exists($"{MainWindow.InstallGameName}.json"))
+                File.WriteAllText($@"{CurrentDirectory}\Cache\Games\{MainWindow.InstallGameName}.json", e.Result.ToString());
+            if (!File.Exists($@"{CurrentDirectory}\Cache\Games\{MainWindow.InstallGameName}.json"))
                 return;
             ObservableCollection<string> VersionstoDisplay = new ObservableCollection<string>();
-            dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($"{MainWindow.InstallGameName}.json"));
+            dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\Games\{MainWindow.InstallGameName}.json"));
             dynamic json = obj.Game;
             foreach (JProperty Version in json)
             {

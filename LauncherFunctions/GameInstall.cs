@@ -1,12 +1,12 @@
 ﻿using System.IO;
 using System.Windows;
+using static System.Environment;
 using AGG_Productions.LauncherData;
 
 namespace AGG_Productions.LauncherFunctions
 {
     class GameInstall
     {
-        public string GameLink;
         public GameInstall()
         {
             MainWindow.GameInstallObject.IsEnabled = false;
@@ -23,7 +23,7 @@ namespace AGG_Productions.LauncherFunctions
             MainWindow.Play.Visibility = Visibility.Visible;
             MainWindow.GameDownloadBar.Visibility = Visibility.Visible;
             MainWindow.GameReInstallObject.Visibility = Visibility.Visible;
-            if (!File.Exists($"{MainWindow.InstallGameName}.json") && !File.Exists($"Games.json"))
+            if (!File.Exists($@"{CurrentDirectory}\Cache\Games\{MainWindow.InstallGameName}.json") && !File.Exists($@"{CurrentDirectory}\Cache\Games.json"))
             {
                 MainWindow.InstallGameLink = null;
             }

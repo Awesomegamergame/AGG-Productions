@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using static System.Environment;
 
 namespace AGG_Productions.LauncherFunctions
 {
@@ -7,9 +8,9 @@ namespace AGG_Productions.LauncherFunctions
     {
         public ActivateBoard(string BoardName)
         {
-            if (File.Exists($@"{Environment.CurrentDirectory}\UpdateBoards\{BoardName}Updates.html"))
+            if (File.Exists($@"{CurrentDirectory}\Cache\UpdateBoards\{BoardName}Updates.html"))
             {
-                MainWindow.UpdateBoard.Source = new Uri($@"{Environment.CurrentDirectory}\UpdateBoards\{BoardName}Updates.html");
+                MainWindow.UpdateBoard.Source = new Uri($@"{CurrentDirectory}\Cache\UpdateBoards\{BoardName}Updates.html");
             }
             else
             {

@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Windows;
+using static System.Environment;
 using AGG_Productions.LauncherData;
 
 namespace AGG_Productions.LauncherFunctions
@@ -9,13 +10,17 @@ namespace AGG_Productions.LauncherFunctions
         public string GameLink;
         public SelectScreen(string GameName)
         {
+            if (!Directory.Exists($@"{CurrentDirectory}\Cache\Games"))
+            {
+                Directory.CreateDirectory($@"{CurrentDirectory}\Cache\Games");
+            }
             MainWindow.InstallGameName = $"{GameName}";
-            if (File.Exists($"Games.json"))
+            if (File.Exists($@"{CurrentDirectory}\Cache\Games.json"))
             {
                 MainWindow.InstallGameLink = Json.ReadJson(MainWindow.InstallGameName, "Games");
                 GameLink = MainWindow.InstallGameLink;
             }
-            else if (File.Exists($"{GameName}.json") && !File.Exists($"Games.json"))
+            else if (File.Exists($@"{CurrentDirectory}\Cache\Games\{GameName}.json") && !File.Exists($@"{CurrentDirectory}\Cache\Games.json"))
             {
                 string JsonLink = Json.ReadJsonLink("Link", GameName);
                 MainWindow.InstallGameLink = Json.ReadAndCreate(GameName, JsonLink);
