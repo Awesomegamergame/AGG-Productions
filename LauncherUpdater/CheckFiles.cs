@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace AGG_Productions.Repair
+namespace AGG_Productions.LauncherUpdater
 {
     class CheckFiles
     {
@@ -11,12 +11,13 @@ namespace AGG_Productions.Repair
         public static string Launcherpdb = Path.Combine(rootPath, "AGG Productions.pdb");
         public static string CodePackDLL = Path.Combine(rootPath, "Microsoft.WindowsAPICodePack.dll");
         public static string ShellDLL = Path.Combine(rootPath, "Microsoft.WindowsAPICodePack.Shell.dll");
+        public static string JsonDLL = Path.Combine(rootPath, "Newtonsoft.Json.dll");
         public static bool FilesCheckPassed;
         public static bool FilesCheckPassedNo;
         #endregion
         public static void CheckForFiles()
         {
-            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL))
+            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL) && File.Exists(JsonDLL))
             {
                 FilesCheckPassed = true;
             }
@@ -27,7 +28,7 @@ namespace AGG_Productions.Repair
         }
         public static void CheckForFilesNoInternet()
         {
-            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL))
+            if (File.Exists(LauncherExe) && File.Exists(LauncherConfig) && File.Exists(Launcherpdb) && File.Exists(CodePackDLL) && File.Exists(ShellDLL) && File.Exists(JsonDLL))
             {
                 FilesCheckPassedNo = true;
             }

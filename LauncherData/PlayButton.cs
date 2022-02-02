@@ -12,6 +12,7 @@ namespace AGG_Productions.LauncherData
         public static VersionManager _VersionManager;
         public static void Start(string Name)
         {
+            CheckInternet.CheckInternetState();
             MainWindow.VersionSelector.IsEnabled = false;
             MainWindow.Play.IsEnabled = false;
             paths = new GamePaths(MainWindow.VersionToDownload, Name, MainWindow.GameDir);
@@ -20,6 +21,12 @@ namespace AGG_Productions.LauncherData
             {
                 Process.Start(paths.ExeFile);
                 Application.Current.Shutdown();
+            }
+            else if (CheckInternet.IsOnline == false)
+            {
+                MessageBox.Show("This version of this game isn't already downloaded. Check your internet and try again");
+                MainWindow.Play.IsEnabled = true;
+                MainWindow.VersionSelector.IsEnabled = true;
             }
             else
             {

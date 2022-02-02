@@ -1,0 +1,13 @@
+{
+  "Game": {
+    "0.0.13.3": {
+      "link": "https://github.com/awesomegamergame/Chaotic-Archive/releases/download/0.0.13.3/Chaotic.zip",
+      "version": "0.0.13.3"
+    },
+    "0.0.13.2": {
+      "link": "https://github.com/awesomegamergame/Chaotic-Archive/releases/download/0.0.13.2/Chaotic.zip",
+      "version": "0.0.13.2"
+    }
+  },
+  "Link": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/GameVersions/Chaotic.json"
+}

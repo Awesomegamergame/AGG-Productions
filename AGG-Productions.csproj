@@ -78,20 +78,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LauncherData\Json.cs" />
     <Compile Include="LauncherFunctions\ActivateBoard.cs" />
     <Compile Include="LauncherFunctions\GameInstall.cs" />
     <Compile Include="LauncherFunctions\GameReinstall.cs" />
     <Compile Include="LauncherFunctions\OnlineFunctions.cs" />
     <Compile Include="LauncherFunctions\SelectScreen.cs" />
-    <Compile Include="GameLinks\GameLinks.cs" />
     <Compile Include="LauncherData\FileDownloader.cs" />
     <Compile Include="LauncherData\GamePaths.cs" />
     <Compile Include="LauncherData\PlayButton.cs" />
     <Compile Include="LauncherData\VersionManager.cs" />
-    <Compile Include="LauncherData\UpdateBoardLinks.cs" />
     <Compile Include="LauncherData\UpdateBoards.cs" />
-    <Compile Include="LauncherUpgrade\UpgradeLauncher.cs" />
-    <Compile Include="Repair\CheckFiles.cs" />
+    <Compile Include="LauncherUpdater\UpgradeLauncher.cs" />
+    <Compile Include="LauncherUpdater\CheckFiles.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -130,6 +129,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Webdata\GameVersions\Chaotic.json" />
+    <None Include="Webdata\GameVersions\EastlowsHS.json" />
+    <None Include="Webdata\Games.json" />
+    <None Include="Webdata\Updates.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -164,6 +167,13 @@
     <PackageReference Include="Microsoft-WindowsAPICodePack-Shell">
       <Version>1.1.4</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Webdata\Updateboards\ChaoticUpdates.html" />
+    <Content Include="Webdata\Updateboards\EastlowsHSUpdates.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

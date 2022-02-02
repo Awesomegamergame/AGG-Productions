@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Net;
+using System.IO;
+using System.Windows;
+using static System.Environment;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AGG_Productions.LauncherFunctions;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace AGG_Productions.LauncherData
 {
@@ -10,8 +15,12 @@ namespace AGG_Productions.LauncherData
     {
         public static string VersionLink;
         public Dictionary<string, string> VersionLinkPairs;
+        #region Disable Intellisense Messages
+#pragma warning disable IDE0044 // Add readonly modifier
         private GameInstall gameInstall;
         private SelectScreen selectScreen;
+#pragma warning restore IDE0044 // Add readonly modifier
+        #endregion
         public VersionManager(GameInstall gameInstall)
         {
             this.gameInstall = gameInstall;
@@ -29,18 +38,34 @@ namespace AGG_Productions.LauncherData
         {
             WebClient d = new WebClient();
             d.DownloadStringCompleted += D_DownloadStringCompleted;
-            d.DownloadStringAsync(new Uri(VersionLink));
+            try
+            {
+                d.DownloadStringAsync(new Uri(VersionLink));
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Can't Download Game Versions: No Internet");
+            }
+            catch (UriFormatException)
+            {
+                MessageBox.Show("Something is wrong with the cache files: Restart the program");
+            }
         }
         private void D_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            string temp = e.Result;
-            string[] VersionLinks = temp.Split('\n');
+            if(CheckInternet.IsOnline)
+                File.WriteAllText($@"{CurrentDirectory}\Cache\Games\{MainWindow.InstallGameName}.json", e.Result.ToString());
+            if (!File.Exists($@"{CurrentDirectory}\Cache\Games\{MainWindow.InstallGameName}.json"))
+                return;
             ObservableCollection<string> VersionstoDisplay = new ObservableCollection<string>();
-            for(int i = 0; i < VersionLinks.Length; i++)
+            dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\Games\{MainWindow.InstallGameName}.json"));
+            dynamic json = obj.Game;
+            foreach (JProperty Version in json)
             {
-                string[] Version_Link = VersionLinks[i].Split(' ');
-                VersionLinkPairs.Add(Version_Link[0], Version_Link[1]);
-                VersionstoDisplay.Add(Version_Link[0]);
+                string VerJson = Json.ReadGameJson(Version.Name, "version", MainWindow.InstallGameName, "Game");
+                string LinkJson = Json.ReadGameJson(Version.Name, "link", MainWindow.InstallGameName, "Game");
+                VersionstoDisplay.Add(VerJson);
+                VersionLinkPairs.Add(VerJson, LinkJson);
             }
             MainWindow.VersionSelector.ItemsSource = VersionstoDisplay;
             MainWindow.VersionSelector.Items.Refresh();

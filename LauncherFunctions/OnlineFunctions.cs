@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using AGG_Productions.Repair;
 using AGG_Productions.LauncherUpdater;
 
 namespace AGG_Productions.LauncherFunctions
