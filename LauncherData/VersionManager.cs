@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.IO;
+using System.Windows;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AGG_Productions.LauncherFunctions;
@@ -36,7 +37,18 @@ namespace AGG_Productions.LauncherData
         {
             WebClient d = new WebClient();
             d.DownloadStringCompleted += D_DownloadStringCompleted;
-            d.DownloadStringAsync(new Uri(VersionLink));
+            try
+            {
+                d.DownloadStringAsync(new Uri(VersionLink));
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Can't Download Game Versions: No Internet");
+            }
+            catch (UriFormatException)
+            {
+                MessageBox.Show("Something is wrong with the cache files: Restart the program");
+            }
         }
         private void D_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {

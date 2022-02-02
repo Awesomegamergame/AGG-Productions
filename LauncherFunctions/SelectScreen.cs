@@ -1,14 +1,26 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using AGG_Productions.LauncherData;
 
 namespace AGG_Productions.LauncherFunctions
 {
     class SelectScreen
     {
-        public SelectScreen(string GameName, string GameLink)
+        public string GameLink;
+        public SelectScreen(string GameName)
         {
             MainWindow.InstallGameName = $"{GameName}";
-            MainWindow.InstallGameLink = $"{GameLink}";
+            if (File.Exists($"Games.json"))
+            {
+                MainWindow.InstallGameLink = Json.ReadJson(MainWindow.InstallGameName, "Games");
+                GameLink = MainWindow.InstallGameLink;
+            }
+            else if (File.Exists($"{GameName}.json") && !File.Exists($"Games.json"))
+            {
+                string JsonLink = Json.ReadJsonLink("Link", GameName);
+                MainWindow.InstallGameLink = Json.ReadAndCreate(GameName, JsonLink);
+                GameLink = MainWindow.InstallGameLink;
+            }
             MainWindow.NoGameObject.Visibility = Visibility.Collapsed;
             MainWindow.SelectGameObject.Visibility = Visibility.Collapsed;
             MainWindow.UpdateBoard.Visibility = Visibility.Visible;
@@ -21,10 +33,10 @@ namespace AGG_Productions.LauncherFunctions
                 MainWindow.VersionSelector.Visibility = Visibility.Visible;
                 MainWindow.Play.Visibility = Visibility.Visible;
                 MainWindow.GameDownloadBar.Visibility = Visibility.Visible;
-                VersionManager.VersionLink = GameLink;
-                PlayButton._VersionManager = new VersionManager(this);
                 MainWindow.GameInstallObject.Visibility = Visibility.Collapsed;
                 MainWindow.GameReInstallObject.Visibility = Visibility.Visible;
+                VersionManager.VersionLink = GameLink;
+                PlayButton._VersionManager = new VersionManager(this);
             }
             else
             {

@@ -12,6 +12,7 @@ namespace AGG_Productions.LauncherData
         public static VersionManager _VersionManager;
         public static void Start(string Name)
         {
+            CheckInternet.CheckInternetState();
             MainWindow.VersionSelector.IsEnabled = false;
             MainWindow.Play.IsEnabled = false;
             paths = new GamePaths(MainWindow.VersionToDownload, Name, MainWindow.GameDir);

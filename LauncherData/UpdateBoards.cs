@@ -44,7 +44,6 @@ namespace AGG_Productions
                 foreach (JProperty Version in json)
                 {
                     string LinkJson = Json.ReadGameJson(Version.Name, "link", "Updates", "Updates");
-                    MessageBox.Show(LinkJson);
                     DownloadBoards(Version.Name, LinkJson);
                 }
             }

@@ -6,6 +6,7 @@ namespace AGG_Productions.LauncherFunctions
 {
     class GameInstall
     {
+        public string GameLink;
         public GameInstall()
         {
             MainWindow.GameInstallObject.IsEnabled = false;
@@ -22,6 +23,10 @@ namespace AGG_Productions.LauncherFunctions
             MainWindow.Play.Visibility = Visibility.Visible;
             MainWindow.GameDownloadBar.Visibility = Visibility.Visible;
             MainWindow.GameReInstallObject.Visibility = Visibility.Visible;
+            if (!File.Exists($"{MainWindow.InstallGameName}.json") && !File.Exists($"Games.json"))
+            {
+                MainWindow.InstallGameLink = null;
+            }
             VersionManager.VersionLink = MainWindow.InstallGameLink;
             PlayButton._VersionManager = new VersionManager(this);
         }
