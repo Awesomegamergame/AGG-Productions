@@ -7,6 +7,22 @@
     "0.0.13.2": {
       "link": "https://github.com/awesomegamergame/Chaotic-Archive/releases/download/0.0.13.2/Chaotic.zip",
       "version": "0.0.13.2"
+    },
+    "0.0.13.1": {
+      "link": "https://github.com/awesomegamergame/Chaotic-Archive/releases/download/0.0.13.1/Chaotic.zip",
+      "version": "0.0.13.1"
+    },
+    "0.0.13": {
+      "link": "https://github.com/awesomegamergame/Chaotic-Archive/releases/download/0.0.13/Chaotic.zip",
+      "version": "0.0.13"
+    },
+    "0.0.12.1": {
+      "link": "https://github.com/awesomegamergame/Chaotic-Archive/releases/download/0.0.12.1/Chaotic.zip",
+      "version": "0.0.12.1"
+    },
+    "0.0.12": {
+      "link": "https://github.com/awesomegamergame/Chaotic-Archive/releases/download/0.0.12/Chaotic.zip",
+      "version": "0.0.12"
     }
   },
   "Link": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/GameVersions/Chaotic.json"
