@@ -17,6 +17,9 @@ namespace AGG_Productions.LauncherUpdater
         public static string startPath = @".\AGG Productions Temp";
         public static string exeOld = Path.Combine(CheckFiles.rootPath, "AGG Productions.exe.old");
         public static string pdbOld = Path.Combine(CheckFiles.rootPath, "AGG Productions.pdb.old");
+        public static string dllOld = Path.Combine(CheckFiles.rootPath, "Newtonsoft.Json.dll.old");
+        public static string shellxml = Path.Combine(CheckFiles.rootPath, "Microsoft.WindowsAPICodePack.Shell.xml");
+        public static string corexml = Path.Combine(CheckFiles.rootPath, "Microsoft.WindowsAPICodePack.xml");
         public static string versionFile = Path.Combine(CheckFiles.rootPath, "AGG Productions Version.txt");
         public static string launcherZip = Path.Combine(CheckFiles.rootPath, "AGG Productions Temp.zip");
         public static int VersionDetector = 0;
@@ -31,6 +34,18 @@ namespace AGG_Productions.LauncherUpdater
             if (File.Exists(pdbOld))
             {
                 File.Delete(pdbOld);
+            }
+            if (File.Exists(dllOld))
+            {
+                File.Delete(dllOld);
+            }
+            if (File.Exists(shellxml))
+            {
+                File.Delete(shellxml);
+            }
+            if (File.Exists(corexml))
+            {
+                File.Delete(corexml);
             }
             if (Directory.Exists(startPath))
             {
@@ -112,6 +127,10 @@ namespace AGG_Productions.LauncherUpdater
                     if (File.Exists(CheckFiles.Launcherpdb))
                     {
                         File.Move(@".\AGG Productions.pdb", @".\AGG Productions.pdb.old");
+                    }
+                    if (File.Exists(CheckFiles.JsonDLL))
+                    {
+                        File.Move(@".\Newtonsoft.Json.dll", @".\Newtonsoft.Json.dll.old");
                     }
                     try
                     {
