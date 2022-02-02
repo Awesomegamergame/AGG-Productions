@@ -74,6 +74,8 @@ namespace AGG_Productions
         {
             if (!Directory.Exists("Cache"))
                 Directory.CreateDirectory("Cache");
+            if (Directory.Exists("UpdateBoards"))
+                Directory.Delete("UpdateBoards", true);
             UpdateBoard = (WebBrowser)sender;
             UpdateBoards.SetupBoards();
         }

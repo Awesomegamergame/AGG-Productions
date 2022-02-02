@@ -42,6 +42,8 @@ namespace AGG_Productions.LauncherFunctions
                 MainWindow.GameReInstallObject.Visibility = Visibility.Visible;
                 VersionManager.VersionLink = GameLink;
                 PlayButton._VersionManager = new VersionManager(this);
+                if (File.Exists($"{GameName}Dir.txt"))
+                    File.Delete($"{GameName}Dir.txt");
             }
             else
             {
@@ -51,6 +53,8 @@ namespace AGG_Productions.LauncherFunctions
                 MainWindow.GameInstallObject.Visibility = Visibility.Visible;
                 MainWindow.GameInstallObject.IsEnabled = true;
                 MainWindow.GameReInstallObject.Visibility = Visibility.Collapsed;
+                if (File.Exists($"{GameName}Dir.txt"))
+                    File.Delete($"{GameName}Dir.txt");
             }
         }
     }
