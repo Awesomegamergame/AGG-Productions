@@ -54,12 +54,12 @@ namespace AGG_Productions
             _ = new SelectScreen("Chaotic");
             Chaotic.IsEnabled = false;
             EastlowsHS.IsEnabled = true;
-            int Buttons = 40;
+            int Buttons = 7;
             for (int i = 0; i < Buttons; i++)
             {
                 Button newBtn = new Button();
                 newBtn.Content = "hi";
-                newBtn.Height = 23;
+                newBtn.Height = 50;
                 newBtn.Width = 192;
                 newBtn.HorizontalAlignment = HorizontalAlignment.Left;
                 newBtn.Tag = i;
