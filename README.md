@@ -23,7 +23,7 @@ https://chaoticdev.weebly.com/
 9. When it gets merged into my repo then you should see your game in the launcher.
 
 Other Info
-if your game gets merged into the launcher and you dont see it wait about 10 mins and if its not there still create an issue in my repo and ill help you fix it.
-if your game links change you can change the links in your repo and repull request the changed links into my repo.
-if the game that your are adding is a real game that you arent making or don't have permission to upload here than i will deny your pull request and it will not be added.
-also you MUST have a image for the button and a update board for your game written in html using the .html extension
+- if your game gets merged into the launcher and you dont see it wait about 10 mins and if its not there still create an issue in my repo and ill help you fix it.
+- if your game links change you can change the links in your repo and repull request the changed links into my repo.
+- if the game that your are adding is a real game that you arent making or don't have permission to upload here than i will deny your pull request and it will not be added.
+- also you MUST have a image for the button and a update board for your game written in html using the .html extension
