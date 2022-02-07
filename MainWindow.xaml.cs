@@ -71,6 +71,7 @@ namespace AGG_Productions
         private void Game_Notes_Initialized(object sender, EventArgs e)
         {
             Cache.Create();
+            #region Dynamic Buttons
             if (CheckInternet.IsOnline)
             {
                 WebClient d = new WebClient();
@@ -107,6 +108,7 @@ namespace AGG_Productions
                 List.Items.Add(newBtn);
                 newBtn.Click += new RoutedEventHandler(Game_Click);
             }
+            #endregion
             UpdateBoard = (WebBrowser)sender;
             UpdateBoards.SetupBoards();
         }
