@@ -1,0 +1,12 @@
+{
+  "Games": {
+    "Chaotic": {
+      "link": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/Images/Chaotic.jpg",
+      "name": "Chaotic"
+    },
+    "EastlowsHS": {
+      "link": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/Images/EastlowsHS.jpg",
+      "name": "EastlowsHS"
+    }
+  }
+}
