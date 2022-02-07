@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using static System.Environment;
-using System.Threading.Tasks;
 
 namespace AGG_Productions.LauncherFunctions
 {
