@@ -54,10 +54,11 @@ namespace AGG_Productions
             InitializeComponent();
             OnlineFunctions.UpdateFunctions();
         }
-        private void Chaotic_Click(object sender, RoutedEventArgs e)
+        private void Game_Click(object sender, RoutedEventArgs e)
         {
-            _ = new ActivateBoard("Chaotic");
-            _ = new SelectScreen("Chaotic");
+            string GameName = (sender as Button).Name;
+            _ = new ActivateBoard(GameName);
+            _ = new SelectScreen(GameName);
         }
         private void Game_Install_Click(object sender, RoutedEventArgs e)
         {
@@ -69,41 +70,47 @@ namespace AGG_Productions
         }
         private void Game_Notes_Initialized(object sender, EventArgs e)
         {
-            if (!Directory.Exists("Cache"))
-                Directory.CreateDirectory("Cache");
+            Cache.Create();
             if (CheckInternet.IsOnline)
             {
                 WebClient d = new WebClient();
                 d.DownloadFile(new Uri(Json.BDataLink), $@"{CurrentDirectory}\Cache\ButtonData.json");
             }
+            if (!File.Exists($@"{CurrentDirectory}\Cache\ButtonData.json")) 
+                return;
             dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\ButtonData.json"));
             dynamic json = obj.Games;
             foreach (JProperty Names in json)
             {
+                WebClient d = new WebClient();
                 string ImageLink = Json.ReadGameVerJson(Names.Name, "link", "ButtonData", "Games");
                 string GameName = Json.ReadGameVerJson(Names.Name, "name", "ButtonData", "Games");
-                //MessageBox.Show(Names.ToString());
-                //MessageBox.Show(ImageLink.ToString());
-                //MessageBox.Show(GameName.ToString());
+                if(CheckInternet.IsOnline)
+                    d.DownloadFile(new Uri(ImageLink), $@"{CurrentDirectory}\Cache\Images\{GameName}.jpg");
                 Button newBtn = new Button();
-                BitmapImage btm = new BitmapImage(new Uri(ImageLink, UriKind.RelativeOrAbsolute));
-                Image img = new Image();
-                img.Source = btm;
-                img.Stretch = Stretch.Fill;
-                newBtn.Name = "button";
+                if (File.Exists($@"{CurrentDirectory}\Cache\Images\{GameName}.jpg"))
+                {
+                    BitmapImage btm = new BitmapImage(new Uri($@"{CurrentDirectory}\Cache\Images\{GameName}.jpg"));
+                    Image img = new Image
+                    {
+                        Source = btm,
+                        Stretch = Stretch.Fill
+                    };
+                    newBtn.Content = img;
+                }
+                else
+                    newBtn.Content = GameName;
+                newBtn.Name = GameName;
                 newBtn.Height = 50;
-                newBtn.Width = 192;
-                newBtn.Content = img;
+                newBtn.Width = 191;
                 newBtn.HorizontalAlignment = HorizontalAlignment.Left;
                 List.Items.Add(newBtn);
-                newBtn.Click += new RoutedEventHandler(Chaotic_Click);
+                newBtn.Click += new RoutedEventHandler(Game_Click);
             }
-            if (Directory.Exists("UpdateBoards"))
-                Directory.Delete("UpdateBoards", true);
             UpdateBoard = (WebBrowser)sender;
             UpdateBoards.SetupBoards();
         }
-        private void Chaotic_Version_Initialized(object sender, EventArgs e)
+        private void Version_Initialized(object sender, EventArgs e)
         {
             VersionSelector = (ComboBox)sender;
             VersionSelector.MaxDropDownHeight = VersionSelector.MaxHeight = 110;

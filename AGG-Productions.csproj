@@ -80,6 +80,7 @@
     </ApplicationDefinition>
     <Compile Include="LauncherData\Json.cs" />
     <Compile Include="LauncherFunctions\ActivateBoard.cs" />
+    <Compile Include="LauncherFunctions\Cache.cs" />
     <Compile Include="LauncherFunctions\GameInstall.cs" />
     <Compile Include="LauncherFunctions\GameReinstall.cs" />
     <Compile Include="LauncherFunctions\OnlineFunctions.cs" />
