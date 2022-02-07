@@ -5,6 +5,12 @@ using System.Windows.Controls;
 using AGG_Productions.LauncherData;
 using AGG_Productions.LauncherUpdater;
 using AGG_Productions.LauncherFunctions;
+using System.Windows.Media.Imaging;
+using static System.Environment;
+using System.Windows.Media;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace AGG_Productions
 {
@@ -52,27 +58,6 @@ namespace AGG_Productions
         {
             _ = new ActivateBoard("Chaotic");
             _ = new SelectScreen("Chaotic");
-            Chaotic.IsEnabled = false;
-            EastlowsHS.IsEnabled = true;
-            int Buttons = 7;
-            for (int i = 0; i < Buttons; i++)
-            {
-                Button newBtn = new Button();
-                newBtn.Content = "hi";
-                newBtn.Height = 50;
-                newBtn.Width = 192;
-                newBtn.HorizontalAlignment = HorizontalAlignment.Left;
-                newBtn.Tag = i;
-                List.Items.Add(newBtn);
-                newBtn.Click += new RoutedEventHandler(EastlowsHS_Click);
-            }
-        }
-        private void EastlowsHS_Click(object sender, RoutedEventArgs e)
-        {
-            _ = new ActivateBoard("EastlowsHS");
-            _ = new SelectScreen("EastlowsHS");
-            EastlowsHS.IsEnabled = false;
-            Chaotic.IsEnabled = true;
         }
         private void Game_Install_Click(object sender, RoutedEventArgs e)
         {
@@ -86,6 +71,33 @@ namespace AGG_Productions
         {
             if (!Directory.Exists("Cache"))
                 Directory.CreateDirectory("Cache");
+            if (CheckInternet.IsOnline)
+            {
+                WebClient d = new WebClient();
+                d.DownloadFile(new Uri(Json.BDataLink), $@"{CurrentDirectory}\Cache\ButtonData.json");
+            }
+            dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\ButtonData.json"));
+            dynamic json = obj.Games;
+            foreach (JProperty Names in json)
+            {
+                string ImageLink = Json.ReadGameVerJson(Names.Name, "link", "ButtonData", "Games");
+                string GameName = Json.ReadGameVerJson(Names.Name, "name", "ButtonData", "Games");
+                //MessageBox.Show(Names.ToString());
+                //MessageBox.Show(ImageLink.ToString());
+                //MessageBox.Show(GameName.ToString());
+                Button newBtn = new Button();
+                BitmapImage btm = new BitmapImage(new Uri(ImageLink, UriKind.RelativeOrAbsolute));
+                Image img = new Image();
+                img.Source = btm;
+                img.Stretch = Stretch.Fill;
+                newBtn.Name = "button";
+                newBtn.Height = 50;
+                newBtn.Width = 192;
+                newBtn.Content = img;
+                newBtn.HorizontalAlignment = HorizontalAlignment.Left;
+                List.Items.Add(newBtn);
+                newBtn.Click += new RoutedEventHandler(Chaotic_Click);
+            }
             if (Directory.Exists("UpdateBoards"))
                 Directory.Delete("UpdateBoards", true);
             UpdateBoard = (WebBrowser)sender;

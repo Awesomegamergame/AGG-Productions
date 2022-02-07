@@ -28,16 +28,6 @@
                     </Setter>
                 </Style>
             </ListBox.ItemContainerStyle>
-            <Button x:Name="Chaotic" Cursor="Hand" HorizontalAlignment="Left" Click="Chaotic_Click" VerticalAlignment="Top" Height="50" Width="192" Margin="0,0,0,0">
-                <StackPanel>
-                    <Image Source="Images/Chaotic.jpg"/>
-                </StackPanel>
-            </Button>
-            <Button x:Name="EastlowsHS" Cursor="Hand" HorizontalAlignment="Left" Click="EastlowsHS_Click" VerticalAlignment="Top" Height="50" Width="192" Margin="0,0,0,0" Grid.RowSpan="2">
-                <StackPanel>
-                    <Image Source="Images/EastlowsHS.jpg"/>
-                </StackPanel>
-            </Button>
         </ListBox>
         <WebBrowser x:Name="Game_Notes" Visibility="Collapsed" Margin="215,0,0.333,58.666" Initialized="Game_Notes_Initialized" Grid.RowSpan="2"/>
         <Image Source="Images/Background.jpg" Visibility="Visible" Stretch="Fill" Margin="209,0,0,0.333" Grid.RowSpan="2" HorizontalAlignment="Left" Width="6" />
