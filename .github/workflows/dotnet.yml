@@ -20,3 +20,36 @@ jobs:
       run: msbuild -t:restore
     - name: Build project
       run: msbuild AGG-Productions.csproj /t:Build /p:Configuration=Release
+    - name: Cleanup release
+      shell: bash
+      run: |
+        find "bin/Release" -type f ! \( -name "*.exe" -o -name "*.dll" \) -delete
+    - name: Resolve Short Commit Hash
+      if: startsWith(github.ref, 'refs/tags/') == false
+      id: get_hash
+      shell: bash
+      run: echo ::set-output name=hash::`git rev-parse --short HEAD`
+    - name: Upload Build
+      if: startsWith(github.ref, 'refs/tags/') == false
+      uses: actions/upload-artifact@v2
+      with:
+        name: AGG-Productions-${{ steps.get_hash.outputs.hash }}
+        path: ./bin/Release/
+    - name: Extract Release Version
+      if: startsWith(github.ref, 'refs/tags/')
+      id: get_version
+      shell: bash
+      run: echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
+    - name: Zip for Release
+      if: startsWith(github.ref, 'refs/tags/')
+      shell: bash
+      working-directory: ./bin/Release
+      run: zip LegacyInstaller.zip -r .
+    - name: Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        name: AGG-Productions v${{ steps.get_version.outputs.version }}
+        files: ./bin/Release/LegacyInstaller.zip
