@@ -1,4 +1,4 @@
-name: .NET
+name: Debug Build
 
 on:
   push:
@@ -19,11 +19,11 @@ jobs:
     - name: Install dependencies
       run: msbuild -t:restore
     - name: Build project
-      run: msbuild AGG-Productions.csproj /t:Build /p:Configuration=Release
+      run: msbuild AGG-Productions.csproj /t:Build /p:Configuration=Debug
     - name: Cleanup release
       shell: bash
       run: |
-        find "bin/Release" -type f ! \( -name "*.exe" -o -name "*.dll" \) -delete
+        find "bin/Debug" -type f ! \( -name "*.exe" -o -name "*.dll" -name "*.pdb" -name "*.config" \) -delete
     - name: Resolve Short Commit Hash
       if: startsWith(github.ref, 'refs/tags/') == false
       id: get_hash
