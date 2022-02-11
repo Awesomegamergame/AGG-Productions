@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: AGG-Productions-${{ steps.get_hash.outputs.hash }}
-        path: ./bin/Release/
+        path: ./bin/Debug/
     - name: Extract Release Version
       if: startsWith(github.ref, 'refs/tags/')
       id: get_version
@@ -43,8 +43,8 @@ jobs:
     - name: Zip for Release
       if: startsWith(github.ref, 'refs/tags/')
       shell: bash
-      working-directory: ./bin/Release
-      run: zip LegacyInstaller.zip -r .
+      working-directory: ./bin/Debug
+      run: zip AGG-Productions.zip -r .
     - name: Release
       if: startsWith(github.ref, 'refs/tags/')
       uses: softprops/action-gh-release@v1
@@ -52,4 +52,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         name: AGG-Productions v${{ steps.get_version.outputs.version }}
-        files: ./bin/Release/LegacyInstaller.zip
+        files: ./bin/Debug/AGG-Productions.zip
