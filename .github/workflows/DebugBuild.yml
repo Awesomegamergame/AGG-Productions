@@ -1,51 +1,29 @@
 name: Debug Build
-
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
 jobs:
   build:
-
     runs-on: windows-latest
-
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Setup msbuild
       uses: microsoft/setup-msbuild@v1.0.2
-    - name: Install dependencies
+    - name: Install Dependencies
       run: msbuild -t:restore
-    - name: Build project
+    - name: Build Project
       run: msbuild AGG-Productions.csproj /t:Build /p:Configuration=Debug
     - name: Resolve Short Commit Hash
       if: startsWith(github.ref, 'refs/tags/') == false
       id: get_hash
       shell: bash
       run: echo ::set-output name=hash::`git rev-parse --short HEAD`
-    - name: Upload Build
+    - name: Upload Debug Build
       if: startsWith(github.ref, 'refs/tags/') == false
       uses: actions/upload-artifact@v2
       with:
         name: AGG-Productions-${{ steps.get_hash.outputs.hash }}
         path: ./bin/Debug/
-    - name: Extract Release Version
-      if: startsWith(github.ref, 'refs/tags/')
-      id: get_version
-      shell: bash
-      run: echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
-    - name: Zip for Release
-      if: startsWith(github.ref, 'refs/tags/')
-      shell: bash
-      working-directory: ./bin/Debug
-      run: zip AGG-Productions.zip -r .
-    - name: Release
-      if: startsWith(github.ref, 'refs/tags/')
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        name: AGG-Productions v${{ steps.get_version.outputs.version }}
-        files: ./bin/Debug/AGG-Productions.zip
