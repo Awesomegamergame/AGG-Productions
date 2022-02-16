@@ -1,6 +1,6 @@
 # AGG-Productions
 
-<p align="left"> <img width="300" src="Cover.png"/> </p>
+<p align="center"> <img width="170" src="Cover.png"/> </p>
 
 Welcome to AGG Productions Launcher this launcher is a replacement for the old chaotic launcher which was old slow and just very plain. This launcher also now allows other people that are working on there own game to be able to upload it here and have some cool auto apdating and havee there game hosted for free (it supports any game made for windows Ex: Unity unreal and even native coded games, as long as the game can be started as an .exe)
 
