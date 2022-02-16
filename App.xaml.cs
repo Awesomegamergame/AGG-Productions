@@ -1,4 +1,8 @@
-﻿using System.Threading;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows;
 
 namespace AGG_Productions
@@ -8,19 +12,25 @@ namespace AGG_Productions
     /// </summary>
     public partial class App : Application
     {
-        private static Mutex _mutex = null;
-
-        protected override void OnStartup(StartupEventArgs e)
+        public static string GameName;
+        public static int ArgumentNumber;
+        //1 = AntiCheat
+        private void App_Startup(object sender, StartupEventArgs e)
         {
-            const string appName = "AGG Productions";
-            _mutex = new Mutex(true, appName, out bool createdNew);
-
-            if (!createdNew)
+            string[] args = Environment.GetCommandLineArgs();
+            if(args.Length == 3)
+                ProcessArguments(args[1], args[2]);
+            Process[] pname = Process.GetProcessesByName(AppDomain.CurrentDomain.FriendlyName.Remove(AppDomain.CurrentDomain.FriendlyName.Length - 4));
+            if (pname.Length > 1)
             {
-                Current.Shutdown();
+                pname.Where(p => p.Id != Process.GetCurrentProcess().Id).First().Kill();
             }
+            MainWindow window = new MainWindow();
+            window.Show();
+        }
+        public void ProcessArguments(string arg1, string arg2)
+        {
             
-            base.OnStartup(e);
         }
     }
 }
