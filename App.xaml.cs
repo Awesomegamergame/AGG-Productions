@@ -23,7 +23,10 @@ namespace AGG_Productions
             else
             {
                 var exists = Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1;
-                Current.Shutdown();
+                if(exists)
+                {
+                    Current.Shutdown();
+                }
             }
             MainWindow window = new MainWindow();
             window.Show();
