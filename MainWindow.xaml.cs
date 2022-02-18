@@ -91,7 +91,11 @@ namespace AGG_Productions
                 Button newBtn = new Button();
                 if (File.Exists($@"{CurrentDirectory}\Cache\Images\{GameName}.jpg"))
                 {
-                    BitmapImage btm = new BitmapImage(new Uri($@"{CurrentDirectory}\Cache\Images\{GameName}.jpg"));
+                    BitmapImage btm = new BitmapImage();
+                    btm.BeginInit();
+                    btm.CacheOption = BitmapCacheOption.OnLoad;
+                    btm.UriSource = new Uri($@"{CurrentDirectory}\Cache\Images\{GameName}.jpg", UriKind.RelativeOrAbsolute);
+                    btm.EndInit();
                     Image img = new Image
                     {
                         Source = btm,

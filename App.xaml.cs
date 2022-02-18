@@ -20,6 +20,11 @@ namespace AGG_Productions
                     pname.Where(p => p.Id != Process.GetCurrentProcess().Id).First().Kill();
                 }
             }
+            else
+            {
+                var exists = Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1;
+                Current.Shutdown();
+            }
             MainWindow window = new MainWindow();
             window.Show();
         }
