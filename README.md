@@ -9,7 +9,7 @@ Welcome to AGG Productions Launcher this launcher is a replacement for the old c
 How to Add Features and to fix bugs in AGG-Productions
 
 1. Fork the repo
-2. Use Visual Studio 2019 with .netframework 4.7.2
+2. Use Visual Studio 2019 or Visual Studio 2022 (Visual Studio 2022 Recommended) with .netframework 4.8
 3. Fix the bug or add the feature
 4. Test to make sure if it works correctly
 
