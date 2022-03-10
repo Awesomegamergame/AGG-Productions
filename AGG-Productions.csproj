@@ -79,7 +79,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="LauncherData\Json.cs" />
-    <Compile Include="LauncherFunctions\ActivateBoard.cs" />
     <Compile Include="LauncherFunctions\Arguments.cs" />
     <Compile Include="LauncherFunctions\Cache.cs" />
     <Compile Include="LauncherFunctions\GameInstall.cs" />
