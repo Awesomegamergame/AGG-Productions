@@ -8,7 +8,7 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AGG Productions")]
-[assembly: AssemblyDescription("The Official Launcher of AGG Producation Games")]
+[assembly: AssemblyDescription("The Official Launcher of AGG Production Games")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AGG Productions")]
 [assembly: AssemblyProduct("AGG Productions")]
