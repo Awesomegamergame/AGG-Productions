@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
+using static System.Environment;
 using AGG_Productions.LauncherUpdater;
 
 namespace AGG_Productions.LauncherFunctions
@@ -12,6 +14,10 @@ namespace AGG_Productions.LauncherFunctions
                 CheckFiles.CheckForFiles();
                 if (CheckFiles.FilesCheckPassed)
                 {
+                    if (!Directory.Exists("Cache"))
+                        Directory.CreateDirectory("Cache");
+                    if (!Directory.Exists($@"{CurrentDirectory}\Cache\Images"))
+                        Directory.CreateDirectory($@"{CurrentDirectory}\Cache\Images");
                     Dynamicbuttons.SetupButtons();
                     UpdateBoards.SetupBoards();
                     Updater.LauncherUpdate();

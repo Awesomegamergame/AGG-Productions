@@ -30,5 +30,17 @@ namespace AGG_Productions.LauncherFunctions
             VersionManager.VersionLink = MainWindow.InstallGameLink;
             PlayButton._VersionManager = new VersionManager(this);
         }
+        
+    }
+    class GameReinstall
+    {
+        public GameReinstall()
+        {
+            MainWindow.GameReInstallObject.IsEnabled = false;
+            MainWindow.button = MainWindow.GameReInstallObject;
+            AdminDirCheck.InstallDir(MainWindow.InstallGameName);
+            MainWindow.GameReInstallObject.IsEnabled = true;
+            MainWindow.GameDir = Json.ReadJson(MainWindow.InstallGameName);
+        }
     }
 }

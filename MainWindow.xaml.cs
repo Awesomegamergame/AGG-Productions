@@ -1,16 +1,9 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using AGG_Productions.LauncherData;
 using AGG_Productions.LauncherUpdater;
 using AGG_Productions.LauncherFunctions;
-using System.Windows.Media.Imaging;
-using static System.Environment;
-using System.Windows.Media;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.Net;
 
 namespace AGG_Productions
 {
@@ -71,7 +64,6 @@ namespace AGG_Productions
         }
         private void Game_Notes_Initialized(object sender, EventArgs e)
         {
-            Cache.Create();
             UpdateBoard = (WebBrowser)sender;
         }
         private void Version_Initialized(object sender, EventArgs e)
@@ -87,7 +79,6 @@ namespace AGG_Productions
         {
             VersionToDownload = VersionSelector.SelectedItem.ToString();
         }
-
         #region Update Screen Buttons Dont Edit
         private void No_Click(object sender, RoutedEventArgs e)
         {
@@ -202,12 +193,10 @@ namespace AGG_Productions
         {
             GameInstallObject = (Button)sender;
         }
-
         private void List_Initialized(object sender, EventArgs e)
         {
             ListObject = (ListBox)sender;
         }
-
         private void NoGame_Initialized(object sender, EventArgs e)
         {
             NoGameObject = (TextBox)sender;
