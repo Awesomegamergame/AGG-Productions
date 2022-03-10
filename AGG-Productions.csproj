@@ -81,6 +81,7 @@
     <Compile Include="LauncherData\Json.cs" />
     <Compile Include="LauncherFunctions\Arguments.cs" />
     <Compile Include="LauncherFunctions\Cache.cs" />
+    <Compile Include="LauncherFunctions\Dynamicbuttons.cs" />
     <Compile Include="LauncherFunctions\GameInstall.cs" />
     <Compile Include="LauncherFunctions\GameReinstall.cs" />
     <Compile Include="LauncherFunctions\OnlineFunctions.cs" />

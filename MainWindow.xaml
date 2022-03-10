@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <Image Source="Images/UpdateBackground.jpg" Stretch="Fill" Margin="190,0,0.333,-0.333" Grid.RowSpan="2"/>
         <Image Source="Images/Games.jpg" HorizontalAlignment="Left" Stretch="Fill" Height="50" VerticalAlignment="Top" Width="215"/>
-        <ListBox x:Name="List" HorizontalAlignment="Left" Width="213" Grid.RowSpan="2" Margin="-3,50,0,-0.333" HorizontalContentAlignment="Stretch" Background="#FF7F7F7F">
+        <ListBox x:Name="List" HorizontalAlignment="Left" Initialized="List_Initialized" Width="213" Grid.RowSpan="2" Margin="-3,50,0,-0.333" HorizontalContentAlignment="Stretch" Background="#FF7F7F7F">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
                     <Setter Property="Template">

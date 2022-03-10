@@ -12,6 +12,8 @@ namespace AGG_Productions.LauncherFunctions
                 CheckFiles.CheckForFiles();
                 if (CheckFiles.FilesCheckPassed)
                 {
+                    Dynamicbuttons.SetupButtons();
+                    UpdateBoards.SetupBoards();
                     Updater.LauncherUpdate();
                 }
                 else
