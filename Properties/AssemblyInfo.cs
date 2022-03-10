@@ -8,7 +8,7 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AGG Productions")]
-[assembly: AssemblyDescription("The Official Launcher of AGG Producation Games")]
+[assembly: AssemblyDescription("The Official Launcher of AGG Production Games")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AGG Productions")]
 [assembly: AssemblyProduct("AGG Productions")]
@@ -51,5 +51,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.3.0")]
-[assembly: AssemblyFileVersion("1.3.0")]
+[assembly: AssemblyVersion("1.3.1")]
+[assembly: AssemblyFileVersion("1.3.1")]
