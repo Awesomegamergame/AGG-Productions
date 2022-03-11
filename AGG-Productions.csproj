@@ -89,6 +89,7 @@
     <Compile Include="LauncherData\PlayButton.cs" />
     <Compile Include="LauncherData\VersionManager.cs" />
     <Compile Include="LauncherData\UpdateBoards.cs" />
+    <Compile Include="LauncherFunctions\SettingsM.cs" />
     <Compile Include="LauncherUpdater\UpgradeLauncher.cs" />
     <Compile Include="LauncherUpdater\CheckFiles.cs" />
     <Page Include="MainWindow.xaml">
@@ -168,6 +169,7 @@
   <ItemGroup>
     <Resource Include="Webdata\Images\Chaotic.jpg" />
     <Resource Include="Webdata\Images\EastlowsHS.jpg" />
+    <Resource Include="Images\Gear.jpg" />
     <Content Include="Webdata\Updateboards\ChaoticUpdates.html" />
     <Content Include="Webdata\Updateboards\EastlowsHSUpdates.html" />
   </ItemGroup>

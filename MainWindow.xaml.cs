@@ -9,6 +9,7 @@ namespace AGG_Productions
 {
     public partial class MainWindow : Window
     {
+        public bool SettingsEnabled = false;
         public static string VersionToDownload, GameDir;
         public static Button button;
         public static WebBrowser UpdateBoard;
@@ -41,6 +42,7 @@ namespace AGG_Productions
         public static Label LocalVersionObject, LocalVersionNumberObject;
         public static Label OnlineVersionObject, OnlineVersionNumberObject;
         #endregion
+        public static Image SettingsMenuObject;
         public MainWindow()
         {
             UpgradeLauncher.OldLauncherCheck();
@@ -61,6 +63,10 @@ namespace AGG_Productions
         private void Game_ReInstall_Click(object sender, RoutedEventArgs e)
         {
             _ = new GameReinstall();
+        }
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsEnabled = SettingsM.Menu(SettingsEnabled);
         }
         private void Game_Notes_Initialized(object sender, EventArgs e)
         {
@@ -197,6 +203,12 @@ namespace AGG_Productions
         {
             ListObject = (ListBox)sender;
         }
+
+        private void SettingScreen_Initialized(object sender, EventArgs e)
+        {
+            SettingsMenuObject = (Image)sender;
+        }
+
         private void NoGame_Initialized(object sender, EventArgs e)
         {
             NoGameObject = (TextBox)sender;
