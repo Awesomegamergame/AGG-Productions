@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using static AGG_Productions.MainWindow;
 
 namespace AGG_Productions.LauncherFunctions
 {
@@ -8,12 +9,12 @@ namespace AGG_Productions.LauncherFunctions
         {
             if(Enabled == true)
             {
-                MainWindow.SettingsMenuObject.Visibility = Visibility.Collapsed;
+                AGGWindow.SettingScreen.Visibility = Visibility.Collapsed;
                 return false;
             }
             else
             {
-                MainWindow.SettingsMenuObject.Visibility = Visibility.Visible;
+                AGGWindow.SettingScreen.Visibility = Visibility.Visible;
                 return true;
             }
 

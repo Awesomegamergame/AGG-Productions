@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
 using static System.Environment;
+using static AGG_Productions.MainWindow;
 using System.Windows.Media.Imaging;
 using AGG_Productions.LauncherData;
 
@@ -53,7 +54,7 @@ namespace AGG_Productions.LauncherFunctions
                 newBtn.Height = 50;
                 newBtn.Width = 191;
                 newBtn.HorizontalAlignment = HorizontalAlignment.Left;
-                MainWindow.ListObject.Items.Add(newBtn);
+                AGGWindow.List.Items.Add(newBtn);
                 newBtn.Click += new RoutedEventHandler(MainWindow.Game_Click);
             }
         }

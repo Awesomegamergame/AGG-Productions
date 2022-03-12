@@ -5,6 +5,7 @@ using System.Windows;
 using static System.Environment;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using static AGG_Productions.MainWindow;
 using AGG_Productions.LauncherFunctions;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
@@ -67,10 +68,10 @@ namespace AGG_Productions.LauncherData
                 VersionstoDisplay.Add(VerJson);
                 VersionLinkPairs.Add(VerJson, LinkJson);
             }
-            MainWindow.VersionSelector.ItemsSource = VersionstoDisplay;
-            MainWindow.VersionSelector.Items.Refresh();
-            MainWindow.Play.IsEnabled = true;
-            MainWindow.VersionSelector.IsEnabled = true;
+            VersionSelector.ItemsSource = VersionstoDisplay;
+            VersionSelector.Items.Refresh();
+            AGGWindow.PlayButtonGUI.IsEnabled = true;
+            VersionSelector.IsEnabled = true;
         }
     }
 }

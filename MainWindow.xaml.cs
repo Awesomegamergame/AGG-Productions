@@ -9,45 +9,20 @@ namespace AGG_Productions
 {
     public partial class MainWindow : Window
     {
+        public static MainWindow AGGWindow;
+
         public bool SettingsEnabled = false;
         public static string VersionToDownload, GameDir;
         public static Button button;
-        public static WebBrowser UpdateBoard;
-        public static Button Play;
         public static ComboBox VersionSelector;
-        public static ListBox ListObject;
-        #region GameInstallVariables
-        public static Button GameInstallObject;
-        public static TextBox NoGameObject;
-        public static TextBox SelectGameObject;
-        public static Button GameReInstallObject;
         public static string InstallGameName = "";
         public static string InstallGameLink = "";
-        #endregion
-        #region Update Screen Variables Dont Edit
-        public static Button Yes_Button;
-        public static Button No_Button;
-        public static Image UpdateScreen_Image;
-        public static Label UpdateText1_Label;
-        public static Label UpdateText2_Label;
-        public static ProgressBar GameDownloadBar;
-        public static ProgressBar UpdateDownloadBar;
-        #endregion
-        #region Repair Screen Dont Edit
-        public static ProgressBar RepairBarObject;
-        public static Image RepairScreenObject;
-        public static Label RepairTextObject, RepairBodyObject;
-        #endregion
-        #region Launcher Version
-        public static Label LocalVersionObject, LocalVersionNumberObject;
-        public static Label OnlineVersionObject, OnlineVersionNumberObject;
-        #endregion
-        public static Image SettingsMenuObject;
         public MainWindow()
         {
             UpgradeLauncher.OldLauncherCheck();
             CheckInternet.CheckInternetState();
             InitializeComponent();
+            AGGWindow = this;
             OnlineFunctions.UpdateFunctions();
         }
         public static void Game_Click(object sender, RoutedEventArgs e)
@@ -68,10 +43,6 @@ namespace AGG_Productions
         {
             SettingsEnabled = SettingsM.Menu(SettingsEnabled);
         }
-        private void Game_Notes_Initialized(object sender, EventArgs e)
-        {
-            UpdateBoard = (WebBrowser)sender;
-        }
         private void Version_Initialized(object sender, EventArgs e)
         {
             VersionSelector = (ComboBox)sender;
@@ -88,22 +59,22 @@ namespace AGG_Productions
         #region Update Screen Buttons Dont Edit
         private void No_Click(object sender, RoutedEventArgs e)
         {
-            UpdateScreen_Image.Visibility = Visibility.Collapsed;
-            Yes_Button.Visibility = Visibility.Collapsed;
-            No_Button.Visibility = Visibility.Collapsed;
-            UpdateText1_Label.Visibility = Visibility.Collapsed;
-            UpdateText2_Label.Visibility = Visibility.Collapsed;
-            LocalVersionObject.Visibility = Visibility.Collapsed;
-            LocalVersionNumberObject.Visibility = Visibility.Collapsed;
-            OnlineVersionNumberObject.Visibility = Visibility.Collapsed;
-            OnlineVersionObject.Visibility = Visibility.Collapsed;
+            UpdateScreen.Visibility = Visibility.Collapsed;
+            Yes.Visibility = Visibility.Collapsed;
+            No.Visibility = Visibility.Collapsed;
+            UpdateText1.Visibility = Visibility.Collapsed;
+            UpdateText2.Visibility = Visibility.Collapsed;
+            LocalVersion.Visibility = Visibility.Collapsed;
+            LocalVersionNumber.Visibility = Visibility.Collapsed;
+            OnlineVersionNumber.Visibility = Visibility.Collapsed;
+            OnlineVersion.Visibility = Visibility.Collapsed;
         }
 
         private void Yes_Click(object sender, RoutedEventArgs e)
         {
-            Yes_Button.Visibility = Visibility.Collapsed;
-            No_Button.Visibility = Visibility.Collapsed;
-            UpdateDownloadBar.Visibility = Visibility.Visible;
+            Yes.Visibility = Visibility.Collapsed;
+            No.Visibility = Visibility.Collapsed;
+            UpdateProgress.Visibility = Visibility.Visible;
             if (Updater.VersionDetector == 1)
             {
                 Updater.UpdaterVersion();
@@ -114,116 +85,6 @@ namespace AGG_Productions
                 Updater.UpdaterVersion();
                 Updater.VersionDetector = 0;
             }
-        }
-
-        private void Yes_Initialized(object sender, EventArgs e)
-        {
-            Yes_Button = (Button)sender;
-        }
-
-        private void No_Initialized(object sender, EventArgs e)
-        {
-            No_Button = (Button)sender;
-        }
-
-        private void UpdateText1_Initialized(object sender, EventArgs e)
-        {
-            UpdateText1_Label = (Label)sender;
-        }
-
-        private void UpdateText2_Initialized(object sender, EventArgs e)
-        {
-            UpdateText2_Label = (Label)sender;
-        }
-
-        private void UpdateScreen_Initialized(object sender, EventArgs e)
-        {
-            UpdateScreen_Image = (Image)sender;
-        }
-        private void ProgressBar_Initialized(object sender, EventArgs e)
-        {
-            GameDownloadBar = (ProgressBar)sender;
-        }
-        private void UpdateBar_Initialized(object sender, EventArgs e)
-        {
-            UpdateDownloadBar = (ProgressBar)sender;
-        }
-        #endregion
-
-        #region Repair Screen Dont Edit
-        private void RepairScreen_Initialized(object sender, EventArgs e)
-        {
-            RepairScreenObject = (Image)sender;
-        }
-
-        private void RepairBar_Initialized(object sender, EventArgs e)
-        {
-            RepairBarObject = (ProgressBar)sender;
-        }
-
-        private void RepairText_Initialized(object sender, EventArgs e)
-        {
-            RepairTextObject = (Label)sender;
-        }
-
-        private void RepairBodyText_Initialized(object sender, EventArgs e)
-        {
-            RepairBodyObject = (Label)sender;
-        }
-        #endregion
-
-        #region Launcher Version
-        private void LocalVersionNumber_Initialized(object sender, EventArgs e)
-        {
-            LocalVersionNumberObject = (Label)sender;
-        }
-
-        private void LocalVersion_Initialized(object sender, EventArgs e)
-        {
-            LocalVersionObject = (Label)sender;
-        }
-
-        private void OnlineVersionNumber_Initialized(object sender, EventArgs e)
-        {
-            OnlineVersionNumberObject = (Label)sender;
-        }
-
-        private void OnlineVersion_Initialized(object sender, EventArgs e)
-        {
-            OnlineVersionObject = (Label)sender;
-        }
-        #endregion
-
-        #region All UI Stuff
-        private void Game_Install_Initialized(object sender, EventArgs e)
-        {
-            GameInstallObject = (Button)sender;
-        }
-        private void List_Initialized(object sender, EventArgs e)
-        {
-            ListObject = (ListBox)sender;
-        }
-
-        private void SettingScreen_Initialized(object sender, EventArgs e)
-        {
-            SettingsMenuObject = (Image)sender;
-        }
-
-        private void NoGame_Initialized(object sender, EventArgs e)
-        {
-            NoGameObject = (TextBox)sender;
-        }
-        private void SelectGame_Initialized(object sender, EventArgs e)
-        {
-            SelectGameObject = (TextBox)sender;
-        }
-        private void Game_ReInstall_Initialized(object sender, EventArgs e)
-        {
-            GameReInstallObject = (Button)sender;
-        }
-        private void PlayButton_Initialized(object sender, EventArgs e)
-        {
-            Play = (Button)sender;
         }
         #endregion
     }

@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Windows;
 using static System.Environment;
+using static AGG_Productions.MainWindow;
 using AGG_Productions.LauncherData;
 
 namespace AGG_Productions.LauncherFunctions
@@ -9,25 +10,25 @@ namespace AGG_Productions.LauncherFunctions
     {
         public GameInstall()
         {
-            MainWindow.GameInstallObject.IsEnabled = false;
-            MainWindow.button = MainWindow.GameInstallObject;
-            AdminDirCheck.InstallDir(MainWindow.InstallGameName);
+            AGGWindow.Game_Install.IsEnabled = false;
+            button = AGGWindow.Game_Install;
+            AdminDirCheck.InstallDir(InstallGameName);
             if (AdminDirCheck.FileDialogClosed)
             {
                 AdminDirCheck.FileDialogClosed = false;
                 return;
             }
-            MainWindow.GameDir = Json.ReadJson(MainWindow.InstallGameName);
-            MainWindow.GameInstallObject.Visibility = Visibility.Collapsed;
-            MainWindow.VersionSelector.Visibility = Visibility.Visible;
-            MainWindow.Play.Visibility = Visibility.Visible;
-            MainWindow.GameDownloadBar.Visibility = Visibility.Visible;
-            MainWindow.GameReInstallObject.Visibility = Visibility.Visible;
-            if (!File.Exists($@"{CurrentDirectory}\Cache\Games\{MainWindow.InstallGameName}.json") && !File.Exists($@"{CurrentDirectory}\Cache\Games.json"))
+            GameDir = Json.ReadJson(InstallGameName);
+            AGGWindow.Game_Install.Visibility = Visibility.Collapsed;
+            VersionSelector.Visibility = Visibility.Visible;
+            AGGWindow.PlayButtonGUI.Visibility = Visibility.Visible;
+            AGGWindow.GameDownload.Visibility = Visibility.Visible;
+            AGGWindow.Game_ReInstall.Visibility = Visibility.Visible;
+            if (!File.Exists($@"{CurrentDirectory}\Cache\Games\{InstallGameName}.json") && !File.Exists($@"{CurrentDirectory}\Cache\Games.json"))
             {
-                MainWindow.InstallGameLink = null;
+                InstallGameLink = null;
             }
-            VersionManager.VersionLink = MainWindow.InstallGameLink;
+            VersionManager.VersionLink = InstallGameLink;
             PlayButton._VersionManager = new VersionManager(this);
         }
         
@@ -36,11 +37,11 @@ namespace AGG_Productions.LauncherFunctions
     {
         public GameReinstall()
         {
-            MainWindow.GameReInstallObject.IsEnabled = false;
-            MainWindow.button = MainWindow.GameReInstallObject;
-            AdminDirCheck.InstallDir(MainWindow.InstallGameName);
-            MainWindow.GameReInstallObject.IsEnabled = true;
-            MainWindow.GameDir = Json.ReadJson(MainWindow.InstallGameName);
+            AGGWindow.Game_ReInstall.IsEnabled = false;
+            button = AGGWindow.Game_ReInstall;
+            AdminDirCheck.InstallDir(InstallGameName);
+            AGGWindow.Game_ReInstall.IsEnabled = true;
+            GameDir = Json.ReadJson(InstallGameName);
         }
     }
 }

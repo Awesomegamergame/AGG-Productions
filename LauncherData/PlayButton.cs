@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Windows;
+using static AGG_Productions.MainWindow;
 
 namespace AGG_Productions.LauncherData
 {
@@ -13,9 +14,9 @@ namespace AGG_Productions.LauncherData
         public static void Start(string Name)
         {
             CheckInternet.CheckInternetState();
-            MainWindow.VersionSelector.IsEnabled = false;
-            MainWindow.Play.IsEnabled = false;
-            paths = new GamePaths(MainWindow.VersionToDownload, Name, MainWindow.GameDir);
+            VersionSelector.IsEnabled = false;
+            AGGWindow.PlayButtonGUI.IsEnabled = false;
+            paths = new GamePaths(VersionToDownload, Name, GameDir);
 
             if (File.Exists(paths.ExeFile))
             {
@@ -25,51 +26,51 @@ namespace AGG_Productions.LauncherData
             else if (CheckInternet.IsOnline == false)
             {
                 MessageBox.Show("This version of this game isn't already downloaded. Check your internet and try again");
-                MainWindow.Play.IsEnabled = true;
-                MainWindow.VersionSelector.IsEnabled = true;
+                AGGWindow.PlayButtonGUI.IsEnabled = true;
+                VersionSelector.IsEnabled = true;
             }
             else
             {
                 try
                 {
-                    paths = new GamePaths(MainWindow.VersionToDownload, Name, MainWindow.GameDir);
+                    paths = new GamePaths(VersionToDownload, Name, GameDir);
                     FileDownloader downloader = new FileDownloader();
 
-                    if (_VersionManager.VersionLinkPairs.TryGetValue(MainWindow.VersionToDownload, out string temp))
+                    if (_VersionManager.VersionLinkPairs.TryGetValue(VersionToDownload, out string temp))
                     {
                         downloader.DownloadFileCompleted += Downloader_DownloadFileCompleted;
                         downloader.DownloadProgressChanged += Downloader_DownloadProgressChanged;
-                        downloader.DownloadFileAsync(temp, $@"{paths.GameVersionFile}\Build({MainWindow.VersionToDownload}).zip");
+                        downloader.DownloadFileAsync(temp, $@"{paths.GameVersionFile}\Build({VersionToDownload}).zip");
                     }
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("You must select a version in the dropdown list");
-                    MainWindow.Play.IsEnabled = true;
-                    MainWindow.VersionSelector.IsEnabled = true;
+                    AGGWindow.PlayButtonGUI.IsEnabled = true;
+                    VersionSelector.IsEnabled = true;
                 }
             }
         }
 
         private static void Downloader_DownloadProgressChanged(object sender, FileDownloader.DownloadProgress progress)
         {
-            MainWindow.GameDownloadBar.Value = progress.ProgressPercentage;
+            AGGWindow.GameDownload.Value = progress.ProgressPercentage;
         }
 
         public static void Downloader_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             try
             {
-                ZipFile.ExtractToDirectory($@"{paths.GameVersionFile}\Build({MainWindow.VersionToDownload}).zip", paths.GameVersionFile);
-                File.Delete($@"{paths.GameVersionFile}\Build({MainWindow.VersionToDownload}).zip");
+                ZipFile.ExtractToDirectory($@"{paths.GameVersionFile}\Build({VersionToDownload}).zip", paths.GameVersionFile);
+                File.Delete($@"{paths.GameVersionFile}\Build({VersionToDownload}).zip");
                 Process.Start(paths.ExeFile);
                 Application.Current.Shutdown();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                MainWindow.Play.IsEnabled = true;
-                MainWindow.VersionSelector.IsEnabled = true;
+                AGGWindow.PlayButtonGUI.IsEnabled = true;
+                VersionSelector.IsEnabled = true;
             }
         }
     }

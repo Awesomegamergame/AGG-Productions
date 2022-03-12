@@ -6,7 +6,7 @@ using System.IO.Compression;
 using System.Net;
 using System.Windows;
 using System.Reflection;
-using AGG_Productions.LauncherData;
+using static AGG_Productions.MainWindow;
 
 namespace AGG_Productions.LauncherUpdater
 {
@@ -68,17 +68,17 @@ namespace AGG_Productions.LauncherUpdater
                 else if (onlineVersion.IsDifferentThan(localVersion))
                 {
                     VersionDetector += 1;
-                    MainWindow.UpdateScreen_Image.Visibility = Visibility.Visible;
-                    MainWindow.Yes_Button.Visibility = Visibility.Visible;
-                    MainWindow.No_Button.Visibility = Visibility.Visible;
-                    MainWindow.UpdateText1_Label.Visibility = Visibility.Visible;
-                    MainWindow.UpdateText2_Label.Visibility = Visibility.Visible;
-                    MainWindow.LocalVersionObject.Visibility = Visibility.Visible;
-                    MainWindow.OnlineVersionObject.Visibility = Visibility.Visible;
-                    MainWindow.LocalVersionNumberObject.Content = localVersion;
-                    MainWindow.OnlineVersionNumberObject.Content = onlineVersion;
-                    MainWindow.LocalVersionNumberObject.Visibility = Visibility.Visible;
-                    MainWindow.OnlineVersionNumberObject.Visibility = Visibility.Visible;
+                    AGGWindow.UpdateScreen.Visibility = Visibility.Visible;
+                    AGGWindow.Yes.Visibility = Visibility.Visible;
+                    AGGWindow.No.Visibility = Visibility.Visible;
+                    AGGWindow.UpdateText1.Visibility = Visibility.Visible;
+                    AGGWindow.UpdateText2.Visibility = Visibility.Visible;
+                    AGGWindow.LocalVersion.Visibility = Visibility.Visible;
+                    AGGWindow.OnlineVersion.Visibility = Visibility.Visible;
+                    AGGWindow.LocalVersionNumber.Content = localVersion;
+                    AGGWindow.OnlineVersionNumber.Content = onlineVersion;
+                    AGGWindow.LocalVersionNumber.Visibility = Visibility.Visible;
+                    AGGWindow.OnlineVersionNumber.Visibility = Visibility.Visible;
                 }
             }
             catch (Exception ex)
@@ -109,8 +109,8 @@ namespace AGG_Productions.LauncherUpdater
 
         private static void LauncherDownload_DownloadProgressChanged(object sender, FileDownloader.DownloadProgress progress)
         {
-            MainWindow.UpdateDownloadBar.Value = progress.ProgressPercentage;
-            MainWindow.RepairBarObject.Value = progress.ProgressPercentage;
+            AGGWindow.UpdateProgress.Value = progress.ProgressPercentage;
+            AGGWindow.RepairBar.Value = progress.ProgressPercentage;
         }
 
         private static void DownloadGameCompletedCallback(object sender, AsyncCompletedEventArgs e)
