@@ -55,16 +55,16 @@ namespace AGG_Productions.LauncherData
         private void D_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             if(CheckInternet.IsOnline)
-                File.WriteAllText($@"{CurrentDirectory}\Cache\Games\{MainWindow.InstallGameName}.json", e.Result.ToString());
-            if (!File.Exists($@"{CurrentDirectory}\Cache\Games\{MainWindow.InstallGameName}.json"))
+                File.WriteAllText($@"{CurrentDirectory}\Cache\Games\{InstallGameName}.json", e.Result.ToString());
+            if (!File.Exists($@"{CurrentDirectory}\Cache\Games\{InstallGameName}.json"))
                 return;
             ObservableCollection<string> VersionstoDisplay = new ObservableCollection<string>();
-            dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\Games\{MainWindow.InstallGameName}.json"));
+            dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\Games\{InstallGameName}.json"));
             dynamic json = obj.Game;
             foreach (JProperty Version in json)
             {
-                string VerJson = Json.ReadGameJson(Version.Name, "version", MainWindow.InstallGameName, "Game");
-                string LinkJson = Json.ReadGameJson(Version.Name, "link", MainWindow.InstallGameName, "Game");
+                string VerJson = Json.ReadGameJson(Version.Name, "version", InstallGameName, "Game");
+                string LinkJson = Json.ReadGameJson(Version.Name, "link", InstallGameName, "Game");
                 VersionstoDisplay.Add(VerJson);
                 VersionLinkPairs.Add(VerJson, LinkJson);
             }
