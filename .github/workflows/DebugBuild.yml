@@ -31,5 +31,5 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/') == false
       uses: actions/upload-artifact@v2
       with:
-        name: HTMLPLayer-${{ steps.get_hash.outputs.hash }}
+        name: HTMLPlayer-${{ steps.get_hash.outputs.hash }}
         path: ./HTMLPlayer/bin/Debug
