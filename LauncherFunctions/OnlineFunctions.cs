@@ -19,6 +19,8 @@ namespace AGG_Productions.LauncherFunctions
                         Directory.CreateDirectory("Cache");
                     if (!Directory.Exists($@"{CurrentDirectory}\Cache\Images"))
                         Directory.CreateDirectory($@"{CurrentDirectory}\Cache\Images");
+                    if (!Directory.Exists("Plugins"))
+                        Directory.CreateDirectory("Plugins");
                     Dynamicbuttons.SetupButtons();
                     UpdateBoards.SetupBoards();
                     Updater.LauncherUpdate();
