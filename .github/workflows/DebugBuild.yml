@@ -15,15 +15,21 @@ jobs:
     - name: Install Dependencies
       run: msbuild -t:restore
     - name: Build Project
-      run: msbuild AGG-Productions.csproj /t:Build /p:Configuration=Debug
+      run: msbuild AGG-Productions.sln /t:Build /p:Configuration=Debug
     - name: Resolve Short Commit Hash
       if: startsWith(github.ref, 'refs/tags/') == false
       id: get_hash
       shell: bash
       run: echo ::set-output name=hash::`git rev-parse --short HEAD`
-    - name: Upload Debug Build
+    - name: Upload AGG-Productions Debug Build
       if: startsWith(github.ref, 'refs/tags/') == false
       uses: actions/upload-artifact@v2
       with:
         name: AGG-Productions-${{ steps.get_hash.outputs.hash }}
         path: ./bin/Debug/
+    - name: Upload HTMLPlayer Debug Build
+      if: startsWith(github.ref, 'refs/tags/') == false
+      uses: actions/upload-artifact@v2
+      with:
+        name: HTMLPLayer-${{ steps.get_hash.outputs.hash }}
+        path: ./HTMLPlayer/bin/Debug
