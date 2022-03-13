@@ -9,12 +9,15 @@ namespace AGG_Productions.LauncherData
         public string EmptyFolder;
         public string GameVersionFile;
 
-        public GamePaths(string Version, string GameName, string GameDir)
+        public GamePaths(string Version, string GameName, string GameDir, bool HTML)
         {
             GamesDirectory = Path.Combine(GameDir, $"{GameName}");
             EmptyFolder = Path.Combine(GamesDirectory, "Build");
             GameVersionFile = Path.Combine(GamesDirectory, $"Build {Version}");
-            ExeFile = Path.Combine(GameVersionFile, GameName, $"{GameName}.exe");
+            if (HTML)
+                ExeFile = Path.Combine(GameVersionFile, GameName, $"{GameName}.html");
+            else
+                ExeFile = Path.Combine(GameVersionFile, GameName, $"{GameName}.exe");
 
             if (!Directory.Exists(GamesDirectory))
             {

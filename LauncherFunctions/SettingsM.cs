@@ -36,6 +36,14 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.HTMLVer.Visibility = Visibility.Visible;
                 AGGWindow.AGGVer.Content = $"AGG Productions Version: {versionS}";
                 AGGWindow.HTMLVer.Content = $"HTML Player Version: {versions}";
+                AGGWindow.UpdateBoard.Visibility = Visibility.Collapsed;
+                AGGWindow.GameDownload.Visibility = Visibility.Collapsed;
+                AGGWindow.PlayButtonGUI.Visibility = Visibility.Collapsed;
+                AGGWindow.VersionBox.Visibility = Visibility.Collapsed;
+                AGGWindow.Game_Install.Visibility = Visibility.Collapsed;
+                AGGWindow.Game_ReInstall.Visibility = Visibility.Collapsed;
+                AGGWindow.NoGame.Visibility = Visibility.Visible;
+                AGGWindow.SelectGame.Visibility = Visibility.Visible;
                 return true;
             }
 

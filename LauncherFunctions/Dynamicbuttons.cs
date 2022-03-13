@@ -31,6 +31,7 @@ namespace AGG_Productions.LauncherFunctions
                 WebClient d = new WebClient();
                 string ImageLink = Json.ReadGameVerJson(Names.Name, "link", "ButtonData", "Games");
                 string GameName = Json.ReadGameVerJson(Names.Name, "name", "ButtonData", "Games");
+                string HTML = Json.ReadGameVerJson(Names.Name, "html", "ButtonData", "Games");
                 if (CheckInternet.IsOnline)
                     d.DownloadFile(new Uri(ImageLink), $@"{CurrentDirectory}\Cache\Images\{GameName}.jpg");
                 Button newBtn = new Button();
@@ -51,11 +52,15 @@ namespace AGG_Productions.LauncherFunctions
                 else
                     newBtn.Content = GameName;
                 newBtn.Name = GameName;
+                if (HTML.Equals("Yes") || HTML.Equals("yes"))
+                    newBtn.Tag = true;
+                else
+                    newBtn.Tag = false;
                 newBtn.Height = 50;
                 newBtn.Width = 191;
                 newBtn.HorizontalAlignment = HorizontalAlignment.Left;
                 AGGWindow.List.Items.Add(newBtn);
-                newBtn.Click += new RoutedEventHandler(MainWindow.Game_Click);
+                newBtn.Click += new RoutedEventHandler(Game_Click);
             }
         }
     }

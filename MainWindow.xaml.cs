@@ -13,6 +13,7 @@ namespace AGG_Productions
 
         public bool SettingsEnabled = false;
         public static string VersionToDownload, GameDir;
+        public static bool HTML;
         public static Button button;
         public static ComboBox VersionSelector;
         public static string InstallGameName = "";
@@ -28,6 +29,7 @@ namespace AGG_Productions
         public static void Game_Click(object sender, RoutedEventArgs e)
         {
             string GameName = (sender as Button).Name;
+            HTML = (bool)(sender as Button).Tag;
             _ = new ActivateBoard(GameName);
             _ = new SelectScreen(GameName);
         }
@@ -50,11 +52,14 @@ namespace AGG_Productions
         }
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            PlayButton.Start(InstallGameName);
+            PlayButton.Start(InstallGameName, HTML);
         }
         private void VersionBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            VersionToDownload = VersionSelector.SelectedItem.ToString();
+            if (VersionSelector.SelectedItem == null)
+                VersionToDownload = null;
+            else
+                VersionToDownload = VersionSelector.SelectedItem.ToString();
         }
         #region Update Screen Buttons Dont Edit
         private void No_Click(object sender, RoutedEventArgs e)

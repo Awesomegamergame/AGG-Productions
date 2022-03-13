@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:HTMLPlayer"
         xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Class="HTMLPlayer.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="HTMLPlayer" Height="510" Width="874"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized" WindowStyle="None">
     <Grid>
         <Wpf:WebView2 x:Name="WebControl" Visibility="Visible" Initialized="WebControl_Initialized"/>
     </Grid>

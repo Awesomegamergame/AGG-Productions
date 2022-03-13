@@ -3,22 +3,47 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Windows;
+using static System.Environment;
 using static AGG_Productions.MainWindow;
 
 namespace AGG_Productions.LauncherData
 {
     class PlayButton
     {
+        public static string vName;
+        public static bool vHTML;
         public static GamePaths paths;
         public static VersionManager _VersionManager;
-        public static void Start(string Name)
+        public static void Start(string Name, bool HTML)
         {
+            vName = Name;
+            vHTML = HTML;
             CheckInternet.CheckInternetState();
             VersionSelector.IsEnabled = false;
             AGGWindow.PlayButtonGUI.IsEnabled = false;
-            paths = new GamePaths(VersionToDownload, Name, GameDir);
+            paths = new GamePaths(VersionToDownload, Name, GameDir, HTML);
+            if (HTML && File.Exists(paths.ExeFile))
+            {
+                if (File.Exists($@"{CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe"))
+                {
+                    ProcessStartInfo psi = new ProcessStartInfo
+                    {
+                        Arguments = Name,
+                        WorkingDirectory = $@"{CurrentDirectory}\Plugins\HTMLPlayer\",
+                        FileName = "HTMLPlayer.exe"
+                    };
 
-            if (File.Exists(paths.ExeFile))
+                    Process.Start(psi);
+                    Application.Current.Shutdown();
+                }
+                else
+                {
+                    MessageBox.Show("HTMLPlayer Must Be Installed From The Settings");
+                    AGGWindow.PlayButtonGUI.IsEnabled = true;
+                    VersionSelector.IsEnabled = true;
+                }
+            }
+            else if (File.Exists(paths.ExeFile))
             {
                 Process.Start(paths.ExeFile);
                 Application.Current.Shutdown();
@@ -33,14 +58,23 @@ namespace AGG_Productions.LauncherData
             {
                 try
                 {
-                    paths = new GamePaths(VersionToDownload, Name, GameDir);
-                    FileDownloader downloader = new FileDownloader();
-
-                    if (_VersionManager.VersionLinkPairs.TryGetValue(VersionToDownload, out string temp))
+                    if (!File.Exists($@"{CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe") && HTML)
                     {
-                        downloader.DownloadFileCompleted += Downloader_DownloadFileCompleted;
-                        downloader.DownloadProgressChanged += Downloader_DownloadProgressChanged;
-                        downloader.DownloadFileAsync(temp, $@"{paths.GameVersionFile}\Build({VersionToDownload}).zip");
+                        MessageBox.Show("HTMLPlayer Must Be Installed From The Settings");
+                        AGGWindow.PlayButtonGUI.IsEnabled = true;
+                        VersionSelector.IsEnabled = true;
+                    }
+                    else
+                    {
+                        paths = new GamePaths(VersionToDownload, Name, GameDir, HTML);
+                        FileDownloader downloader = new FileDownloader();
+
+                        if (_VersionManager.VersionLinkPairs.TryGetValue(VersionToDownload, out string temp))
+                        {
+                            downloader.DownloadFileCompleted += Downloader_DownloadFileCompleted;
+                            downloader.DownloadProgressChanged += Downloader_DownloadProgressChanged;
+                            downloader.DownloadFileAsync(temp, $@"{paths.GameVersionFile}\Build({VersionToDownload}).zip");
+                        }
                     }
                 }
                 catch (Exception)
@@ -63,8 +97,13 @@ namespace AGG_Productions.LauncherData
             {
                 ZipFile.ExtractToDirectory($@"{paths.GameVersionFile}\Build({VersionToDownload}).zip", paths.GameVersionFile);
                 File.Delete($@"{paths.GameVersionFile}\Build({VersionToDownload}).zip");
-                Process.Start(paths.ExeFile);
-                Application.Current.Shutdown();
+                if (vHTML)
+                    Start(vName, vHTML);
+                else
+                {
+                    Process.Start(paths.ExeFile);
+                    Application.Current.Shutdown();
+                }
             }
             catch (Exception ex)
             {
