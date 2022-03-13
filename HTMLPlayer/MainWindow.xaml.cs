@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Microsoft.Web.WebView2.Wpf;
+using HTMLPlayer.PlayerData;
 
 namespace HTMLPlayer
 {
@@ -10,9 +11,9 @@ namespace HTMLPlayer
         public MainWindow()
         {
             InitializeComponent();
-            WebControlObject.Source = new Uri($@"{Environment.CurrentDirectory}\{Arguments.Gamename}.html");
+            GamePaths paths = new GamePaths(Arguments.Version, Arguments.Gamename, Arguments.GameDir);
+            WebControlObject.Source = new Uri(paths.HTMLFile);
         }
-
         private void WebControl_Initialized(object sender, EventArgs e)
         {
             WebControlObject = (WebView2)sender;

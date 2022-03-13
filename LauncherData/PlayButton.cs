@@ -26,9 +26,10 @@ namespace AGG_Productions.LauncherData
             {
                 if (File.Exists($@"{CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe"))
                 {
+                    string GameDir = Json.ReadJson(Name);
                     ProcessStartInfo psi = new ProcessStartInfo
                     {
-                        Arguments = Name,
+                        Arguments = $"{Name} {GameDir} {VersionToDownload}",
                         WorkingDirectory = $@"{CurrentDirectory}\Plugins\HTMLPlayer\",
                         FileName = "HTMLPlayer.exe"
                     };

@@ -188,7 +188,7 @@ namespace AGG_Productions.LauncherUpdater
         }
     }
 
-    public struct Version
+    struct Version
     {
         internal static Version zero = new Version(0, 0, 0);
 

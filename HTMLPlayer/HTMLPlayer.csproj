@@ -64,13 +64,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Arguments.cs" />
+    <Compile Include="PlayerData\Arguments.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PlayerData\GamePaths.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -100,11 +101,6 @@
     <PackageReference Include="Microsoft.Web.WebView2">
       <Version>1.0.1150.38</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Test.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Binary\" />
