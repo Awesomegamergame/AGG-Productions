@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Windows;
 using System.IO;
-using System.Net;
 using static System.Environment;
 using AGG_Productions.LauncherUpdater;
 using static AGG_Productions.MainWindow;
