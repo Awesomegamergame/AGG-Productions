@@ -79,6 +79,7 @@ namespace AGG_Productions.LauncherUpdater
                     AGGWindow.OnlineVersionNumber.Content = onlineVersion;
                     AGGWindow.LocalVersionNumber.Visibility = Visibility.Visible;
                     AGGWindow.OnlineVersionNumber.Visibility = Visibility.Visible;
+                    AGGWindow.AGGB.IsEnabled = true;
                 }
             }
             catch (Exception ex)

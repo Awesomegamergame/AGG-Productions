@@ -27,6 +27,13 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.SettingScreen.Visibility = Visibility.Collapsed;
                 AGGWindow.AGGVer.Visibility = Visibility.Collapsed;
                 AGGWindow.HTMLVer.Visibility = Visibility.Collapsed;
+                AGGWindow.AGGB.Visibility = Visibility.Collapsed;
+                AGGWindow.AGG.Visibility = Visibility.Collapsed;
+                AGGWindow.AGGOVer.Visibility = Visibility.Collapsed;
+                AGGWindow.AGGVer.Visibility = Visibility.Collapsed;
+                AGGWindow.HTMLL.Visibility = Visibility.Collapsed;
+                AGGWindow.HTMLOVer.Visibility = Visibility.Collapsed;
+                AGGWindow.HTMLB.Visibility = Visibility.Collapsed;
                 return false;
             }
             else
@@ -34,8 +41,15 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.SettingScreen.Visibility = Visibility.Visible;
                 AGGWindow.AGGVer.Visibility = Visibility.Visible;
                 AGGWindow.HTMLVer.Visibility = Visibility.Visible;
-                AGGWindow.AGGVer.Content = $"AGG Productions Version: {versionS}";
-                AGGWindow.HTMLVer.Content = $"HTML Player Version: {versions}";
+                AGGWindow.AGGVer.Content = $"Local Version: {versionS}";
+                AGGWindow.HTMLVer.Content = $"Local Version: {versions}";
+                AGGWindow.AGGB.Visibility = Visibility.Visible;
+                AGGWindow.AGG.Visibility = Visibility.Visible;
+                AGGWindow.AGGOVer.Visibility = Visibility.Visible;
+                AGGWindow.AGGVer.Visibility = Visibility.Visible;
+                AGGWindow.HTMLL.Visibility = Visibility.Visible;
+                AGGWindow.HTMLOVer.Visibility = Visibility.Visible;
+                AGGWindow.HTMLB.Visibility = Visibility.Visible;
                 AGGWindow.UpdateBoard.Visibility = Visibility.Collapsed;
                 AGGWindow.GameDownload.Visibility = Visibility.Collapsed;
                 AGGWindow.PlayButtonGUI.Visibility = Visibility.Collapsed;

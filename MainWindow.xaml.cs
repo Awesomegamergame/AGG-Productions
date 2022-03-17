@@ -75,6 +75,30 @@ namespace AGG_Productions
             OnlineVersion.Visibility = Visibility.Collapsed;
         }
 
+        private void AGGB_Click(object sender, RoutedEventArgs e)
+        {
+            CheckInternet.CheckInternetState();
+            AGGB.IsEnabled = false;
+            if (CheckInternet.IsOnline)
+            {
+                if (Updater.VersionDetector == 1)
+                {
+                    Updater.UpdaterVersion();
+                    Updater.VersionDetector = 0;
+                }
+                else if (Updater.VersionDetector == 2)
+                {
+                    Updater.UpdaterVersion();
+                    Updater.VersionDetector = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Internet Connection");
+                AGGB.IsEnabled = true;
+            }
+        }
+
         private void Yes_Click(object sender, RoutedEventArgs e)
         {
             Yes.Visibility = Visibility.Collapsed;
