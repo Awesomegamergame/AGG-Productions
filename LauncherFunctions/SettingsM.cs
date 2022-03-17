@@ -1,7 +1,9 @@
 ﻿using System.Reflection;
 using System.Windows;
 using System.IO;
+using System.Net;
 using static System.Environment;
+using AGG_Productions.LauncherUpdater;
 using static AGG_Productions.MainWindow;
 
 namespace AGG_Productions.LauncherFunctions
@@ -42,7 +44,9 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.AGGVer.Visibility = Visibility.Visible;
                 AGGWindow.HTMLVer.Visibility = Visibility.Visible;
                 AGGWindow.AGGVer.Content = $"Local Version: {versionS}";
+                AGGWindow.AGGOVer.Content = $"Online Version: {Updater.onlineVersion}";
                 AGGWindow.HTMLVer.Content = $"Local Version: {versions}";
+                AGGWindow.HTMLOVer.Content = $"Online Version: {Updater.HTMLonlineVersion}";
                 AGGWindow.AGGB.Visibility = Visibility.Visible;
                 AGGWindow.AGG.Visibility = Visibility.Visible;
                 AGGWindow.AGGOVer.Visibility = Visibility.Visible;

@@ -14,6 +14,7 @@ namespace AGG_Productions.LauncherUpdater
     {
         public static string LauncherLink = "https://www.dropbox.com/s/27bwz9ct96qltlx/AGG%20Productions%20Temp.zip?dl=1";
         public static string LauncherVerLink = "https://www.dropbox.com/s/l0s6jjask4paool/AGG%20Productions%20Version.txt?dl=1";
+        public static string HTMLVerLink = "https://www.dropbox.com/s/l0s6jjask4paool/AGG%20Productions%20Version.txt?dl=1";
         public static string startPath = @".\AGG Productions Temp";
         public static string exeOld = Path.Combine(CheckFiles.rootPath, "AGG Productions.exe.old");
         public static string pdbOld = Path.Combine(CheckFiles.rootPath, "AGG Productions.pdb.old");
@@ -23,6 +24,7 @@ namespace AGG_Productions.LauncherUpdater
         public static string versionFile = Path.Combine(CheckFiles.rootPath, "AGG Productions Version.txt");
         public static string launcherZip = Path.Combine(CheckFiles.rootPath, "AGG Productions Temp.zip");
         public static int VersionDetector = 0;
+        public static Version HTMLonlineVersion;
         public static Version onlineVersion;
         public static Version localVersion;
         public static void LauncherUpdate()
@@ -61,6 +63,7 @@ namespace AGG_Productions.LauncherUpdater
             {
                 WebClient webClient = new WebClient();
                 onlineVersion = new Version(webClient.DownloadString(LauncherVerLink));
+                HTMLonlineVersion = new Version(webClient.DownloadString(HTMLVerLink));
                 if (CheckFiles.FilesCheckPassed == false)
                 {
                     InstallGameFiles(false, Version.zero);
