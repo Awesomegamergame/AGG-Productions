@@ -13,7 +13,8 @@ namespace AGG_Productions
         public static MainWindow AGGWindow;
 
         public bool SettingsEnabled = false;
-        public static string VersionToDownload, GameDir;
+        public static string GameDir;
+        public string VersionToDownload;
         public static bool HTML;
         public static Button button;
         public static ComboBox VersionSelector;
@@ -53,7 +54,8 @@ namespace AGG_Productions
         }
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            PlayButton.Start(InstallGameName, HTML);
+            var Play = new PlayButton();
+            Play.Start(InstallGameName, HTML, VersionToDownload);
         }
         private void VersionBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

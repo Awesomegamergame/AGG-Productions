@@ -44,6 +44,8 @@ namespace AGG_Productions.LauncherFunctions
                     AGGWindow.RepairBodyText.Content = "Please Connect To The Internet And Restart The Launcher To Repair It";
                     AGGWindow.RepairBodyText.Visibility = Visibility.Visible;
                 }
+                else
+                    Dynamicbuttons.SetupButtons();
             }
         }
     }

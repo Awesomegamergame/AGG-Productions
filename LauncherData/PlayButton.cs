@@ -10,18 +10,20 @@ namespace AGG_Productions.LauncherData
 {
     class PlayButton
     {
-        public static string vName;
-        public static bool vHTML;
-        public static GamePaths paths;
+        public string Name;
+        public bool HTML;
+        public GamePaths paths;
         public static VersionManager _VersionManager;
-        public static void Start(string Name, bool HTML)
+        public string Version;
+        public void Start(string Name, bool HTML, string Version)
         {
-            vName = Name;
-            vHTML = HTML;
+            this.Version = Version;
+            this.Name = Name;
+            this.HTML = HTML;
             CheckInternet.CheckInternetState();
             VersionSelector.IsEnabled = false;
             AGGWindow.PlayButtonGUI.IsEnabled = false;
-            paths = new GamePaths(VersionToDownload, Name, GameDir, HTML);
+            paths = new GamePaths(Version, Name, GameDir, HTML);
             if (HTML && File.Exists(paths.ExeFile))
             {
                 if (File.Exists($@"{CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe"))
@@ -29,7 +31,7 @@ namespace AGG_Productions.LauncherData
                     string GameDir = Json.ReadJson(Name);
                     ProcessStartInfo psi = new ProcessStartInfo
                     {
-                        Arguments = $"{Name} {GameDir} {VersionToDownload}",
+                        Arguments = $"{Name} {GameDir} {Version}",
                         WorkingDirectory = $@"{CurrentDirectory}\Plugins\HTMLPlayer\",
                         FileName = "HTMLPlayer.exe"
                     };
@@ -67,14 +69,14 @@ namespace AGG_Productions.LauncherData
                     }
                     else
                     {
-                        paths = new GamePaths(VersionToDownload, Name, GameDir, HTML);
+                        paths = new GamePaths(Version, Name, GameDir, HTML);
                         FileDownloader downloader = new FileDownloader();
 
-                        if (_VersionManager.VersionLinkPairs.TryGetValue(VersionToDownload, out string temp))
+                        if (_VersionManager.VersionLinkPairs.TryGetValue(Version, out string temp))
                         {
                             downloader.DownloadFileCompleted += Downloader_DownloadFileCompleted;
                             downloader.DownloadProgressChanged += Downloader_DownloadProgressChanged;
-                            downloader.DownloadFileAsync(temp, $@"{paths.GameVersionFile}\Build({VersionToDownload}).zip");
+                            downloader.DownloadFileAsync(temp, $@"{paths.GameVersionFile}\Build({Version}).zip");
                         }
                     }
                 }
@@ -87,19 +89,22 @@ namespace AGG_Productions.LauncherData
             }
         }
 
-        private static void Downloader_DownloadProgressChanged(object sender, FileDownloader.DownloadProgress progress)
+        private void Downloader_DownloadProgressChanged(object sender, FileDownloader.DownloadProgress progress)
         {
             AGGWindow.GameDownload.Value = progress.ProgressPercentage;
         }
 
-        public static void Downloader_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        public void Downloader_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             try
             {
-                ZipFile.ExtractToDirectory($@"{paths.GameVersionFile}\Build({VersionToDownload}).zip", paths.GameVersionFile);
-                File.Delete($@"{paths.GameVersionFile}\Build({VersionToDownload}).zip");
-                if (vHTML)
-                    Start(vName, vHTML);
+                ZipFile.ExtractToDirectory($@"{paths.GameVersionFile}\Build({Version}).zip", paths.GameVersionFile);
+                File.Delete($@"{paths.GameVersionFile}\Build({Version}).zip");
+                if (HTML)
+                {
+                    var Play = new PlayButton();
+                    Play.Start(Name, HTML, Version);
+                }
                 else
                 {
                     Process.Start(paths.ExeFile);
