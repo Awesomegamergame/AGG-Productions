@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using AGG_Productions.LauncherData;
@@ -96,6 +97,16 @@ namespace AGG_Productions
             {
                 MessageBox.Show("No Internet Connection");
                 AGGB.IsEnabled = true;
+            }
+        }
+
+        private void HTMLUB_Click(object sender, RoutedEventArgs e)
+        {
+            HTMLUB.IsEnabled = false;
+            if (File.Exists($@"{Environment.CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe"))
+            {
+                UpgradeLauncher.DeleteDirectory($@"{Environment.CurrentDirectory}\Plugins\HTMLPlayer");
+                HTMLVer.Content = $"Local Version: ";
             }
         }
 

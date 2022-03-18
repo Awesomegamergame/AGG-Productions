@@ -14,10 +14,11 @@ namespace AGG_Productions.LauncherFunctions
             string versions = null;
             if (File.Exists($@"{CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe"))
             {
-                Assembly assembly1 = Assembly.LoadFile($@"{CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe");
-                System.Version version1 = assembly1.GetName().Version;
-                versions = version1.ToString();
+                AssemblyName AssemblyName = AssemblyName.GetAssemblyName($@"{CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe");
+                System.Version version2 = AssemblyName.Version;
+                versions = version2.ToString();
                 versions = versions.Substring(0, versions.Length - 2);
+                AGGWindow.HTMLUB.IsEnabled = true;
             }
             Assembly assembly = Assembly.GetExecutingAssembly();
             System.Version version = assembly.GetName().Version;
@@ -35,6 +36,7 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.HTMLL.Visibility = Visibility.Collapsed;
                 AGGWindow.HTMLOVer.Visibility = Visibility.Collapsed;
                 AGGWindow.HTMLB.Visibility = Visibility.Collapsed;
+                AGGWindow.HTMLUB.Visibility = Visibility.Collapsed;
                 return false;
             }
             else
@@ -53,6 +55,7 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.HTMLL.Visibility = Visibility.Visible;
                 AGGWindow.HTMLOVer.Visibility = Visibility.Visible;
                 AGGWindow.HTMLB.Visibility = Visibility.Visible;
+                AGGWindow.HTMLUB.Visibility = Visibility.Visible;
                 AGGWindow.UpdateBoard.Visibility = Visibility.Collapsed;
                 AGGWindow.GameDownload.Visibility = Visibility.Collapsed;
                 AGGWindow.PlayButtonGUI.Visibility = Visibility.Collapsed;
