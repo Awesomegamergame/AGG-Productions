@@ -53,6 +53,8 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.HTMLOVer.Content = $"Online Version: {Updater.HTMLonlineVersion}";
                 if (Updater.HTMLonlineVersion.IsDifferentThan(localversion))
                     AGGWindow.HTMLB.IsEnabled = true;
+                else
+                    AGGWindow.HTMLB.IsEnabled = false;
                 AGGWindow.AGGB.Visibility = Visibility.Visible;
                 AGGWindow.AGG.Visibility = Visibility.Visible;
                 AGGWindow.AGGOVer.Visibility = Visibility.Visible;
