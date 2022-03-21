@@ -76,6 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="LauncherData\Json.cs" />
+    <Compile Include="LauncherData\PluginInstaller.cs" />
     <Compile Include="LauncherFunctions\Arguments.cs" />
     <Compile Include="LauncherFunctions\Dynamicbuttons.cs" />
     <Compile Include="LauncherFunctions\GameInstallation.cs" />

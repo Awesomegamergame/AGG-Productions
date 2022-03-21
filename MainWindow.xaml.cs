@@ -135,21 +135,15 @@ namespace AGG_Productions
         private void HTMLB_Click(object sender, RoutedEventArgs e)
         {
             HTMLB.IsEnabled = false;
-            if (!File.Exists($@"{Environment.CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe"))
-            {
-                //Install Logic
-            }
-            else
-            {
-                //Update Logic
-            }
+            var pluginInstaller = new PluginInstaller();
+            pluginInstaller.InstallFiles(true, LauncherUpdater.Version.zero, "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/1.4.0-Update/HTMLPlayer/Webdata/Binary/HTMLPlayer.zip", $"{Environment.CurrentDirectory}\\Plugins\\HTMLPlayer.zip", "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/1.4.0-Update/HTMLPlayer/Webdata/Binary/HTMLPlayerVersion.txt", $"{Environment.CurrentDirectory}\\Plugins\\HTMLPlayer");
             string versions;
             HTMLB.Content = "Update";
-            AssemblyName AssemblyName = AssemblyName.GetAssemblyName($@"{Environment.CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe");
-            System.Version version2 = AssemblyName.Version;
-            versions = version2.ToString();
-            versions = versions.Substring(0, versions.Length - 2);
-            HTMLVer.Content = $"Local Version: {versions}";
+            //AssemblyName AssemblyName = AssemblyName.GetAssemblyName($@"{Environment.CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe");
+            //System.Version version2 = AssemblyName.Version;
+            //versions = version2.ToString();
+            //versions = versions.Substring(0, versions.Length - 2);
+            //HTMLVer.Content = $"Local Version: {versions}";
             HTMLUB.IsEnabled = true;
         }
 
