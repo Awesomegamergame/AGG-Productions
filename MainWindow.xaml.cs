@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
+using System.Reflection;
 using System.Windows.Controls;
 using AGG_Productions.LauncherData;
 using AGG_Productions.LauncherUpdater;
@@ -16,7 +17,6 @@ namespace AGG_Productions
         public static string GameDir;
         public string VersionToDownload;
         public static bool HTML;
-        public static Button button;
         public static ComboBox VersionSelector;
         public static string InstallGameName = "";
         public static string InstallGameLink = "";
@@ -110,6 +110,8 @@ namespace AGG_Productions
                 UpgradeLauncher.DeleteDirectory($@"{Environment.CurrentDirectory}\Plugins\HTMLPlayer");
                 HTMLVer.Content = $"Local Version: ";
             }
+            HTMLB.Content = "Install";
+            HTMLB.IsEnabled = true;
         }
 
         private void Yes_Click(object sender, RoutedEventArgs e)
@@ -129,5 +131,32 @@ namespace AGG_Productions
             }
         }
         #endregion
+
+        private void HTMLB_Click(object sender, RoutedEventArgs e)
+        {
+            HTMLB.IsEnabled = false;
+            if (!File.Exists($@"{Environment.CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe"))
+            {
+                //Install Logic
+            }
+            else
+            {
+                //Update Logic
+            }
+            string versions;
+            HTMLB.Content = "Update";
+            AssemblyName AssemblyName = AssemblyName.GetAssemblyName($@"{Environment.CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe");
+            System.Version version2 = AssemblyName.Version;
+            versions = version2.ToString();
+            versions = versions.Substring(0, versions.Length - 2);
+            HTMLVer.Content = $"Local Version: {versions}";
+            HTMLUB.IsEnabled = true;
+        }
+
+        private void HTMLB_Initialized(object sender, EventArgs e)
+        {
+            if (File.Exists($@"{Environment.CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe"))
+                HTMLB.Content = "Update";
+        }
     }
 }

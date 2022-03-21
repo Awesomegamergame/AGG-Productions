@@ -11,8 +11,8 @@ namespace AGG_Productions.LauncherFunctions
         public GameInstall()
         {
             AGGWindow.Game_Install.IsEnabled = false;
-            button = AGGWindow.Game_Install;
             AdminDirCheck.InstallDir(InstallGameName);
+            AGGWindow.Game_Install.IsEnabled = true;
             if (AdminDirCheck.FileDialogClosed)
             {
                 AdminDirCheck.FileDialogClosed = false;
@@ -38,7 +38,6 @@ namespace AGG_Productions.LauncherFunctions
         public GameReinstall()
         {
             AGGWindow.Game_ReInstall.IsEnabled = false;
-            button = AGGWindow.Game_ReInstall;
             AdminDirCheck.InstallDir(InstallGameName);
             AGGWindow.Game_ReInstall.IsEnabled = true;
             GameDir = Json.ReadJson(InstallGameName);

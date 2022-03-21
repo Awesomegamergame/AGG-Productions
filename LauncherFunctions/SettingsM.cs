@@ -9,6 +9,7 @@ namespace AGG_Productions.LauncherFunctions
 {
     internal class SettingsM
     {
+        public static Version localversion;
         public static bool Menu(bool Enabled)
         {
             string versions = null;
@@ -18,7 +19,9 @@ namespace AGG_Productions.LauncherFunctions
                 System.Version version2 = AssemblyName.Version;
                 versions = version2.ToString();
                 versions = versions.Substring(0, versions.Length - 2);
+                localversion = new Version(versions);
                 AGGWindow.HTMLUB.IsEnabled = true;
+                AGGWindow.HTMLB.Content = "Update";
             }
             Assembly assembly = Assembly.GetExecutingAssembly();
             System.Version version = assembly.GetName().Version;
@@ -48,6 +51,8 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.AGGOVer.Content = $"Online Version: {Updater.onlineVersion}";
                 AGGWindow.HTMLVer.Content = $"Local Version: {versions}";
                 AGGWindow.HTMLOVer.Content = $"Online Version: {Updater.HTMLonlineVersion}";
+                if (Updater.HTMLonlineVersion.IsDifferentThan(localversion))
+                    AGGWindow.HTMLB.IsEnabled = true;
                 AGGWindow.AGGB.Visibility = Visibility.Visible;
                 AGGWindow.AGG.Visibility = Visibility.Visible;
                 AGGWindow.AGGOVer.Visibility = Visibility.Visible;

@@ -61,7 +61,7 @@
         <Label x:Name="HTMLL" Content="HTMLPlayer" HorizontalAlignment="Right" Margin="0,120,350,0" Visibility="Collapsed" VerticalAlignment="Top" VerticalContentAlignment="Center" Grid.RowSpan="2"/>
         <Label x:Name="HTMLVer" Content="Local Version: N/A" HorizontalAlignment="Right" Visibility="Collapsed" Margin="0,135,197,0" Width="137" VerticalContentAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="2"/>
         <Label x:Name="HTMLOVer" Content="Online Version: N/A" Visibility="Collapsed" Margin="0,109,191,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Right" Width="143"/>
-        <Button x:Name="HTMLB" Content="Install" Visibility="Collapsed" Margin="0,111,106,0" Width="80" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <Button x:Name="HTMLB" Content="Install" Visibility="Collapsed" Margin="0,111,106,0" Width="80" Height="50" Initialized="HTMLB_Initialized" IsEnabled="False" Click="HTMLB_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.RowSpan="2"/>
         <Button x:Name="HTMLUB" Content="Uninstall" Visibility="Collapsed" Margin="0,111,10,0" Click="HTMLUB_Click" Background="#99B53B20" IsEnabled="False" Width="80" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.RowSpan="2"/>
 
         <Image x:Name="UpdateScreen" Source="Images/UpdateBackground.jpg" Visibility="Collapsed" Margin="0,0,0.333,-13.333" Grid.RowSpan="2" Stretch="Fill"/>
