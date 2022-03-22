@@ -131,8 +131,6 @@ namespace AGG_Productions
                 Updater.VersionDetector = 0;
             }
         }
-        #endregion
-
         private void HTMLB_Click(object sender, RoutedEventArgs e)
         {
             HTMLB.IsEnabled = false;
@@ -157,5 +155,6 @@ namespace AGG_Productions
             if (File.Exists($@"{CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe"))
                 HTMLB.Content = "Update";
         }
+        #endregion
     }
 }
