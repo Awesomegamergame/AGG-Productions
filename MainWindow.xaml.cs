@@ -138,13 +138,18 @@ namespace AGG_Productions
             HTMLB.IsEnabled = false;
             var pluginInstaller = new PluginInstaller();
             pluginInstaller.InstallFiles("https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/1.4.0-Update/HTMLPlayer/Webdata/Binary/HTMLPlayer.zip", $@"{CurrentDirectory}\Plugins\HTMLPlayer.zip", "HTMLPlayer");
-            HTMLB.Content = "Update";
-            AssemblyName AssemblyName = AssemblyName.GetAssemblyName($@"{CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe");
-            System.Version version2 = AssemblyName.Version;
-            string versions = version2.ToString();
-            versions = versions.Substring(0, versions.Length - 2);
-            HTMLVer.Content = $"Local Version: {versions}";
-            HTMLUB.IsEnabled = true;
+            if (File.Exists($@"{CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe"))
+            {
+                HTMLB.Content = "Update";
+                AssemblyName AssemblyName = AssemblyName.GetAssemblyName($@"{CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe");
+                System.Version version2 = AssemblyName.Version;
+                string versions = version2.ToString();
+                versions = versions.Substring(0, versions.Length - 2);
+                HTMLVer.Content = $"Local Version: {versions}";
+                HTMLUB.IsEnabled = true;
+            }
+            else
+                HTMLB.IsEnabled = true;
         }
 
         private void HTMLB_Initialized(object sender, EventArgs e)
