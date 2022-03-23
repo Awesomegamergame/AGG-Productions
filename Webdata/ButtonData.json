@@ -2,11 +2,13 @@
   "Games": {
     "Chaotic": {
       "link": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/Images/Chaotic.jpg",
-      "name": "Chaotic"
+      "name": "Chaotic",
+      "html": "No"
     },
     "EastlowsHS": {
       "link": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/Images/EastlowsHS.jpg",
-      "name": "EastlowsHS"
+      "name": "EastlowsHS",
+      "html": "No"
     }
   }
 }

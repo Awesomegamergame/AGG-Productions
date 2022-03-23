@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
+using static System.Environment;
+using static AGG_Productions.MainWindow;
 using AGG_Productions.LauncherUpdater;
 
 namespace AGG_Productions.LauncherFunctions
@@ -12,16 +15,22 @@ namespace AGG_Productions.LauncherFunctions
                 CheckFiles.CheckForFiles();
                 if (CheckFiles.FilesCheckPassed)
                 {
+                    if (!Directory.Exists("Cache"))
+                        Directory.CreateDirectory("Cache");
+                    if (!Directory.Exists($@"{CurrentDirectory}\Cache\Images"))
+                        Directory.CreateDirectory($@"{CurrentDirectory}\Cache\Images");
+                    if (!Directory.Exists("Plugins"))
+                        Directory.CreateDirectory("Plugins");
                     Dynamicbuttons.SetupButtons();
                     UpdateBoards.SetupBoards();
                     Updater.LauncherUpdate();
                 }
                 else
                 {
-                    MainWindow.RepairScreenObject.Visibility = Visibility.Visible;
-                    MainWindow.RepairBarObject.Visibility = Visibility.Visible;
-                    MainWindow.RepairTextObject.Visibility = Visibility.Visible;
-                    MainWindow.RepairBodyObject.Visibility = Visibility.Visible;
+                    AGGWindow.RepairScreen.Visibility = Visibility.Visible;
+                    AGGWindow.RepairBar.Visibility = Visibility.Visible;
+                    AGGWindow.RepairText.Visibility = Visibility.Visible;
+                    AGGWindow.RepairBodyText.Visibility = Visibility.Visible;
                     Updater.LauncherUpdate();
                 }
             }
@@ -30,11 +39,13 @@ namespace AGG_Productions.LauncherFunctions
                 CheckFiles.CheckForFilesNoInternet();
                 if (CheckFiles.FilesCheckPassedNo == false)
                 {
-                    MainWindow.RepairScreenObject.Visibility = Visibility.Visible;
-                    MainWindow.RepairTextObject.Visibility = Visibility.Visible;
-                    MainWindow.RepairBodyObject.Content = "Please Connect To The Internet And Restart The Launcher To Repair It";
-                    MainWindow.RepairBodyObject.Visibility = Visibility.Visible;
+                    AGGWindow.RepairScreen.Visibility = Visibility.Visible;
+                    AGGWindow.RepairText.Visibility = Visibility.Visible;
+                    AGGWindow.RepairBodyText.Content = "Please Connect To The Internet And Restart The Launcher To Repair It";
+                    AGGWindow.RepairBodyText.Visibility = Visibility.Visible;
                 }
+                else
+                    Dynamicbuttons.SetupButtons();
             }
         }
     }

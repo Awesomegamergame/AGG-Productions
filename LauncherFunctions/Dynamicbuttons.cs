@@ -1,18 +1,15 @@
-﻿using AGG_Productions.LauncherData;
+﻿using System;
+using System.IO;
+using System.Net;
+using System.Windows;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using static System.Environment;
+using static AGG_Productions.MainWindow;
+using System.Windows.Media.Imaging;
+using AGG_Productions.LauncherData;
 
 namespace AGG_Productions.LauncherFunctions
 {
@@ -20,7 +17,6 @@ namespace AGG_Productions.LauncherFunctions
     {
         public static void SetupButtons()
         {
-            #region Dynamic Buttons
             if (CheckInternet.IsOnline)
             {
                 WebClient d = new WebClient();
@@ -35,6 +31,7 @@ namespace AGG_Productions.LauncherFunctions
                 WebClient d = new WebClient();
                 string ImageLink = Json.ReadGameVerJson(Names.Name, "link", "ButtonData", "Games");
                 string GameName = Json.ReadGameVerJson(Names.Name, "name", "ButtonData", "Games");
+                string HTML = Json.ReadGameVerJson(Names.Name, "html", "ButtonData", "Games");
                 if (CheckInternet.IsOnline)
                     d.DownloadFile(new Uri(ImageLink), $@"{CurrentDirectory}\Cache\Images\{GameName}.jpg");
                 Button newBtn = new Button();
@@ -55,13 +52,16 @@ namespace AGG_Productions.LauncherFunctions
                 else
                     newBtn.Content = GameName;
                 newBtn.Name = GameName;
+                if (HTML.Equals("Yes") || HTML.Equals("yes"))
+                    newBtn.Tag = true;
+                else
+                    newBtn.Tag = false;
                 newBtn.Height = 50;
                 newBtn.Width = 191;
                 newBtn.HorizontalAlignment = HorizontalAlignment.Left;
-                MainWindow.ListObject.Items.Add(newBtn);
-                newBtn.Click += new RoutedEventHandler(MainWindow.Game_Click);
+                AGGWindow.List.Items.Add(newBtn);
+                newBtn.Click += new RoutedEventHandler(Game_Click);
             }
-            #endregion
         }
     }
 }

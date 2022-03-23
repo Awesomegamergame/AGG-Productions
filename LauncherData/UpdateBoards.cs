@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using static System.Environment;
 using AGG_Productions.LauncherData;
+using static AGG_Productions.MainWindow;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -54,11 +55,11 @@ namespace AGG_Productions
         {
             if (File.Exists($@"{CurrentDirectory}\Cache\UpdateBoards\{BoardName}Updates.html"))
             {
-                MainWindow.UpdateBoard.Source = new Uri($@"{CurrentDirectory}\Cache\UpdateBoards\{BoardName}Updates.html");
+                AGGWindow.UpdateBoard.Source = new Uri($@"{CurrentDirectory}\Cache\UpdateBoards\{BoardName}Updates.html");
             }
             else
             {
-                MainWindow.UpdateBoard.Navigate("about:blank");
+                AGGWindow.UpdateBoard.Navigate("about:blank");
             }
         }
     }

@@ -14,9 +14,8 @@
             <RowDefinition Height="23*"/>
             <RowDefinition Height="73*"/>
         </Grid.RowDefinitions>
-        <Image Source="Images/UpdateBackground.jpg" Stretch="Fill" Margin="190,0,0.333,-0.333" Grid.RowSpan="2"/>
-        <Image Source="Images/Games.jpg" HorizontalAlignment="Left" Stretch="Fill" Height="50" VerticalAlignment="Top" Width="215"/>
-        <ListBox x:Name="List" HorizontalAlignment="Left" Initialized="List_Initialized" Width="213" Grid.RowSpan="2" Margin="-3,50,0,-0.333" HorizontalContentAlignment="Stretch" Background="#FF7F7F7F">
+        <Image Source="Images/UpdateBackground.jpg" Stretch="Fill" Margin="-3,0,0,0" Grid.RowSpan="2"/>
+        <ListBox x:Name="List" HorizontalAlignment="Left" Width="213" Grid.RowSpan="2" Margin="-3,50,0,-0.333" HorizontalContentAlignment="Stretch" Background="#FF7F7F7F">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
                     <Setter Property="Template">
@@ -29,28 +28,56 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <WebBrowser x:Name="Game_Notes" Visibility="Collapsed" Margin="215,0,0.333,58.666" Initialized="Game_Notes_Initialized" Grid.RowSpan="2"/>
-        <Image Source="Images/Background.jpg" Visibility="Visible" Stretch="Fill" Margin="209,0,0,0.333" Grid.RowSpan="2" HorizontalAlignment="Left" Width="6" />
-        <TextBox x:Name="NoGame" HorizontalAlignment="Center" VerticalAlignment="Center" Initialized="NoGame_Initialized" Text="No Game Selected" Width="298" TextAlignment="Center" Margin="374,10,176,312" FontSize="30" Background="Transparent" BorderBrush="#00ABADB3" Cursor="Hand" IsTabStop="False" Focusable="False" IsReadOnly="True" IsHitTestVisible="False" Grid.Row="1"/>
-        <TextBox x:Name="SelectGame" TextWrapping="Wrap" Text="Choose a game on the left side of the screen" Initialized="SelectGame_Initialized" TextAlignment="Center" Margin="374,87,176,211" FontSize="24" Background="Transparent" BorderBrush="#00ABADB3" Cursor="Hand" IsTabStop="False" Focusable="False" IsReadOnly="True" IsHitTestVisible="False" Width="298" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
-        <Button x:Name="Game_Install" Visibility="Collapsed" Initialized="Game_Install_Initialized" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="Game_Install_Click" Width="150" Margin="449,0,248.333,4" Grid.Row="1" Height="31"/>
-        <Button x:Name="Game_ReInstall" Content="Install Somewhere Else" Visibility="Collapsed" Initialized="Game_ReInstall_Initialized" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="Game_ReInstall_Click" Width="150" Margin="449,0,248.333,4" Grid.Row="1" Height="31"/>
+        <WebBrowser x:Name="UpdateBoard" Visibility="Collapsed" Margin="215,0,0.333,58.666" Grid.RowSpan="2"/>
+        <Image Source="Images/Background.jpg" Visibility="Visible" Stretch="Fill" Margin="209,0,0,0.333" Grid.RowSpan="2" HorizontalAlignment="Left" Width="6"/>
+        <Label Content="Games" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" FontSize="24"/>
+        <Image Source="Images/Background.jpg" Visibility="Visible" Stretch="Fill" Margin="100,-58,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Height="212" Width="5.5" VerticalAlignment="Top" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <TextBox x:Name="NoGame" HorizontalAlignment="Center" VerticalAlignment="Center" Text="No Game Selected" Width="298" TextAlignment="Center" Margin="374,10,176,312" FontSize="30" Background="Transparent" BorderBrush="#00ABADB3" Cursor="Hand" IsTabStop="False" Focusable="False" IsReadOnly="True" IsHitTestVisible="False" Grid.Row="1"/>
+        <TextBox x:Name="SelectGame" TextWrapping="Wrap" Text="Choose a game on the left side of the screen" TextAlignment="Center" Margin="374,87,176,211" FontSize="24" Background="Transparent" BorderBrush="#00ABADB3" Cursor="Hand" IsTabStop="False" Focusable="False" IsReadOnly="True" IsHitTestVisible="False" Width="298" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+        <Button x:Name="Game_Install" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="Game_Install_Click" Width="150" Margin="449,0,248.333,4" Grid.Row="1" Height="31"/>
+        <Button x:Name="Game_ReInstall" Content="Install Somewhere Else" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="Game_ReInstall_Click" Width="150" Margin="449,0,248.333,4" Grid.Row="1" Height="31"/>
         <ComboBox x:Name="VersionBox" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Bottom" ScrollViewer.VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Center" Margin="247,0,0,3.667" Initialized="Version_Initialized" SelectionChanged="VersionBox_SelectionChanged" IsEnabled="False" Grid.Row="1" Width="161" Height="31"/>
-        <Button x:Name="PlayButtonGUI" Content="Play" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Height="31" Margin="0,0,46.333,3.667" Initialized="PlayButton_Initialized" Click="PlayButton_Click" IsEnabled="False" Grid.Row="1"/>
-        <Image x:Name="UpdateScreen" Source="Images/UpdateBackground.jpg" Visibility="Collapsed" Margin="0,0,0.333,-13.333" Initialized="UpdateScreen_Initialized" Grid.RowSpan="2" Stretch="Fill"/>
-        <Label x:Name="UpdateText1" Visibility="Collapsed" Content="Launcher Update Available" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="280,25,253,0" FontSize="25" Initialized="UpdateText1_Initialized" Height="44" Width="313" Grid.Row="1"/>
-        <Label x:Name="UpdateText2" Visibility="Collapsed" Content="Do You Want To Update" HorizontalAlignment="Center" FontSize="15" Initialized="UpdateText2_Initialized" Margin="347,90,330,240" Grid.Row="1" Width="169"/>
-        <Button x:Name="Yes" Content="Yes" Visibility="Collapsed" Click="Yes_Click" HorizontalAlignment="Center" Width="85" Background="#99249C1E" Margin="323,178,438,0" Initialized="Yes_Initialized" Grid.Row="1" Height="40" VerticalAlignment="Top"/>
-        <ProgressBar x:Name="UpdateProgress" Visibility="Collapsed" HorizontalAlignment="Center" Width="256" Margin="300,185,290,0" Initialized="UpdateBar_Initialized" Grid.Row="1" Height="28" VerticalAlignment="Top"/>
-        <Button x:Name="No" Content="No" Visibility="Collapsed" Click="No_Click" Background="#99B53B20" Margin="448,178,313,0" Initialized="No_Initialized" Grid.Row="1" HorizontalAlignment="Center" Width="85" Height="40" VerticalAlignment="Top"/>
-        <Label x:Name="LocalVersionNumber" Visibility="Collapsed" Content="" HorizontalAlignment="Center" FontSize="15" Initialized="LocalVersionNumber_Initialized" Margin="230,260,537,0" RenderTransformOrigin="0.443,1.844" Width="79" Grid.Row="1" Height="35" VerticalAlignment="Top"/>
-        <Label x:Name="LocalVersion" Visibility="Collapsed" Content="Current:" HorizontalAlignment="Center" FontSize="15" Initialized="LocalVersion_Initialized" Margin="167,260,616,0" RenderTransformOrigin="0.443,1.844" Width="63" Grid.Row="1" Height="35" VerticalAlignment="Top"/>
-        <Label x:Name="OnlineVersionNumber" Visibility="Collapsed" Content="" HorizontalAlignment="Center" FontSize="15" Initialized="OnlineVersionNumber_Initialized" Margin="624,260,152,0" RenderTransformOrigin="0.443,1.844" Width="70" Grid.Row="1" Height="35" VerticalAlignment="Top"/>
-        <Label x:Name="OnlineVersion" Visibility="Collapsed" Content="New:" HorizontalAlignment="Center" FontSize="15" Initialized="OnlineVersion_Initialized" Margin="585,260,198,0" RenderTransformOrigin="0.443,1.844" Width="63" Grid.Row="1" Height="35" VerticalAlignment="Top"/>
-        <ProgressBar x:Name="GameDownload" Visibility="Collapsed" Margin="216,0,0.333,39.667" Initialized="ProgressBar_Initialized" Grid.Row="1" Height="25" VerticalAlignment="Bottom"/>
-        <Image x:Name="RepairScreen" Source="Images/UpdateBackground.jpg" Visibility="Collapsed" Margin="0,0,0.333,-13.333" Grid.RowSpan="2" Stretch="Fill" Initialized="RepairScreen_Initialized"/>
-        <ProgressBar x:Name="RepairBar" Visibility="Collapsed" HorizontalAlignment="Center" Width="256" Margin="300,185,290,0" Grid.Row="1" Height="28" VerticalAlignment="Top" Initialized="RepairBar_Initialized"/>
-        <Label x:Name="RepairText" Visibility="Collapsed" Content="Launcher Repair" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="331,24.667,330.333,0" FontSize="25" Initialized="RepairText_Initialized" Height="44" Width="186" Grid.Row="1"/>
-        <Label x:Name="RepairBodyText" Visibility="Collapsed" Content="Missing/Broken Files, Trying to Repair The Launcher Files" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Initialized="RepairBodyText_Initialized" Margin="191,93,183,0" Grid.Row="1" Height="34" Width="472"/>
+        <Button x:Name="PlayButtonGUI" Content="Play" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Height="31" Margin="0,0,60,3.667" Click="PlayButton_Click" IsEnabled="False" Grid.Row="1"/>
+
+        <Image x:Name="SettingScreen" Source="Images/UpdateBackground.jpg" Visibility="Collapsed" Grid.RowSpan="2" Stretch="Fill"/>
+        <Button x:Name="Settings" Visibility="Visible" Margin="0,0,2,2" Height="36" Width="36" Click="Settings_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="1">
+            <StackPanel>
+                <Image Source="Images/Gear.jpg"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="AGGB" Content="Update" Margin="0,34,106,0" Visibility="Collapsed" Height="50" Width="80" IsEnabled="False" VerticalAlignment="Top" HorizontalAlignment="Right" Click="AGGB_Click"/>
+        <Label x:Name="AGG" Content="AGG Productions" Margin="0,46,340,0" Width="100" Visibility="Collapsed" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Right"/>
+        <Label x:Name="AGGOVer" Content="Online Version: N/A" Margin="0,34,190,0" Visibility="Collapsed" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="144"/>
+        <Label x:Name="AGGVer" Content="Local Version: Loading" Margin="0,59,196,0" Visibility="Collapsed" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="137"/>
+        <Label x:Name="HTMLL" Content="HTMLPlayer" HorizontalAlignment="Right" Margin="0,120,350,0" Visibility="Collapsed" VerticalAlignment="Top" VerticalContentAlignment="Center" Grid.RowSpan="2"/>
+        <Label x:Name="HTMLVer" Content="Local Version: N/A" HorizontalAlignment="Right" Visibility="Collapsed" Margin="0,135,197,0" Width="137" VerticalContentAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <Label x:Name="HTMLOVer" Content="Online Version: N/A" Visibility="Collapsed" Margin="0,109,191,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Right" Width="143"/>
+        <Button x:Name="HTMLB" Content="Install" Visibility="Collapsed" Margin="0,111,106,0" Width="80" Height="50" Initialized="HTMLB_Initialized" IsEnabled="False" Click="HTMLB_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <Button x:Name="HTMLUB" Content="Uninstall" Visibility="Collapsed" Margin="0,111,10,0" Click="HTMLUB_Click" Background="#99B53B20" IsEnabled="False" Width="80" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.RowSpan="2"/>
+
+        <Image x:Name="UpdateScreen" Source="Images/UpdateBackground.jpg" Visibility="Collapsed" Margin="0,0,0.333,-13.333" Grid.RowSpan="2" Stretch="Fill"/>
+        <Label x:Name="UpdateText1" Visibility="Collapsed" Content="Launcher Update Available" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="280,25,253,0" FontSize="25" Height="44" Width="313" Grid.Row="1"/>
+        <Label x:Name="UpdateText2" Visibility="Collapsed" Content="Do You Want To Update" HorizontalAlignment="Center" FontSize="15" Margin="347,90,330,240" Grid.Row="1" Width="169"/>
+        <Button x:Name="Yes" Content="Yes" Visibility="Collapsed" Click="Yes_Click" HorizontalAlignment="Center" Width="85" Background="#99249C1E" Margin="323,178,438,0" Grid.Row="1" Height="40" VerticalAlignment="Top"/>
+        <ProgressBar x:Name="UpdateProgress" Visibility="Collapsed" HorizontalAlignment="Center" Width="256" Margin="300,185,290,0" Grid.Row="1" Height="28" VerticalAlignment="Top"/>
+        <Button x:Name="No" Content="No" Visibility="Collapsed" Click="No_Click" Background="#99B53B20" Margin="448,178,313,0" Grid.Row="1" HorizontalAlignment="Center" Width="85" Height="40" VerticalAlignment="Top"/>
+        <Label x:Name="LocalVersionNumber" Visibility="Collapsed" Content="" HorizontalAlignment="Center" FontSize="15" Margin="230,260,537,0" RenderTransformOrigin="0.443,1.844" Width="79" Grid.Row="1" Height="35" VerticalAlignment="Top"/>
+        <Label x:Name="LocalVersion" Visibility="Collapsed" Content="Current:" HorizontalAlignment="Center" FontSize="15" Margin="167,260,616,0" RenderTransformOrigin="0.443,1.844" Width="63" Grid.Row="1" Height="35" VerticalAlignment="Top"/>
+        <Label x:Name="OnlineVersionNumber" Visibility="Collapsed" Content="" HorizontalAlignment="Center" FontSize="15" Margin="624,260,152,0" RenderTransformOrigin="0.443,1.844" Width="70" Grid.Row="1" Height="35" VerticalAlignment="Top"/>
+        <Label x:Name="OnlineVersion" Visibility="Collapsed" Content="New:" HorizontalAlignment="Center" FontSize="15" Margin="585,260,198,0" RenderTransformOrigin="0.443,1.844" Width="63" Grid.Row="1" Height="35" VerticalAlignment="Top"/>
+        <ProgressBar x:Name="GameDownload" Visibility="Collapsed" Margin="216,0,0.333,39.667" Grid.Row="1" Height="25" VerticalAlignment="Bottom"/>
+        <Image x:Name="RepairScreen" Source="Images/UpdateBackground.jpg" Visibility="Collapsed" Margin="0,0,0.333,-13.333" Grid.RowSpan="2" Stretch="Fill"/>
+        <ProgressBar x:Name="RepairBar" Visibility="Collapsed" HorizontalAlignment="Center" Width="256" Margin="300,185,290,0" Grid.Row="1" Height="28" VerticalAlignment="Top"/>
+        <Label x:Name="RepairText" Visibility="Collapsed" Content="Launcher Repair" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="331,24.667,330.333,0" FontSize="25" Height="44" Width="186" Grid.Row="1"/>
+        <Label x:Name="RepairBodyText" Visibility="Collapsed" Content="Missing/Broken Files, Trying to Repair The Launcher Files" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Margin="191,93,183,0" Grid.Row="1" Height="34" Width="472"/>
     </Grid>
 </Window>

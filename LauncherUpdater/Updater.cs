@@ -6,7 +6,7 @@ using System.IO.Compression;
 using System.Net;
 using System.Windows;
 using System.Reflection;
-using AGG_Productions.LauncherData;
+using static AGG_Productions.MainWindow;
 
 namespace AGG_Productions.LauncherUpdater
 {
@@ -14,6 +14,7 @@ namespace AGG_Productions.LauncherUpdater
     {
         public static string LauncherLink = "https://www.dropbox.com/s/27bwz9ct96qltlx/AGG%20Productions%20Temp.zip?dl=1";
         public static string LauncherVerLink = "https://www.dropbox.com/s/l0s6jjask4paool/AGG%20Productions%20Version.txt?dl=1";
+        public static string HTMLVerLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/HTMLPlayer/Webdata/Binary/HTMLPlayerVersion.txt";
         public static string startPath = @".\AGG Productions Temp";
         public static string exeOld = Path.Combine(CheckFiles.rootPath, "AGG Productions.exe.old");
         public static string pdbOld = Path.Combine(CheckFiles.rootPath, "AGG Productions.pdb.old");
@@ -23,6 +24,7 @@ namespace AGG_Productions.LauncherUpdater
         public static string versionFile = Path.Combine(CheckFiles.rootPath, "AGG Productions Version.txt");
         public static string launcherZip = Path.Combine(CheckFiles.rootPath, "AGG Productions Temp.zip");
         public static int VersionDetector = 0;
+        public static Version HTMLonlineVersion;
         public static Version onlineVersion;
         public static Version localVersion;
         public static void LauncherUpdate()
@@ -61,6 +63,7 @@ namespace AGG_Productions.LauncherUpdater
             {
                 WebClient webClient = new WebClient();
                 onlineVersion = new Version(webClient.DownloadString(LauncherVerLink));
+                HTMLonlineVersion = new Version(webClient.DownloadString(HTMLVerLink));
                 if (CheckFiles.FilesCheckPassed == false)
                 {
                     InstallGameFiles(false, Version.zero);
@@ -68,17 +71,18 @@ namespace AGG_Productions.LauncherUpdater
                 else if (onlineVersion.IsDifferentThan(localVersion))
                 {
                     VersionDetector += 1;
-                    MainWindow.UpdateScreen_Image.Visibility = Visibility.Visible;
-                    MainWindow.Yes_Button.Visibility = Visibility.Visible;
-                    MainWindow.No_Button.Visibility = Visibility.Visible;
-                    MainWindow.UpdateText1_Label.Visibility = Visibility.Visible;
-                    MainWindow.UpdateText2_Label.Visibility = Visibility.Visible;
-                    MainWindow.LocalVersionObject.Visibility = Visibility.Visible;
-                    MainWindow.OnlineVersionObject.Visibility = Visibility.Visible;
-                    MainWindow.LocalVersionNumberObject.Content = localVersion;
-                    MainWindow.OnlineVersionNumberObject.Content = onlineVersion;
-                    MainWindow.LocalVersionNumberObject.Visibility = Visibility.Visible;
-                    MainWindow.OnlineVersionNumberObject.Visibility = Visibility.Visible;
+                    AGGWindow.UpdateScreen.Visibility = Visibility.Visible;
+                    AGGWindow.Yes.Visibility = Visibility.Visible;
+                    AGGWindow.No.Visibility = Visibility.Visible;
+                    AGGWindow.UpdateText1.Visibility = Visibility.Visible;
+                    AGGWindow.UpdateText2.Visibility = Visibility.Visible;
+                    AGGWindow.LocalVersion.Visibility = Visibility.Visible;
+                    AGGWindow.OnlineVersion.Visibility = Visibility.Visible;
+                    AGGWindow.LocalVersionNumber.Content = localVersion;
+                    AGGWindow.OnlineVersionNumber.Content = onlineVersion;
+                    AGGWindow.LocalVersionNumber.Visibility = Visibility.Visible;
+                    AGGWindow.OnlineVersionNumber.Visibility = Visibility.Visible;
+                    AGGWindow.AGGB.IsEnabled = true;
                 }
             }
             catch (Exception ex)
@@ -109,8 +113,8 @@ namespace AGG_Productions.LauncherUpdater
 
         private static void LauncherDownload_DownloadProgressChanged(object sender, FileDownloader.DownloadProgress progress)
         {
-            MainWindow.UpdateDownloadBar.Value = progress.ProgressPercentage;
-            MainWindow.RepairBarObject.Value = progress.ProgressPercentage;
+            AGGWindow.UpdateProgress.Value = progress.ProgressPercentage;
+            AGGWindow.RepairBar.Value = progress.ProgressPercentage;
         }
 
         private static void DownloadGameCompletedCallback(object sender, AsyncCompletedEventArgs e)
@@ -188,7 +192,7 @@ namespace AGG_Productions.LauncherUpdater
         }
     }
 
-    public struct Version
+    struct Version
     {
         internal static Version zero = new Version(0, 0, 0);
 

@@ -37,7 +37,6 @@ namespace AGG_Productions
             else
             {
                 FileDialogClosed = true;
-                MainWindow.button.IsEnabled = true;
             }
         }
     }

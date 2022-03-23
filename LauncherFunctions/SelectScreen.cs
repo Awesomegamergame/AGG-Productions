@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Windows;
 using static System.Environment;
+using static AGG_Productions.MainWindow;
 using AGG_Productions.LauncherData;
 
 namespace AGG_Productions.LauncherFunctions
@@ -14,32 +15,32 @@ namespace AGG_Productions.LauncherFunctions
             {
                 Directory.CreateDirectory($@"{CurrentDirectory}\Cache\Games");
             }
-            MainWindow.InstallGameName = $"{GameName}";
+            InstallGameName = $"{GameName}";
             if (File.Exists($@"{CurrentDirectory}\Cache\Games.json"))
             {
-                MainWindow.InstallGameLink = Json.ReadJson(MainWindow.InstallGameName, "Games");
-                GameLink = MainWindow.InstallGameLink;
+                InstallGameLink = Json.ReadJson(InstallGameName, "Games");
+                GameLink = InstallGameLink;
             }
             else if (File.Exists($@"{CurrentDirectory}\Cache\Games\{GameName}.json") && !File.Exists($@"{CurrentDirectory}\Cache\Games.json"))
             {
                 string JsonLink = Json.ReadJsonLink("Link", GameName);
-                MainWindow.InstallGameLink = Json.ReadAndCreate(GameName, JsonLink);
-                GameLink = MainWindow.InstallGameLink;
+                InstallGameLink = Json.ReadAndCreate(GameName, JsonLink);
+                GameLink = InstallGameLink;
             }
-            MainWindow.NoGameObject.Visibility = Visibility.Collapsed;
-            MainWindow.SelectGameObject.Visibility = Visibility.Collapsed;
-            MainWindow.UpdateBoard.Visibility = Visibility.Visible;
-            MainWindow.GameInstallObject.Visibility = Visibility.Visible;
-            MainWindow.GameInstallObject.Content = $"Install {GameName}";
+            AGGWindow.NoGame.Visibility = Visibility.Collapsed;
+            AGGWindow.SelectGame.Visibility = Visibility.Collapsed;
+            AGGWindow.UpdateBoard.Visibility = Visibility.Visible;
+            AGGWindow.Game_Install.Visibility = Visibility.Visible;
+            AGGWindow.Game_Install.Content = $"Install {GameName}";
 
-            if (Json.DataCheck(MainWindow.InstallGameName))
+            if (Json.DataCheck(InstallGameName))
             {
-                MainWindow.GameDir = Json.ReadJson(MainWindow.InstallGameName);
-                MainWindow.VersionSelector.Visibility = Visibility.Visible;
-                MainWindow.Play.Visibility = Visibility.Visible;
-                MainWindow.GameDownloadBar.Visibility = Visibility.Visible;
-                MainWindow.GameInstallObject.Visibility = Visibility.Collapsed;
-                MainWindow.GameReInstallObject.Visibility = Visibility.Visible;
+                GameDir = Json.ReadJson(InstallGameName);
+                VersionSelector.Visibility = Visibility.Visible;
+                AGGWindow.PlayButtonGUI.Visibility = Visibility.Visible;
+                AGGWindow.GameDownload.Visibility = Visibility.Visible;
+                AGGWindow.Game_Install.Visibility = Visibility.Collapsed;
+                AGGWindow.Game_ReInstall.Visibility = Visibility.Visible;
                 VersionManager.VersionLink = GameLink;
                 PlayButton._VersionManager = new VersionManager(this);
                 if (File.Exists($"{GameName}Dir.txt"))
@@ -47,12 +48,12 @@ namespace AGG_Productions.LauncherFunctions
             }
             else
             {
-                MainWindow.VersionSelector.Visibility = Visibility.Collapsed;
-                MainWindow.Play.Visibility = Visibility.Collapsed;
-                MainWindow.GameDownloadBar.Visibility = Visibility.Collapsed;
-                MainWindow.GameInstallObject.Visibility = Visibility.Visible;
-                MainWindow.GameInstallObject.IsEnabled = true;
-                MainWindow.GameReInstallObject.Visibility = Visibility.Collapsed;
+                VersionSelector.Visibility = Visibility.Collapsed;
+                AGGWindow.PlayButtonGUI.Visibility = Visibility.Collapsed;
+                AGGWindow.GameDownload.Visibility = Visibility.Collapsed;
+                AGGWindow.Game_Install.Visibility = Visibility.Visible;
+                AGGWindow.Game_Install.IsEnabled = true;
+                AGGWindow.Game_ReInstall.Visibility = Visibility.Collapsed;
                 if (File.Exists($"{GameName}Dir.txt"))
                     File.Delete($"{GameName}Dir.txt");
             }
