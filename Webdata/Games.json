@@ -1,7 +1,6 @@
 {
   "Games": {
     "Chaotic": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/GameVersions/Chaotic.json",
-    "EastlowsHS": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/GameVersions/EastlowsHS.json",
-    "Test": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/1.4.0-Update/Webdata/GameVersions/Test.json"
+    "EastlowsHS": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/GameVersions/EastlowsHS.json"
   }
 }

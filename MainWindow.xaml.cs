@@ -135,7 +135,7 @@ namespace AGG_Productions
         {
             HTMLB.IsEnabled = false;
             var pluginInstaller = new PluginInstaller();
-            pluginInstaller.InstallFiles("https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/1.4.0-Update/HTMLPlayer/Webdata/Binary/HTMLPlayer.zip", $@"{CurrentDirectory}\Plugins\HTMLPlayer.zip", "HTMLPlayer");
+            pluginInstaller.InstallFiles("https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/HTMLPlayer/Webdata/Binary/HTMLPlayer.zip", $@"{CurrentDirectory}\Plugins\HTMLPlayer.zip", "HTMLPlayer");
             if (File.Exists($@"{CurrentDirectory}\Plugins\HTMLPlayer\HTMLPlayer.exe"))
             {
                 HTMLB.Content = "Update";

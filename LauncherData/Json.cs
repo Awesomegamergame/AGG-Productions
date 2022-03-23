@@ -6,9 +6,9 @@ namespace AGG_Productions.LauncherData
 {
     class Json
     {
-        public static string BJsonLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/1.4.0-Update/Webdata/Updates.json";
-        public static string GJsonLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/1.4.0-Update/Webdata/Games.json";
-        public static string BDataLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/1.4.0-Update/Webdata/ButtonData.json";
+        public static string BJsonLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/Updates.json";
+        public static string GJsonLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/Games.json";
+        public static string BDataLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/ButtonData.json";
         public static void CreateJson()
         {
             JObject rss = new JObject(new JProperty("GameDirs", new JObject()));

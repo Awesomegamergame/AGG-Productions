@@ -14,7 +14,7 @@ namespace AGG_Productions.LauncherUpdater
     {
         public static string LauncherLink = "https://www.dropbox.com/s/27bwz9ct96qltlx/AGG%20Productions%20Temp.zip?dl=1";
         public static string LauncherVerLink = "https://www.dropbox.com/s/l0s6jjask4paool/AGG%20Productions%20Version.txt?dl=1";
-        public static string HTMLVerLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/1.4.0-Update/HTMLPlayer/Webdata/Binary/HTMLPlayerVersion.txt";
+        public static string HTMLVerLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/HTMLPlayer/Webdata/Binary/HTMLPlayerVersion.txt";
         public static string startPath = @".\AGG Productions Temp";
         public static string exeOld = Path.Combine(CheckFiles.rootPath, "AGG Productions.exe.old");
         public static string pdbOld = Path.Combine(CheckFiles.rootPath, "AGG Productions.pdb.old");
