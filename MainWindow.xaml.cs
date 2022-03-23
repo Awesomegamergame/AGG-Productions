@@ -78,7 +78,6 @@ namespace AGG_Productions
             OnlineVersionNumber.Visibility = Visibility.Collapsed;
             OnlineVersion.Visibility = Visibility.Collapsed;
         }
-
         private void AGGB_Click(object sender, RoutedEventArgs e)
         {
             CheckInternet.CheckInternetState();
