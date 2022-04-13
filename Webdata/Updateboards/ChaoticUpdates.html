@@ -1,65 +1,48 @@
 <html>
     <head>
-        <title> Chaotic Game Updates </title>
+        <title> Chaotic Game</title>
         <style type="text/css">
-            * {
-
-                box-sizing: border-box;
-            }
-            ul{
-
-                list-style: none;
-            }
             body{
-
                 font-family: sans-serif;
-
-                word-spacing: 5px;
-
-                background-color: #000000;
-
+                background-color: #808080;
                 color: #ffffff;
             }
-            li {
-
-                background-image: unset;
-
-                background-color: #808080;
-
-                background: border-box;
-
-                margin-bottom: 1em;
-
-            }
             h3{
-
                 font-family: sans-serif;
-
-                word-spacing: 10px;
-
                 text-underline-position: auto;
-
                 text-align: center;
-
                 font-size: x-large;
-
-                color: #ff0000;
+                color: #0a0909;
+            }
+            .column{
+                float: left;
+                width: 31%;
+                padding: 5px;
+            }
+            .row::after {
+                content: "";
+                clear: both;
+                display: table;
             }
         </style>
     </head>
 
     <body>
-        <h1> Chaotic Update Board </h1>
-        <ul>
-            <li class="game-update">
-                <h3 class="Rainbow">The Official Release of Chaotic! v0.0.13.3</h3>
-                <p>
-
-                    With great confidence I present to the public, Chaotic.
-
-                    (TestText).
-                </p>
-            </li>
-        </ul>
+        <h1>Chaotic</h1>
+        <h3>Welcome to Chaotic on AGG Productions</h3>
+        <div class="row">
+            <div class="column">
+              <img src="https://raw.githubusercontent.com/awesomegamergame/Chaotic-Archive/main/Menu.jpg" alt="Menu" style="width:100%">
+            </div>
+            <div class="column">
+              <img src="https://raw.githubusercontent.com/awesomegamergame/Chaotic-Archive/main/Gameplay.jpg" alt="Gameplay-M" style="width:100%">
+            </div>
+            <div class="column">
+                <img src="https://raw.githubusercontent.com/awesomegamergame/Chaotic-Archive/main/Gameplaym.jpg" alt="Gameplay-M" style="width:100%">
+              </div>
+          </div> 
+        <p>
+            Chaotic is a multiplayer fps shooter game and will continue development soon.
+        </p>
     </body>
 </html>
