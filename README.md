@@ -1,4 +1,6 @@
 # AGG-Productions
+[![Stable Build](https://github.com/awesomegamergame/AGG-Productions/actions/workflows/ReleaseBuild.yml/badge.svg)](https://github.com/awesomegamergame/AGG-Productions/releases)
+[![Bleeding Edge Build](https://github.com/awesomegamergame/AGG-Productions/actions/workflows/DebugBuild.yml/badge.svg)](https://github.com/awesomegamergame/AGG-Productions/actions/workflows/DebugBuild.yml)
 
 <p align="center"> <img width="1000" height="500" src="Background.png"/> </p>
 
