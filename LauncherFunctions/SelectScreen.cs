@@ -16,6 +16,8 @@ namespace AGG_Productions.LauncherFunctions
                 Directory.CreateDirectory($@"{CurrentDirectory}\Cache\Games");
             }
             InstallGameName = $"{GameName}";
+            //TODO: Remove the whole Games.json file and add it to the ButtonData.json as well as Updates.json
+            //      Also remove the whole Json.ReadAndCreate because it cant add the link from the Games\GameName.json if ButtonData.json doesnt exist
             if (File.Exists($@"{CurrentDirectory}\Cache\Games.json"))
             {
                 InstallGameLink = Json.ReadJson(InstallGameName, "Games");
