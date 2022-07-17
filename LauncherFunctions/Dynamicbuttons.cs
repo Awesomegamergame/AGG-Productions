@@ -10,13 +10,28 @@ using static System.Environment;
 using static AGG_Productions.MainWindow;
 using System.Windows.Media.Imaging;
 using AGG_Productions.LauncherData;
+using AGG_Productions.LauncherUpdater;
 
 namespace AGG_Productions.LauncherFunctions
 {
     internal class Dynamicbuttons
     {
+        public static bool DevMode = false;
         public static void SetupButtons()
         {
+            if (File.Exists("devgames.txt"))
+            {
+                if (!Directory.Exists("DevCache"))
+                    Directory.CreateDirectory("DevCache");
+                if (!Directory.Exists($@"{CurrentDirectory}\DevCache\Images"))
+                    Directory.CreateDirectory($@"{CurrentDirectory}\DevCache\Images");
+                DevMode = true;
+            }
+            else
+            {
+                if(Directory.Exists("DevCache"))
+                    UpgradeLauncher.DeleteDirectory("DevCache");
+            }
             if (CheckInternet.IsOnline)
             {
                 WebClient d = new WebClient();
@@ -62,6 +77,10 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.List.Items.Add(newBtn);
                 newBtn.Click += new RoutedEventHandler(Game_Click);
             }
+        }
+        private void ReadJson()
+        {
+
         }
     }
 }
