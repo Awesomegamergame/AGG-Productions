@@ -1,0 +1,29 @@
+name: Stable Build
+on:
+  push:
+    tags:
+      - "*.*.*"
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup msbuild
+      uses: microsoft/setup-msbuild@v1.0.2
+    - name: Download Inno Setup
+      uses: suisei-cn/actions-download-file@v1
+      with:
+        url: https://jrsoftware.org/download.php/is.exe
+        target: ../
+    - name: Install Inno Setup
+      run: '../is.exe /VERYSILENT /NORESTART /ALLUSERS'
+    - name: Build Project
+      run: msbuild AGG-Productions.csproj /t:Build /p:Configuration=Release
+    - name: Compile Installer
+      run: '& "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" /f Build.iss'
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: AGG.Productions.Installer.exe
