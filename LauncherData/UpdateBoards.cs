@@ -6,16 +6,17 @@ using AGG_Productions.LauncherData;
 using static AGG_Productions.MainWindow;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using AGG_Productions.LauncherFunctions;
 
 namespace AGG_Productions
 {
     public class UpdateBoards
     {
         public static string BoardNameM;
-        public static void DownloadBoards(string BoardName, string BoardHTMLLink)
+        public static void DownloadBoards(string BoardName, string BoardHTMLLink, string CacheLoc)
         {
             BoardNameM += BoardName;
-            string UpdateBoardDir = $@"{CurrentDirectory}\Cache\UpdateBoards";
+            string UpdateBoardDir = $@"{CurrentDirectory}\{CacheLoc}\UpdateBoards";
 
             WebClient c = new WebClient();
         A:
@@ -23,7 +24,7 @@ namespace AGG_Productions
             {
                 if (CheckInternet.IsOnline)
                 {
-                    c.DownloadFileAsync(new Uri(BoardHTMLLink), $@"{CurrentDirectory}\Cache\UpdateBoards\{BoardName}Updates.html");
+                    c.DownloadFileAsync(new Uri(BoardHTMLLink), $@"{CurrentDirectory}\{CacheLoc}\UpdateBoards\{BoardName}Updates.html");
                 }
             }
             else
@@ -36,12 +37,25 @@ namespace AGG_Productions
         {
             if (CheckInternet.IsOnline)
             {
-                dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\ButtonData.json"));
-                dynamic json = obj.Games;
-                foreach (JProperty Version in json)
+                if (File.Exists($@"{CurrentDirectory}\Cache\ButtonData.json"))
                 {
-                    string LinkJson = Json.ReadGameVerJson(Version.Name, "updates", "ButtonData", "Games");
-                    DownloadBoards(Version.Name, LinkJson);
+                    dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\ButtonData.json"));
+                    dynamic json = obj.Games;
+                    foreach (JProperty Version in json)
+                    {
+                        string LinkJson = Json.ReadGameVerJson(Version.Name, "updates", "ButtonData", "Games", "Cache");
+                        DownloadBoards(Version.Name, LinkJson, "Cache");
+                    }
+                }
+                if(Dynamicbuttons.DevMode && File.Exists($@"{CurrentDirectory}\DevCache\ButtonData.json"))
+                {
+                    dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\DevCache\ButtonData.json"));
+                    dynamic json = obj.Games;
+                    foreach (JProperty Version in json)
+                    {
+                        string LinkJson = Json.ReadGameVerJson(Version.Name, "updates", "ButtonData", "Games", "DevCache");
+                        DownloadBoards(Version.Name, LinkJson, "DevCache");
+                    }
                 }
             }
         }

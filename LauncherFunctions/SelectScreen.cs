@@ -3,6 +3,8 @@ using System.Windows;
 using static System.Environment;
 using static AGG_Productions.MainWindow;
 using AGG_Productions.LauncherData;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace AGG_Productions.LauncherFunctions
 {
@@ -16,18 +18,19 @@ namespace AGG_Productions.LauncherFunctions
                 Directory.CreateDirectory($@"{CurrentDirectory}\Cache\Games");
             }
             InstallGameName = $"{GameName}";
-            //TODO: Remove the whole Games.json file and add it to the ButtonData.json as well as Updates.json
-            //      Also remove the whole Json.ReadAndCreate because it cant add the link from the Games\GameName.json if ButtonData.json doesnt exist
-            if (File.Exists($@"{CurrentDirectory}\Cache\Games.json"))
+            if (File.Exists($@"{CurrentDirectory}\Cache\ButtonData.json"))
             {
-                InstallGameLink = Json.ReadJson(InstallGameName, "Games");
-                GameLink = InstallGameLink;
-            }
-            else if (File.Exists($@"{CurrentDirectory}\Cache\Games\{GameName}.json") && !File.Exists($@"{CurrentDirectory}\Cache\Games.json"))
-            {
-                string JsonLink = Json.ReadJsonLink("Link", GameName);
-                //InstallGameLink = Json.ReadAndCreate(GameName, JsonLink);
-                GameLink = InstallGameLink;
+                dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\ButtonData.json"));
+                dynamic json = obj.Games;
+                foreach(JProperty Names in json)
+                {
+                    string Name = Json.ReadGameVerJson(Names.Name, "name", "ButtonData", "Games", "Cache");
+                    if (Name.Equals(GameName))
+                    {
+                        InstallGameLink = Json.ReadGameVerJson(Names.Name, "game", "ButtonData", "Games", "Cache");
+                        GameLink = InstallGameLink;
+                    }
+                }
             }
             AGGWindow.NoGame.Visibility = Visibility.Collapsed;
             AGGWindow.SelectGame.Visibility = Visibility.Collapsed;
@@ -45,8 +48,6 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.Game_ReInstall.Visibility = Visibility.Visible;
                 VersionManager.VersionLink = GameLink;
                 PlayButton._VersionManager = new VersionManager(this);
-                if (File.Exists($"{GameName}Dir.txt"))
-                    File.Delete($"{GameName}Dir.txt");
             }
             else
             {
@@ -56,8 +57,6 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.Game_Install.Visibility = Visibility.Visible;
                 AGGWindow.Game_Install.IsEnabled = true;
                 AGGWindow.Game_ReInstall.Visibility = Visibility.Collapsed;
-                if (File.Exists($"{GameName}Dir.txt"))
-                    File.Delete($"{GameName}Dir.txt");
             }
         }
     }

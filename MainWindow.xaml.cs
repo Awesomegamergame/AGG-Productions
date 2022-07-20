@@ -31,7 +31,7 @@ namespace AGG_Productions
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Dynamicbuttons.DevMode)
+            if (Dynamicbuttons.DevMode && !File.Exists($@"{CurrentDirectory}\DevCache\ButtonData.json"))
                 MessageBox.Show("DevMode has been activated put a direct link to your ButtonData.json in a file called devlink.txt in the AGG Productions folder or disable DevMode by removing the devgames file", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         public static void Game_Click(object sender, RoutedEventArgs e)
