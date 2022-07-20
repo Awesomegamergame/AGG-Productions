@@ -26,7 +26,7 @@ namespace AGG_Productions.LauncherFunctions
             else if (File.Exists($@"{CurrentDirectory}\Cache\Games\{GameName}.json") && !File.Exists($@"{CurrentDirectory}\Cache\Games.json"))
             {
                 string JsonLink = Json.ReadJsonLink("Link", GameName);
-                InstallGameLink = Json.ReadAndCreate(GameName, JsonLink);
+                //InstallGameLink = Json.ReadAndCreate(GameName, JsonLink);
                 GameLink = InstallGameLink;
             }
             AGGWindow.NoGame.Visibility = Visibility.Collapsed;
