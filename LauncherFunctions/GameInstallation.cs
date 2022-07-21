@@ -24,10 +24,6 @@ namespace AGG_Productions.LauncherFunctions
             AGGWindow.PlayButtonGUI.Visibility = Visibility.Visible;
             AGGWindow.GameDownload.Visibility = Visibility.Visible;
             AGGWindow.Game_ReInstall.Visibility = Visibility.Visible;
-            if (!File.Exists($@"{CurrentDirectory}\Cache\Games\{InstallGameName}.json") && !File.Exists($@"{CurrentDirectory}\Cache\Games.json"))
-            {
-                InstallGameLink = null;
-            }
             VersionManager.VersionLink = InstallGameLink;
             PlayButton._VersionManager = new VersionManager(this);
         }

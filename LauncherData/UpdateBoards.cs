@@ -36,14 +36,11 @@ namespace AGG_Productions
         {
             if (CheckInternet.IsOnline)
             {
-                WebClient d = new WebClient();
-                d.DownloadFile(new Uri(Json.BJsonLink), $@"{CurrentDirectory}\Cache\Updates.json");
-                d.DownloadFile(new Uri(Json.GJsonLink), $@"{CurrentDirectory}\Cache\Games.json");
-                dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\Updates.json"));
-                dynamic json = obj.Updates;
+                dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\ButtonData.json"));
+                dynamic json = obj.Games;
                 foreach (JProperty Version in json)
                 {
-                    string LinkJson = Json.ReadGameVerJson(Version.Name, "link", "Updates", "Updates");
+                    string LinkJson = Json.ReadGameVerJson(Version.Name, "updates", "ButtonData", "Games");
                     DownloadBoards(Version.Name, LinkJson);
                 }
             }

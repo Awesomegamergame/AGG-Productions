@@ -1,7 +1,9 @@
 {
   "Games": {
     "Chaotic": {
-      "link": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/Images/Chaotic.jpg",
+      "image": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/Images/Chaotic.jpg",
+      "game": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/GameVersions/Chaotic.json",
+      "updates": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/Updateboards/ChaoticUpdates.html",
       "name": "Chaotic",
       "html": "No"
     }

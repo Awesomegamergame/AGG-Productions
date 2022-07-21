@@ -16,22 +16,8 @@ namespace AGG_Productions.LauncherFunctions
 {
     internal class Dynamicbuttons
     {
-        public static bool DevMode = false;
         public static void SetupButtons()
         {
-            if (File.Exists("devgames.txt"))
-            {
-                if (!Directory.Exists("DevCache"))
-                    Directory.CreateDirectory("DevCache");
-                if (!Directory.Exists($@"{CurrentDirectory}\DevCache\Images"))
-                    Directory.CreateDirectory($@"{CurrentDirectory}\DevCache\Images");
-                DevMode = true;
-            }
-            else
-            {
-                if(Directory.Exists("DevCache"))
-                    UpgradeLauncher.DeleteDirectory("DevCache");
-            }
             if (CheckInternet.IsOnline)
             {
                 WebClient d = new WebClient();
@@ -39,12 +25,22 @@ namespace AGG_Productions.LauncherFunctions
             }
             if (!File.Exists($@"{CurrentDirectory}\Cache\ButtonData.json"))
                 return;
+            if (File.Exists($@"{CurrentDirectory}\ButtonData.json"))
+            {
+                JObject o1 = JObject.Parse(File.ReadAllText($@"{CurrentDirectory}\Cache\ButtonData.json"));
+                JObject o2 = JObject.Parse(File.ReadAllText($@"{CurrentDirectory}\ButtonData.json"));
+                o1.Merge(o2, new JsonMergeSettings
+                {
+                    MergeArrayHandling = MergeArrayHandling.Union
+                });
+                File.WriteAllText($@"{CurrentDirectory}\Cache\ButtonData.json", o1.ToString());
+            }
             dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\ButtonData.json"));
             dynamic json = obj.Games;
             foreach (JProperty Names in json)
             {
                 WebClient d = new WebClient();
-                string ImageLink = Json.ReadGameVerJson(Names.Name, "link", "ButtonData", "Games");
+                string ImageLink = Json.ReadGameVerJson(Names.Name, "image", "ButtonData", "Games");
                 string GameName = Json.ReadGameVerJson(Names.Name, "name", "ButtonData", "Games");
                 string HTML = Json.ReadGameVerJson(Names.Name, "html", "ButtonData", "Games");
                 if (CheckInternet.IsOnline)
