@@ -6,7 +6,7 @@ namespace AGG_Productions.LauncherData
 {
     class Json
     {
-        public static string BDataLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/dev/Webdata/ButtonData.json";
+        public static string BDataLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/ButtonData.json";
         public static void CreateJson()
         {
             JObject rss = new JObject(new JProperty("GameDirs", new JObject()));
@@ -28,14 +28,24 @@ namespace AGG_Productions.LauncherData
             JObject rss = JObject.Parse(File.ReadAllText($@"{CurrentDirectory}\Cache\GameDirs.json"));
             return (string)rss["GameDirs"][GameName];
         }
+        public static string ReadJson(string GameName, string FileName)
+        {
+            JObject rss = JObject.Parse(File.ReadAllText($@"{CurrentDirectory}\Cache\{FileName}.json"));
+            return (string)rss["Games"][GameName];
+        }
+        public static string ReadJsonLink(string Link, string FileName)
+        {
+            JObject rss = JObject.Parse(File.ReadAllText($@"{CurrentDirectory}\Cache\Games\{FileName}.json"));
+            return (string)rss[Link];
+        }
         public static string ReadGameJson(string GVersion, string Property, string FileName, string TopLevel)
         {
             JObject rss = JObject.Parse(File.ReadAllText($@"{CurrentDirectory}\Cache\Games\{FileName}.json"));
             return (string)rss[TopLevel][GVersion][Property];
         }
-        public static string ReadGameVerJson(string GVersion, string Property, string FileName, string TopLevel, string CacheLoc)
+        public static string ReadGameVerJson(string GVersion, string Property, string FileName, string TopLevel)
         {
-            JObject rss = JObject.Parse(File.ReadAllText($@"{CurrentDirectory}\{CacheLoc}\{FileName}.json"));
+            JObject rss = JObject.Parse(File.ReadAllText($@"{CurrentDirectory}\Cache\{FileName}.json"));
             return (string)rss[TopLevel][GVersion][Property];
         }
         public static bool DataCheck(string GameName)

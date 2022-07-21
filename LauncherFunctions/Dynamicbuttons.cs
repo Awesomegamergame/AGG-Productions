@@ -26,7 +26,6 @@ namespace AGG_Productions.LauncherFunctions
                 if (!Directory.Exists($@"{CurrentDirectory}\DevCache\Images"))
                     Directory.CreateDirectory($@"{CurrentDirectory}\DevCache\Images");
                 DevMode = true;
-                ReadJson("DevCache");
             }
             else
             {
@@ -38,29 +37,25 @@ namespace AGG_Productions.LauncherFunctions
                 WebClient d = new WebClient();
                 d.DownloadFile(new Uri(Json.BDataLink), $@"{CurrentDirectory}\Cache\ButtonData.json");
             }
-            ReadJson("Cache");
-        }
-        private static void ReadJson(string CacheLoc)
-        {
-            if (!File.Exists($@"{CurrentDirectory}\{CacheLoc}\ButtonData.json"))
+            if (!File.Exists($@"{CurrentDirectory}\Cache\ButtonData.json"))
                 return;
-            dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\{CacheLoc}\ButtonData.json"));
+            dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\ButtonData.json"));
             dynamic json = obj.Games;
             foreach (JProperty Names in json)
             {
                 WebClient d = new WebClient();
-                string ImageLink = Json.ReadGameVerJson(Names.Name, "image", "ButtonData", "Games", CacheLoc);
-                string GameName = Json.ReadGameVerJson(Names.Name, "name", "ButtonData", "Games", CacheLoc);
-                string HTML = Json.ReadGameVerJson(Names.Name, "html", "ButtonData", "Games", CacheLoc);
+                string ImageLink = Json.ReadGameVerJson(Names.Name, "link", "ButtonData", "Games");
+                string GameName = Json.ReadGameVerJson(Names.Name, "name", "ButtonData", "Games");
+                string HTML = Json.ReadGameVerJson(Names.Name, "html", "ButtonData", "Games");
                 if (CheckInternet.IsOnline)
-                    d.DownloadFile(new Uri(ImageLink), $@"{CurrentDirectory}\{CacheLoc}\Images\{GameName}.jpg");
+                    d.DownloadFile(new Uri(ImageLink), $@"{CurrentDirectory}\Cache\Images\{GameName}.jpg");
                 Button newBtn = new Button();
-                if (File.Exists($@"{CurrentDirectory}\{CacheLoc}\Images\{GameName}.jpg"))
+                if (File.Exists($@"{CurrentDirectory}\Cache\Images\{GameName}.jpg"))
                 {
                     BitmapImage btm = new BitmapImage();
                     btm.BeginInit();
                     btm.CacheOption = BitmapCacheOption.OnLoad;
-                    btm.UriSource = new Uri($@"{CurrentDirectory}\{CacheLoc}\Images\{GameName}.jpg", UriKind.RelativeOrAbsolute);
+                    btm.UriSource = new Uri($@"{CurrentDirectory}\Cache\Images\{GameName}.jpg", UriKind.RelativeOrAbsolute);
                     btm.EndInit();
                     Image img = new Image
                     {
@@ -82,6 +77,10 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.List.Items.Add(newBtn);
                 newBtn.Click += new RoutedEventHandler(Game_Click);
             }
+        }
+        private void ReadJson()
+        {
+
         }
     }
 }
