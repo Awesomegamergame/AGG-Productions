@@ -29,11 +29,6 @@ namespace AGG_Productions
             AGGWindow = this;
             OnlineFunctions.UpdateFunctions();
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (Dynamicbuttons.DevMode && !File.Exists($@"{CurrentDirectory}\ButtonData.json"))
-                MessageBox.Show("DevMode has been activated put a modified copy of your ButtonData.json in the AGG Productions folder or disable DevMode by removing the devgames file", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-        }
         public static void Game_Click(object sender, RoutedEventArgs e)
         {
             string GameName = (sender as Button).Name;

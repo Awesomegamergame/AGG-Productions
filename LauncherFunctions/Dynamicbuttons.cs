@@ -16,7 +16,6 @@ namespace AGG_Productions.LauncherFunctions
 {
     internal class Dynamicbuttons
     {
-        public static bool DevMode = false;
         public static void SetupButtons()
         {
             if (CheckInternet.IsOnline)
@@ -26,19 +25,15 @@ namespace AGG_Productions.LauncherFunctions
             }
             if (!File.Exists($@"{CurrentDirectory}\Cache\ButtonData.json"))
                 return;
-            if (File.Exists("devgames.txt"))
+            if (File.Exists($@"{CurrentDirectory}\ButtonData.json"))
             {
-                DevMode = true;
-                if (File.Exists($@"{CurrentDirectory}\ButtonData.json"))
+                JObject o1 = JObject.Parse(File.ReadAllText($@"{CurrentDirectory}\Cache\ButtonData.json"));
+                JObject o2 = JObject.Parse(File.ReadAllText($@"{CurrentDirectory}\ButtonData.json"));
+                o1.Merge(o2, new JsonMergeSettings
                 {
-                    JObject o1 = JObject.Parse(File.ReadAllText($@"{CurrentDirectory}\Cache\ButtonData.json"));
-                    JObject o2 = JObject.Parse(File.ReadAllText($@"{CurrentDirectory}\ButtonData.json"));
-                    o1.Merge(o2, new JsonMergeSettings
-                    {
-                        MergeArrayHandling = MergeArrayHandling.Union
-                    });
-                    File.WriteAllText($@"{CurrentDirectory}\Cache\ButtonData.json", o1.ToString());
-                }
+                    MergeArrayHandling = MergeArrayHandling.Union
+                });
+                File.WriteAllText($@"{CurrentDirectory}\Cache\ButtonData.json", o1.ToString());
             }
             dynamic obj = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText($@"{CurrentDirectory}\Cache\ButtonData.json"));
             dynamic json = obj.Games;
