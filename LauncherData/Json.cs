@@ -6,7 +6,7 @@ namespace AGG_Productions.LauncherData
 {
     class Json
     {
-        public static string BDataLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/dev/Webdata/ButtonData.json";
+        public static string BDataLink = "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/ButtonData.json";
         public static void CreateJson()
         {
             JObject rss = new JObject(new JProperty("GameDirs", new JObject()));

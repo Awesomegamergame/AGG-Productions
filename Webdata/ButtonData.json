@@ -6,6 +6,13 @@
       "updates": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/Updateboards/ChaoticUpdates.html",
       "name": "Chaotic",
       "html": "No"
+    },
+    "WTTN": {
+      "image": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/Images/WTTN.jpg",
+      "game": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/GameVersions/WTTN.json",
+      "updates": "https://raw.githubusercontent.com/awesomegamergame/AGG-Productions/master/Webdata/Updateboards/WTTNUpdates.html",
+      "name": "WTTN",
+      "html": "Yes"
     }
   }
 }
