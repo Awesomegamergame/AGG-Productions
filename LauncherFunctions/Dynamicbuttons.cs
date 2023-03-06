@@ -20,8 +20,13 @@ namespace AGG_Productions.LauncherFunctions
         {
             if (CheckInternet.IsOnline)
             {
-                WebClient d = new WebClient();
-                d.DownloadFile(new Uri(Json.BDataLink), $@"{CurrentDirectory}\Cache\ButtonData.json");
+                var request = (HttpWebRequest)WebRequest.Create(Json.BDataLink);
+                var response = (HttpWebResponse)request.GetResponse();
+
+                using (var reader = new StreamReader(response.GetResponseStream()))
+                {
+                    File.WriteAllText($@"{CurrentDirectory}\Cache\ButtonData.json", reader.ReadToEnd());
+                }
             }
             if (!File.Exists($@"{CurrentDirectory}\Cache\ButtonData.json"))
                 return;
@@ -40,6 +45,7 @@ namespace AGG_Productions.LauncherFunctions
             foreach (JProperty Names in json)
             {
                 WebClient d = new WebClient();
+                d.Proxy = WebRequest.DefaultWebProxy;
                 string ImageLink = Json.ReadGameVerJson(Names.Name, "image", "ButtonData", "Games");
                 string GameName = Json.ReadGameVerJson(Names.Name, "name", "ButtonData", "Games");
                 string HTML = Json.ReadGameVerJson(Names.Name, "html", "ButtonData", "Games");
@@ -73,10 +79,6 @@ namespace AGG_Productions.LauncherFunctions
                 AGGWindow.List.Items.Add(newBtn);
                 newBtn.Click += new RoutedEventHandler(Game_Click);
             }
-        }
-        private void ReadJson()
-        {
-
         }
     }
 }

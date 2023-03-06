@@ -7,6 +7,7 @@ using System.Net;
 using System.Windows;
 using System.Reflection;
 using static AGG_Productions.MainWindow;
+using AGG_Productions.LauncherData;
 
 namespace AGG_Productions.LauncherUpdater
 {
@@ -61,9 +62,8 @@ namespace AGG_Productions.LauncherUpdater
 
             try
             {
-                WebClient webClient = new WebClient();
-                onlineVersion = new Version(webClient.DownloadString(LauncherVerLink));
-                HTMLonlineVersion = new Version(webClient.DownloadString(HTMLVerLink));
+                onlineVersion = new Version(DownloadString(LauncherVerLink));
+                HTMLonlineVersion = new Version(DownloadString(HTMLVerLink));
                 if (CheckFiles.FilesCheckPassed == false)
                 {
                     InstallGameFiles(false, Version.zero);
@@ -96,10 +96,9 @@ namespace AGG_Productions.LauncherUpdater
             try
             {
                 FileDownloader LauncherDownload = new FileDownloader();
-                WebClient webClient = new WebClient();
                 if (!_isUpdate)
                 {
-                    _onlineVersion = new Version(webClient.DownloadString(LauncherVerLink));
+                    _onlineVersion = new Version(DownloadString(LauncherVerLink));
                 }
                 LauncherDownload.DownloadFileAsync(LauncherLink, launcherZip, _onlineVersion);
                 LauncherDownload.DownloadProgressChanged += LauncherDownload_DownloadProgressChanged;
@@ -188,6 +187,17 @@ namespace AGG_Productions.LauncherUpdater
             else if(VersionDetector == 2)
             {
                 InstallGameFiles(false, Version.zero);
+            }
+        }
+
+        private static string DownloadString(string link)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(link);
+            var response = (HttpWebResponse)request.GetResponse();
+
+            using (var reader = new StreamReader(response.GetResponseStream()))
+            {
+                return reader.ReadToEnd();
             }
         }
     }

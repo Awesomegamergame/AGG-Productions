@@ -9,8 +9,9 @@ namespace AGG_Productions
         {
             try
             {
-                using (var client = new WebClient())
-                using (var stream = client.OpenRead("https://www.google.com"))
+                WebClient wc = new WebClient();
+                wc.Proxy = null;
+                using (var stream = wc.OpenRead("https://www.google.com"))
                 {
                     IsOnline = true;
                 }
